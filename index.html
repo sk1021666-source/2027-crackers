@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -11,7 +12,8 @@ button,input,textarea{font:inherit}
 button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:pointer;background:#ffc857;color:#171717}
 header{position:sticky;top:0;background:#10182b;padding:15px;border-bottom:1px solid #29344b;z-index:5}
 nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-size:23px;font-weight:900}.logo span{color:#ffc857}
+.logo{font-size:23px;font-weight:900}
+.logo span{color:#ffc857}
 nav button{background:#26334d;color:white}
 .container{max-width:1100px;margin:auto;padding:20px 14px}
 .hidden{display:none!important}
@@ -38,7 +40,11 @@ input,textarea{width:100%;padding:13px;background:#111b30;color:white;border:1px
 .total{text-align:right;font-size:22px;font-weight:bold;margin:18px 0;color:#ffc857}
 .status{color:#ffc857}
 footer{text-align:center;padding:30px;color:#9aa8c0}
-@media(max-width:600px){.row{grid-template-columns:1fr}.hero{padding:30px 18px}header{position:static}}
+@media(max-width:600px){
+.row{grid-template-columns:1fr}
+.hero{padding:30px 18px}
+header{position:static}
+}
 </style>
 </head>
 <body>
@@ -74,7 +80,10 @@ footer{text-align:center;padding:30px;color:#9aa8c0}
 </section>
 
 <section id="cartView" class="hidden">
-<div class="section-title"><h2>🛒 Your Cart</h2><button class="secondary" onclick="showView('shop')">Back to Shop</button></div>
+<div class="section-title">
+<h2>🛒 Your Cart</h2>
+<button class="secondary" onclick="showView('shop')">Back to Shop</button>
+</div>
 <div class="panel">
 <div id="cartItems"></div>
 <div class="total" id="cartTotal">Total: ₹0</div>
@@ -106,7 +115,9 @@ footer{text-align:center;padding:30px;color:#9aa8c0}
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getFirestore,collection,addDoc,getDocs,doc,getDoc,serverTimestamp,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+getFirestore,collection,addDoc,getDoc,doc,serverTimestamp,onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyBcwjaAR9Dc7cX0sqVZndEPJOMsmxZgktjg",
@@ -126,7 +137,10 @@ let products=[],cart={},locationLink="";
 
 const $=id=>document.getElementById(id);
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
 
 window.showView=view=>{
 ["shopView","cartView","trackView"].forEach(id=>$(id).classList.add("hidden"));
@@ -138,19 +152,24 @@ window.scrollTo(0,0);
 onSnapshot(productsRef,snap=>{
 products=snap.docs.map(d=>({id:d.id,...d.data()}));
 renderProducts();
-},console.error);
+},error=>{
+console.error(error);
+$("catalogue").textContent="Products load nahi ho paaye. Please refresh karein.";
+});
 
 window.renderProducts=()=>{
 let term=($("search").value||"").toLowerCase();
 let list=products.filter(p=>(p.name||"").toLowerCase().includes(term));
+
 $("catalogue").innerHTML=list.length?list.map(p=>`
 <div class="card">
-<div class="photo">${p.image?`<img src="${esc(p.image)}">`:"🎇"}</div>
+<div class="photo">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:"🎇"}</div>
 <h3>${esc(p.name)}</h3>
 <p class="muted">${esc(p.details||"")}</p>
 <div class="price">${money(p.price)}</div>
 <button onclick="addCart('${p.id}')">Add to Cart +</button>
-</div>`).join(""):'<p>No products found.</p>';
+</div>
+`).join(""):'<p>No products found.</p>';
 };
 
 window.addCart=id=>{
@@ -178,9 +197,11 @@ $("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
 
 window.renderCart=()=>{
 let entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
+
 $("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{
 let p=products.find(x=>x.id===id);
-return `<div class="cartline">
+return `
+<div class="cartline">
 <div><b>${esc(p.name)}</b><p>${money(p.price)}</p></div>
 <div class="qty">
 <button class="secondary" onclick="changeQty('${id}',-1)">−</button>
@@ -190,60 +211,121 @@ return `<div class="cartline">
 <b>${money(p.price*q)}</b>
 </div>`;
 }).join(""):'<p>Your cart is empty.</p>';
+
 $("cartTotal").textContent="Total: "+money(cartTotal());
 renderCount();
 };
 
 window.shareLocation=()=>{
 if(!navigator.geolocation)return alert("Location not supported");
+
 navigator.geolocation.getCurrentPosition(pos=>{
 locationLink=`https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
 alert("Location added.");
 },()=>alert("Location permission denied."));
 };
 
+// UPDATED WHATSAPP ORDER FUNCTION
 window.placeOrder=async()=>{
 let name=$("cName").value.trim();
 let phone=$("cPhone").value.trim();
 let address=$("cAddress").value.trim();
-let entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
 
-if(!entries.length||!name||!/^[0-9+\-\s]{10,15}$/.test(phone)||!address)
-return alert("Name, valid phone, address aur cart check karein.");
+let entries=Object.entries(cart).filter(([id])=>
+products.some(p=>p.id===id)
+);
+
+if(!entries.length||!name||!/^[0-9+\-\s]{10,15}$/.test(phone)||!address){
+alert("Name, valid phone, address aur cart check karein.");
+return;
+}
+
+// Open WhatsApp window immediately during button click
+let waWindow=window.open("about:blank","_blank");
+
+if(!waWindow){
+alert("Browser mein pop-ups allow karein, phir dobara Order button dabayein.");
+return;
+}
 
 let items=entries.map(([id,q])=>{
 let p=products.find(x=>x.id===id);
-return {productId:id,name:p.name,price:Number(p.price),quantity:q};
+return {
+productId:id,
+name:p.name,
+price:Number(p.price),
+quantity:q
+};
 });
+
 let amount=items.reduce((s,x)=>s+x.price*x.quantity,0);
 
 try{
 let ref=await addDoc(ordersRef,{
-customerName:name,phone,address,location:locationLink,
-items,total:amount,status:"Pending",payment:"COD",
+customerName:name,
+phone,
+address,
+location:locationLink,
+items,
+total:amount,
+status:"Pending",
+payment:"COD",
 createdAt:serverTimestamp()
 });
-let msg=`New Order\nOrder ID: ${ref.id}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n${items.map(x=>x.name+" x "+x.quantity).join("\n")}\nTotal: ${money(amount)}`;
-window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank");
-alert("Order saved. WhatsApp par confirmation bhejein.");
-cart={};renderCart();
-}catch(e){alert("Order failed: "+e.message);}
+
+let msg=`New Order
+Order ID: ${ref.id}
+Name: ${name}
+Phone: ${phone}
+Address: ${address}
+${locationLink?"Location: "+locationLink:""}
+${items.map(x=>x.name+" x "+x.quantity+" = "+money(x.price*x.quantity)).join("\n")}
+Total: ${money(amount)}`;
+
+let waURL="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+
+waWindow.location.href=waURL;
+
+alert("Order saved successfully! WhatsApp par Send button dabayein.");
+
+cart={};
+renderCart();
+
+}catch(e){
+waWindow.close();
+console.error(e);
+alert("Order failed: "+e.message);
+}
 };
 
 window.trackOrder=async()=>{
 let id=$("trackId").value.trim();
+
 if(!id)return alert("Order ID enter karein.");
+
 $("trackResult").textContent="Searching...";
+
 try{
 let s=await getDoc(doc(db,"orders",id));
-if(!s.exists()){$("trackResult").textContent="Order not found.";return;}
+
+if(!s.exists()){
+$("trackResult").textContent="Order not found.";
+return;
+}
+
 let o=s.data();
-$("trackResult").innerHTML=`<div class="panel">
+
+$("trackResult").innerHTML=`
+<div class="panel">
 <p>Order ID: ${esc(id)}</p>
 <p>Status: <b class="status">${esc(o.status||"Pending")}</b></p>
 <p>Total: ${money(o.total)}</p>
 </div>`;
-}catch(e){$("trackResult").textContent="Tracking failed: "+e.message;}
+
+}catch(e){
+console.error(e);
+$("trackResult").textContent="Tracking failed: "+e.message;
+}
 };
 </script>
 </body>
