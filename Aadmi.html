@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2027 Crackers | Admin</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1020;color:white;font-family:Arial}
+.wrap{max-width:1100px;margin:auto;padding:18px}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+h1 span{color:#ffc857}
+.panel,.card{background:#151f35;border:1px solid #293650;border-radius:15px;padding:18px;margin:15px 0}
+input,textarea,select{width:100%;padding:13px;margin:7px 0 12px;background:#101a30;color:white;border:1px solid #34415c;border-radius:10px}
+button{padding:11px 15px;border:0;border-radius:9px;background:#ffc857;font-weight:bold;cursor:pointer}
+.secondary{background:#293650;color:white}
+.danger{background:#9d3445;color:white}
+.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid #293650;padding:12px 0}
+.muted{color:#aab6ce;font-size:13px}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header>
+<h1>🎆 2027 <span>CRACKERS</span> ADMIN</h1>
+<a href="index.html" style="color:#ffc857">← Customer Website</a>
+</header>
+
+<section id="login" class="panel" style="max-width:430px;margin:45px auto">
+<h2>🔐 Admin Login</h2>
+<input id="email" type="email" placeholder="Admin Email">
+<input id="password" type="password" placeholder="Password">
+<button style="width:100%" onclick="login()">Login</button>
+<p id="message" class="muted"></p>
+</section>
+
+<section id="dashboard" class="hidden">
+<div class="row">
+<h2>Admin Dashboard</h2>
+<button class="danger" onclick="logout()">Logout</button>
+</div>
+
+<div class="panel">
+<h3 id="formTitle">Add New Product</h3>
+<input id="editId" type="hidden">
+<input id="pName" placeholder="Product Name">
+<input id="pPrice" type="number" placeholder="Price">
+<input id="pImage" placeholder="Image URL">
+<textarea id="pDetails" placeholder="Product Details"></textarea>
+<button onclick="saveProduct()">Save Product</button>
+<button class="secondary" onclick="resetForm()">Clear</button>
+</div>
+
+<h2>Manage Products</h2>
+<div id="productList" class="grid"></div>
+
+<h2>Customer Orders</h2>
+<button class="secondary" onclick="loadOrders()">Refresh Orders</button>
+<div id="ordersList"></div>
+</section>
+</main>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,collection,doc,addDoc,setDoc,deleteDoc,getDocs,query,orderBy,serverTimestamp,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyBcwjaAR9Dc7cX0sqVZndEPJOMsmxZgktjg",
+authDomain:"crackers-6c561.firebaseapp.com",
+projectId:"crackers-6c561",
+storageBucket:"crackers-6c561.firebasestorage.app",
+messagingSenderId:"637348567869",
+appId:"1:637348567869:web:446714d313a059d8d2c354"
+};
+
+const ADMIN_UID="q4BToAoJUoN9D6h7tFw1f2bxTf63";
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const productsRef=collection(db,"products");
+const ordersRef=collection(db,"orders");
+let products=[];
+
+const $=id=>document.getElementById(id);
+const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+window.login=async()=>{
+$("message").textContent="Logging in...";
+try{
+let cred=await signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);
+if(cred.user.uid!==ADMIN_UID){
+await signOut(auth);
+throw new Error("Unauthorized account.");
+}
+}catch(e){$("message").textContent=e.message;}
+};
+
+onAuthStateChanged(auth,user=>{
+if(user&&user.uid===ADMIN_UID){
+$("login").classList.add("hidden");
+$("dashboard").classList.remove("hidden");
+loadProducts();
+loadOrders();
+}else{
+$("dashboard").classList.add("hidden");
+$("login").classList.remove("hidden");
+}
+});
+
+window.logout=()=>signOut(auth);
+
+function loadProducts(){
+onSnapshot(productsRef,snap=>{
+products=snap.docs.map(d=>({id:d.id,...d.data()}));
+$("productList").innerHTML=products.map(p=>`
+<div class="card">
+<h3>${esc(p.name)}</h3>
+<h2 style="color:#ffc857">${money(p.price)}</h2>
+<button class="secondary" onclick="editProduct('${p.id}')">Edit</button>
+<button class="danger" onclick="removeProduct('${p.id}')">Delete</button>
+</div>`).join("")||"No products.";
+});
+}
+
+window.saveProduct=async()=>{
+let name=$("pName").value.trim();
+let price=Number($("pPrice").value);
+let id=$("editId").value;
+if(!name||!Number.isFinite(price)||price<0)return alert("Name aur price enter karein.");
+let data={name,price,image:$("pImage").value.trim(),details:$("pDetails").value.trim()};
+try{
+if(id)await setDoc(doc(db,"products",id),data,{merge:true});
+else await addDoc(productsRef,{...data,createdAt:serverTimestamp()});
+resetForm();
+alert("Product saved.");
+}catch(e){alert(e.message);}
+};
+
+window.editProduct=id=>{
+let p=products.find(x=>x.id===id);
+if(!p)return;
+$("editId").value=id;
+$("pName").value=p.name||"";
+$("pPrice").value=p.price||0;
+$("pImage").value=p.image||"";
+$("pDetails").value=p.details||"";
+$("formTitle").textContent="Edit Product";
+window.scrollTo(0,0);
+};
+
+window.removeProduct=async id=>{
+if(confirm("Delete product?")){
+try{await deleteDoc(doc(db,"products",id));}
+catch(e){alert(e.message);}
+}
+};
+
+window.resetForm=()=>{
+["editId","pName","pPrice","pImage","pDetails"].forEach(id=>$(id).value="");
+$("formTitle").textContent="Add New Product";
+};
+
+window.loadOrders=async()=>{
+$("ordersList").textContent="Loading...";
+try{
+let snap=await getDocs(query(ordersRef,orderBy("createdAt","desc")));
+$("ordersList").innerHTML=snap.docs.map(d=>{
+let o=d.data();
+return `<div class="panel">
+<b>Order ID: ${esc(d.id)}</b>
+<p>${esc(o.customerName)} • ${esc(o.phone)}</p>
+<p>${esc(o.address)}</p>
+<p>${(o.items||[]).map(x=>esc(x.name)+" × "+x.quantity).join(", ")}</p>
+<h3>${money(o.total)}</h3>
+<select id="status-${d.id}">
+${["Pending","Confirmed","Packed","Out for Delivery","Delivered","Cancelled"].map(s=>`<option ${s===(o.status||"Pending")?"selected":""}>${s}</option>`).join("")}
+</select>
+<button onclick="updateStatus('${d.id}')">Update Status</button>
+</div>`;
+}).join("")||"No orders yet.";
+}catch(e){$("ordersList").textContent=e.message;}
+};
+
+window.updateStatus=async id=>{
+try{
+await setDoc(doc(db,"orders",id),{
+status:$("status-"+id).value,
+updatedAt:serverTimestamp()
+},{merge:true});
+alert("Status updated.");
+loadOrders();
+}catch(e){alert(e.message);}
+};
+</script>
+</body>
+</html>
