@@ -1,131 +1,212 @@
 
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>2027 Crackers | Siliguri</title>
 <style>
+:root{
+  --blue:#2874f0;
+  --yellow:#ffe500;
+  --bg:#f1f3f6;
+  --white:#fff;
+  --text:#212121;
+  --muted:#707070;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#0b1020;color:#f8fafc;font-family:Arial}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
 button,input,textarea{font:inherit}
-button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:pointer;background:#ffc857;color:#171717}
-header{position:sticky;top:0;background:#10182b;padding:15px;border-bottom:1px solid #29344b;z-index:5}
-nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-size:23px;font-weight:900}
-.logo span{color:#ffc857}
-nav button{background:#26334d;color:white}
-.container{max-width:1100px;margin:auto;padding:20px 14px}
+button{cursor:pointer;border:0}
+.topbar{background:var(--blue);color:white;position:sticky;top:0;z-index:20;box-shadow:0 2px 6px #0002}
+.header{max-width:1250px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:18px}
+.logo{font-size:23px;font-weight:900;white-space:nowrap}
+.logo span{color:var(--yellow)}
+.searchbox{flex:1;display:flex;background:white;border-radius:5px;overflow:hidden}
+.searchbox input{border:0;outline:0;padding:12px;width:100%;color:#222;margin:0}
+.searchbox button{background:var(--yellow);padding:0 18px;font-weight:bold}
+.header-btn{background:transparent;color:white;font-weight:bold;padding:10px;white-space:nowrap}
+.header-btn:hover{background:#ffffff20}
+.container{max-width:1250px;margin:auto;padding:14px}
+.categorybar{background:white;display:flex;justify-content:center;gap:30px;padding:17px;overflow-x:auto;white-space:nowrap}
+.categorybar button{background:transparent;color:#333;font-weight:bold}
+.categorybar button:hover{color:var(--blue)}
+.banner{margin:14px 0;background:linear-gradient(110deg,#092b72,#2874f0,#65a3ff);color:white;padding:38px 30px;border-radius:5px;min-height:190px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.banner h1{font-size:clamp(30px,5vw,48px);margin:0 0 10px}
+.banner h1 span{color:var(--yellow)}
+.banner p{line-height:1.6;margin:0 0 15px}
+.banner button{background:var(--yellow);padding:12px 20px;border-radius:3px;font-weight:bold}
+.banner-art{font-size:75px}
+.safety{background:#fff4d6;padding:13px;margin:14px 0;border-radius:4px;color:#654c00;font-size:13px;line-height:1.5}
+.section{background:white;margin:14px 0;padding:18px;border-radius:4px}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #eee;padding-bottom:13px;margin-bottom:16px}
+.section-title h2{font-size:20px;margin:0}
+.section-title button{background:var(--blue);color:white;padding:9px 15px;border-radius:3px}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.product{border:1px solid #eee;padding:12px;text-align:center;border-radius:4px;transition:.2s;background:white;min-width:0}
+.product:hover{box-shadow:0 3px 12px #0002;transform:translateY(-2px)}
+.product-img{height:145px;background:#f6f8fb;display:grid;place-items:center;overflow:hidden;font-size:55px}
+.product-img img{width:100%;height:100%;object-fit:contain}
+.product h3{font-size:15px;margin:12px 0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.details{color:var(--muted);font-size:12px;height:30px;overflow:hidden}
+.price{font-size:19px;font-weight:bold;color:#212121;margin:10px 0}
+.product button{width:100%;padding:10px 5px;margin-top:5px;border-radius:3px;background:var(--yellow);font-weight:bold}
+.product button.buy{background:var(--blue);color:white}
+input,textarea{padding:13px;border:1px solid #ddd;border-radius:4px;width:100%;margin:6px 0 12px;outline-color:var(--blue)}
+textarea{resize:vertical}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.primary{background:var(--blue);color:white;padding:12px 18px;border-radius:3px;font-weight:bold}
+.yellow{background:var(--yellow);color:#111;padding:12px 18px;border-radius:3px;font-weight:bold}
+.whitebtn{background:#eee;color:#222;padding:10px 15px;border-radius:3px}
+.cartline{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #eee}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{background:#eee;padding:7px 12px;border-radius:3px}
+.total{text-align:right;font-size:22px;font-weight:bold;margin:18px 0}
+.empty{text-align:center;padding:35px;color:#777}
 .hidden{display:none!important}
-.hero{padding:45px 25px;border-radius:20px;background:linear-gradient(120deg,#17264b,#542c42,#111827);border:1px solid #38435e;margin:20px 0}
-.hero h1{font-size:clamp(32px,6vw,55px);margin:0}
-.hero h1 span{color:#ffc857}
-.hero p{color:#c5cee0;line-height:1.7}
-.notice{background:#332a18;color:#ffe3a0;padding:14px;border-radius:12px;margin:18px 0}
-.toolbar,.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0}
-input,textarea{width:100%;padding:13px;background:#111b30;color:white;border:1px solid #34415c;border-radius:10px;margin:6px 0 12px}
-.toolbar input{max-width:300px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
-.card,.panel{background:#151f35;border:1px solid #293650;border-radius:16px;padding:16px}
-.photo{height:135px;background:#202c45;border-radius:12px;display:grid;place-items:center;font-size:48px;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover}
-.price{font-size:23px;color:#ffc857;font-weight:900;margin:12px 0}
-.muted{color:#aab6ce;font-size:13px}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-.actions button{flex:1}
-.secondary{background:#293650;color:white}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.cartline{display:flex;justify-content:space-between;gap:10px;padding:14px 0;border-bottom:1px solid #293650;align-items:center}
-.qty{display:flex;gap:8px;align-items:center}
-.total{text-align:right;font-size:22px;font-weight:bold;margin:18px 0;color:#ffc857}
-.status{color:#ffc857}
-footer{text-align:center;padding:30px;color:#9aa8c0}
+footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-height:1.8;margin-top:20px}
+.bottomnav{display:none}
+.message{padding:12px;background:#e8f4ff;border-radius:4px;margin:10px 0;font-size:13px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){
-.row{grid-template-columns:1fr}
-.hero{padding:30px 18px}
-header{position:static}
+ .header{gap:8px;flex-wrap:wrap}
+ .logo{font-size:19px}
+ .searchbox{order:3;flex-basis:100%}
+ .header-btn{padding:8px 5px;font-size:12px}
+ .categorybar{justify-content:flex-start;gap:20px}
+ .banner{padding:25px 18px;min-height:160px}
+ .banner-art{font-size:48px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .product{padding:8px}
+ .product-img{height:115px}
+ .product h3{font-size:13px}
+ .price{font-size:17px}
+ .section{padding:12px}
+ .formgrid{grid-template-columns:1fr;gap:0}
+ .container{padding:8px}
+ .bottomnav{display:flex;position:fixed;bottom:0;left:0;right:0;background:white;z-index:30;box-shadow:0 -2px 8px #0002;justify-content:space-around;padding:9px 2px}
+ .bottomnav button{background:white;color:#333;font-size:11px;padding:5px}
+ .bottomnav button span{display:block;font-size:19px;margin-bottom:3px}
+ body{padding-bottom:60px}
 }
 </style>
 </head>
 <body>
 
-<header>
-<nav>
-<div class="logo">🎆 2027 <span>CRACKERS</span></div>
-<div class="actions">
-<button onclick="showView('shop')">Shop</button>
-<button onclick="showView('cart')">🛒 Cart <span id="cartCount">0</span></button>
-<button onclick="showView('track')">Track Order</button>
-</div>
-</nav>
+<header class="topbar">
+ <div class="header">
+  <div class="logo">🎆 2027 <span>CRACKERS</span></div>
+  <div class="searchbox">
+   <input id="search" placeholder="Search for crackers..." oninput="renderProducts()">
+   <button onclick="renderProducts()">🔍</button>
+  </div>
+  <button class="header-btn" onclick="showView('shop')">Home</button>
+  <button class="header-btn" onclick="showView('cart')">🛒 Cart (<span id="cartCount">0</span>)</button>
+ </div>
 </header>
+
+<div class="categorybar">
+ <button onclick="filterCategory('all')">All Products</button>
+ <button onclick="filterCategory('crackers')">Crackers</button>
+ <button onclick="filterCategory('shots')">Shot Items</button>
+ <button onclick="filterCategory('chakri')">Chakri</button>
+ <button onclick="filterCategory('others')">Others</button>
+ <button onclick="showView('track')">Track Order</button>
+</div>
 
 <main class="container">
 
 <section id="shopView">
-<div class="hero">
-<h1>2027 <span>Crackers</span></h1>
-<h2>Light Up Your Celebration! 🎆</h2>
-<p>Siliguri, West Bengal — Explore our collection and order on WhatsApp.</p>
-<button onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Shop Now →</button>
-</div>
+ <div class="banner">
+  <div>
+   <h1>2027 <span>CRACKERS</span></h1>
+   <p>Your Celebration Shopping Destination<br>Siliguri, West Bengal</p>
+   <button onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">SHOP NOW →</button>
+  </div>
+  <div class="banner-art">🎆🎇</div>
+ </div>
 
-<div class="notice">⚠️ Fireworks का उपयोग केवल सुरक्षित और कानूनी स्थान पर, स्थानीय नियमों का पालन करते हुए करें।</div>
+ <div class="safety">⚠️ Fireworks केवल कानूनी रूप से अनुमत उत्पादों और स्थानीय नियमों के अनुसार ही खरीदें और उपयोग करें। सभी सुरक्षा निर्देशों का पालन करें।</div>
 
-<div class="toolbar">
-<h2>Our Products</h2>
-<input id="search" placeholder="Search products..." oninput="renderProducts()">
-</div>
-<div id="catalogue" class="grid">Loading products...</div>
+ <section class="section" id="productsSection">
+  <div class="section-title">
+   <h2>🔥 Popular Products</h2>
+   <span id="productCount">Loading...</span>
+  </div>
+  <div id="catalogue" class="grid">
+   <p>Loading products...</p>
+  </div>
+ </section>
 </section>
 
 <section id="cartView" class="hidden">
-<div class="section-title">
-<h2>🛒 Your Cart</h2>
-<button class="secondary" onclick="showView('shop')">Back to Shop</button>
-</div>
-<div class="panel">
-<div id="cartItems"></div>
-<div class="total" id="cartTotal">Total: ₹0</div>
-<h3>Delivery Details</h3>
-<div class="row">
-<input id="cName" placeholder="Your Name">
-<input id="cPhone" placeholder="Mobile Number">
-</div>
-<textarea id="cAddress" placeholder="Full Address" rows="3"></textarea>
-<div class="actions">
-<button class="secondary" onclick="shareLocation()">📍 Share Location</button>
-<button onclick="placeOrder()">Order on WhatsApp</button>
-</div>
-</div>
+ <div class="section">
+  <div class="section-title">
+   <h2>🛒 My Shopping Cart</h2>
+   <button onclick="showView('shop')">Continue Shopping</button>
+  </div>
+  <div id="cartItems"></div>
+  <div class="total" id="cartTotal">Total: ₹0</div>
+ </div>
+
+ <div class="section">
+  <h2>📍 Delivery Details</h2>
+  <div class="formgrid">
+   <div>
+    <label>Your Name</label>
+    <input id="cName" placeholder="Enter your name">
+   </div>
+   <div>
+    <label>Mobile Number</label>
+    <input id="cPhone" type="tel" placeholder="10 digit mobile number">
+   </div>
+  </div>
+  <label>Full Delivery Address</label>
+  <textarea id="cAddress" rows="3" placeholder="House no, street, area, city, pincode"></textarea>
+  <button class="whitebtn" onclick="shareLocation()">📍 Share My Location</button>
+  <div class="message">Order WhatsApp पर भेजने के बाद WhatsApp में Send बटन दबाना होगा।</div>
+  <button class="primary" id="orderBtn" onclick="placeOrder()">🟢 PLACE ORDER ON WHATSAPP</button>
+ </div>
 </section>
 
 <section id="trackView" class="hidden">
-<div class="panel">
-<h2>📦 Track Your Order</h2>
-<input id="trackId" placeholder="Enter Order ID">
-<button onclick="trackOrder()">Track Order</button>
-<div id="trackResult"></div>
-</div>
+ <div class="section">
+  <h2>📦 Track Your Order</h2>
+  <p>Enter your Order ID to check the order status.</p>
+  <input id="trackId" placeholder="Enter Order ID">
+  <button class="primary" onclick="trackOrder()">Track Order</button>
+  <div id="trackResult"></div>
+ </div>
 </section>
 
 </main>
 
-<footer>© 2027 Crackers | Siliguri, West Bengal</footer>
+<footer>
+ <b>🎆 2027 CRACKERS</b><br>
+ Siliguri, West Bengal<br>
+ © 2027 2027 Crackers. All Rights Reserved.
+</footer>
+
+<div class="bottomnav">
+ <button onclick="showView('shop')"><span>🏠</span>Home</button>
+ <button onclick="showView('shop');document.getElementById('productsSection').scrollIntoView()"><span>🛍️</span>Shop</button>
+ <button onclick="showView('cart')"><span>🛒</span>Cart</button>
+ <button onclick="showView('track')"><span>📦</span>Orders</button>
+</div>
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
-getFirestore,collection,addDoc,getDoc,doc,serverTimestamp,onSnapshot
+ getFirestore,collection,doc,getDoc,setDoc,serverTimestamp,onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig={
-apiKey:"AIzaSyBcwjaAR9Dc7cX0sqVZndEPJOMsmxZgktjg",
-authDomain:"crackers-6c561.firebaseapp.com",
-projectId:"crackers-6c561",
-storageBucket:"crackers-6c561.firebasestorage.app",
-messagingSenderId:"637348567869",
-appId:"1:637348567869:web:446714d313a059d8d2c354"
+ apiKey:"AIzaSyBcwjaAR9Dc7cX0sqVZndEPJOMsmxZgktjg",
+ authDomain:"crackers-6c561.firebaseapp.com",
+ projectId:"crackers-6c561",
+ storageBucket:"crackers-6c561.firebasestorage.app",
+ messagingSenderId:"637348567869",
+ appId:"1:637348567869:web:446714d313a059d8d2c354"
 };
 
 const db=getFirestore(initializeApp(firebaseConfig));
@@ -133,199 +214,228 @@ const productsRef=collection(db,"products");
 const ordersRef=collection(db,"orders");
 const WHATSAPP="917363843238";
 
-let products=[],cart={},locationLink="";
+let products=[];
+let cart={};
+let locationLink="";
+let category="all";
 
 const $=id=>document.getElementById(id);
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
 }[c]));
 
 window.showView=view=>{
-["shopView","cartView","trackView"].forEach(id=>$(id).classList.add("hidden"));
-$(view+"View").classList.remove("hidden");
-if(view==="cart")renderCart();
-window.scrollTo(0,0);
+ ["shopView","cartView","trackView"].forEach(id=>$(id).classList.add("hidden"));
+ $(view+"View").classList.remove("hidden");
+ if(view==="cart")renderCart();
+ window.scrollTo(0,0);
+};
+
+window.filterCategory=cat=>{
+ category=cat;
+ showView("shop");
+ renderProducts();
+ $("productsSection").scrollIntoView({behavior:"smooth"});
 };
 
 onSnapshot(productsRef,snap=>{
-products=snap.docs.map(d=>({id:d.id,...d.data()}));
-renderProducts();
+ products=snap.docs.map(d=>({id:d.id,...d.data()}));
+ renderProducts();
+ renderCart();
 },error=>{
-console.error(error);
-$("catalogue").textContent="Products load nahi ho paaye. Please refresh karein.";
+ console.error(error);
+ $("catalogue").textContent="Products load nahi hue. Please refresh karein.";
 });
 
 window.renderProducts=()=>{
-let term=($("search").value||"").toLowerCase();
-let list=products.filter(p=>(p.name||"").toLowerCase().includes(term));
+ let term=($("search").value||"").toLowerCase();
 
-$("catalogue").innerHTML=list.length?list.map(p=>`
-<div class="card">
-<div class="photo">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:"🎇"}</div>
-<h3>${esc(p.name)}</h3>
-<p class="muted">${esc(p.details||"")}</p>
-<div class="price">${money(p.price)}</div>
-<button onclick="addCart('${p.id}')">Add to Cart +</button>
-</div>
-`).join(""):'<p>No products found.</p>';
+ let list=products.filter(p=>{
+  let matchName=(p.name||"").toLowerCase().includes(term);
+  let matchCategory=category==="all"||
+   (category==="shots"&&/shot/i.test(p.name||""))||
+   (category==="chakri"&&/chakri/i.test(p.name||""))||
+   (category==="others"&&!/shot|chakri/i.test(p.name||""))||
+   (category==="crackers"&&/cracker/i.test(p.name||""));
+  return matchName&&matchCategory;
+ });
+
+ $("productCount").textContent=list.length+" Products";
+
+ $("catalogue").innerHTML=list.length?list.map(p=>`
+  <div class="product">
+   <div class="product-img">
+    ${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:"🎆"}
+   </div>
+   <h3>${esc(p.name)}</h3>
+   <div class="details">${esc(p.details||"Quality celebration product")}</div>
+   <div class="price">${money(p.price)}</div>
+   <button onclick="addCart('${p.id}')">ADD TO CART</button>
+   <button class="buy" onclick="buyNow('${p.id}')">BUY NOW</button>
+  </div>
+ `).join(""):'<p>No products found.</p>';
 };
 
 window.addCart=id=>{
-cart[id]=(cart[id]||0)+1;
-renderCart();
-alert("Product added to cart!");
+ cart[id]=(cart[id]||0)+1;
+ renderCart();
+ alert("Added to cart!");
+};
+
+window.buyNow=id=>{
+ cart[id]=(cart[id]||0)+1;
+ renderCart();
+ showView("cart");
 };
 
 window.changeQty=(id,n)=>{
-cart[id]=(cart[id]||0)+n;
-if(cart[id]<=0)delete cart[id];
-renderCart();
+ cart[id]=(cart[id]||0)+n;
+ if(cart[id]<=0)delete cart[id];
+ renderCart();
 };
 
-function cartTotal(){
-return Object.entries(cart).reduce((sum,[id,q])=>{
-let p=products.find(x=>x.id===id);
-return sum+(p?Number(p.price)*q:0);
-},0);
-}
-
-function renderCount(){
-$("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
+function totalAmount(){
+ return Object.entries(cart).reduce((sum,[id,q])=>{
+  let p=products.find(x=>x.id===id);
+  return sum+(p?Number(p.price)*q:0);
+ },0);
 }
 
 window.renderCart=()=>{
-let entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
+ let entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
 
-$("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{
-let p=products.find(x=>x.id===id);
-return `
-<div class="cartline">
-<div><b>${esc(p.name)}</b><p>${money(p.price)}</p></div>
-<div class="qty">
-<button class="secondary" onclick="changeQty('${id}',-1)">−</button>
-<b>${q}</b>
-<button class="secondary" onclick="changeQty('${id}',1)">+</button>
-</div>
-<b>${money(p.price*q)}</b>
-</div>`;
-}).join(""):'<p>Your cart is empty.</p>';
+ $("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{
+  let p=products.find(x=>x.id===id);
+  return `
+   <div class="cartline">
+    <div>
+     <b>${esc(p.name)}</b>
+     <div class="muted">${money(p.price)} each</div>
+    </div>
+    <div class="qty">
+     <button onclick="changeQty('${id}',-1)">−</button>
+     <b>${q}</b>
+     <button onclick="changeQty('${id}',1)">+</button>
+    </div>
+    <b>${money(Number(p.price)*q)}</b>
+   </div>`;
+ }).join(""):'<div class="empty">🛒<h3>Your cart is empty</h3><p>Add products to start shopping.</p><button class="primary" onclick="showView(\'shop\')">Shop Now</button></div>';
 
-$("cartTotal").textContent="Total: "+money(cartTotal());
-renderCount();
+ $("cartTotal").textContent="Total: "+money(totalAmount());
+ $("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
 };
 
 window.shareLocation=()=>{
-if(!navigator.geolocation)return alert("Location not supported");
-
-navigator.geolocation.getCurrentPosition(pos=>{
-locationLink=`https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
-alert("Location added.");
-},()=>alert("Location permission denied."));
+ if(!navigator.geolocation)return alert("Location not supported");
+ navigator.geolocation.getCurrentPosition(pos=>{
+  locationLink="https://maps.google.com/?q="+pos.coords.latitude+","+pos.coords.longitude;
+  alert("Location added!");
+ },()=>alert("Location permission denied."));
 };
 
-// UPDATED WHATSAPP ORDER FUNCTION
+// WHATSAPP ORDER: OPEN LINK IMMEDIATELY ON BUTTON CLICK
 window.placeOrder=async()=>{
-let name=$("cName").value.trim();
-let phone=$("cPhone").value.trim();
-let address=$("cAddress").value.trim();
+ let name=$("cName").value.trim();
+ let phone=$("cPhone").value.trim();
+ let address=$("cAddress").value.trim();
 
-let entries=Object.entries(cart).filter(([id])=>
-products.some(p=>p.id===id)
-);
+ let entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
 
-if(!entries.length||!name||!/^[0-9+\-\s]{10,15}$/.test(phone)||!address){
-alert("Name, valid phone, address aur cart check karein.");
-return;
-}
+ if(!entries.length)return alert("Your cart is empty!");
+ if(!name)return alert("Please enter your name.");
+ if(!/^[0-9+\-\s]{10,15}$/.test(phone))return alert("Please enter a valid mobile number.");
+ if(!address)return alert("Please enter your delivery address.");
 
-// Open WhatsApp window immediately during button click
-let waWindow=window.open("about:blank","_blank");
+ let items=entries.map(([id,q])=>{
+  let p=products.find(x=>x.id===id);
+  return {
+   productId:id,
+   name:p.name,
+   price:Number(p.price),
+   quantity:q
+  };
+ });
 
-if(!waWindow){
-alert("Browser mein pop-ups allow karein, phir dobara Order button dabayein.");
-return;
-}
+ let amount=items.reduce((s,x)=>s+x.price*x.quantity,0);
+ let orderRef=doc(ordersRef);
+ let orderId=orderRef.id;
 
-let items=entries.map(([id,q])=>{
-let p=products.find(x=>x.id===id);
-return {
-productId:id,
-name:p.name,
-price:Number(p.price),
-quantity:q
-};
-});
-
-let amount=items.reduce((s,x)=>s+x.price*x.quantity,0);
-
-try{
-let ref=await addDoc(ordersRef,{
-customerName:name,
-phone,
-address,
-location:locationLink,
-items,
-total:amount,
-status:"Pending",
-payment:"COD",
-createdAt:serverTimestamp()
-});
-
-let msg=`New Order
-Order ID: ${ref.id}
+ let msg=`NEW ORDER - 2027 CRACKERS
+Order ID: ${orderId}
 Name: ${name}
 Phone: ${phone}
 Address: ${address}
 ${locationLink?"Location: "+locationLink:""}
+--------------------
 ${items.map(x=>x.name+" x "+x.quantity+" = "+money(x.price*x.quantity)).join("\n")}
-Total: ${money(amount)}`;
+--------------------
+TOTAL: ${money(amount)}
+Payment: Cash on Delivery`;
 
-let waURL="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+ let url="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
 
-waWindow.location.href=waURL;
+ // Open WhatsApp synchronously, before Firebase operation
+ let opened=window.open(url,"_blank");
 
-alert("Order saved successfully! WhatsApp par Send button dabayein.");
+ if(!opened){
+  // Fallback: same-tab navigation
+  window.location.href=url;
+ }
 
-cart={};
-renderCart();
+ $("orderBtn").disabled=true;
+ $("orderBtn").textContent="ORDER OPENED...";
 
-}catch(e){
-waWindow.close();
-console.error(e);
-alert("Order failed: "+e.message);
-}
+ try{
+  await setDoc(orderRef,{
+   customerName:name,
+   phone,
+   address,
+   location:locationLink,
+   items,
+   total:amount,
+   status:"Pending",
+   payment:"COD",
+   createdAt:serverTimestamp()
+  });
+  console.log("Order saved:",orderId);
+ }catch(e){
+  console.error("Firebase order save failed:",e);
+  alert("WhatsApp khul gaya hai, lekin order database mein save nahi hua. Admin se contact karein.");
+ }finally{
+  $("orderBtn").disabled=false;
+  $("orderBtn").textContent="🟢 PLACE ORDER ON WHATSAPP";
+ }
+
+ cart={};
+ renderCart();
 };
 
 window.trackOrder=async()=>{
-let id=$("trackId").value.trim();
+ let id=$("trackId").value.trim();
+ if(!id)return alert("Please enter Order ID.");
 
-if(!id)return alert("Order ID enter karein.");
+ $("trackResult").textContent="Searching...";
 
-$("trackResult").textContent="Searching...";
+ try{
+  let snap=await getDoc(doc(db,"orders",id));
+  if(!snap.exists()){
+   $("trackResult").textContent="Order not found.";
+   return;
+  }
 
-try{
-let s=await getDoc(doc(db,"orders",id));
-
-if(!s.exists()){
-$("trackResult").textContent="Order not found.";
-return;
-}
-
-let o=s.data();
-
-$("trackResult").innerHTML=`
-<div class="panel">
-<p>Order ID: ${esc(id)}</p>
-<p>Status: <b class="status">${esc(o.status||"Pending")}</b></p>
-<p>Total: ${money(o.total)}</p>
-</div>`;
-
-}catch(e){
-console.error(e);
-$("trackResult").textContent="Tracking failed: "+e.message;
-}
+  let o=snap.data();
+  $("trackResult").innerHTML=`
+   <div class="message">
+    <b>Order ID:</b> ${esc(id)}<br>
+    <b>Status:</b> ${esc(o.status||"Pending")}<br>
+    <b>Total:</b> ${money(o.total)}
+   </div>`;
+ }catch(e){
+  console.error(e);
+  $("trackResult").textContent="Tracking failed: "+e.message;
+ }
 };
 </script>
 </body>
