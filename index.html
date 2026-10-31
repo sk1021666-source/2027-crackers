@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -7,481 +6,245 @@
 <title>2027 Crackers | Siliguri</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#f5f6f8;color:#171717}
-button,input,textarea,select{font:inherit}
-button{border:0;border-radius:9px;padding:11px 15px;font-weight:bold;cursor:pointer}
-header{background:#151515;color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:5}
-.logo{font-size:23px;font-weight:900}.logo span{color:#f3bd45}
-nav{display:flex;gap:7px;flex-wrap:wrap}
-nav button{background:#333;color:white}
-nav .gold{background:#f3bd45;color:#111}
+body{margin:0;background:#0b1020;color:#f8fafc;font-family:Arial}
+button,input,textarea{font:inherit}
+button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:pointer;background:#ffc857;color:#171717}
+header{position:sticky;top:0;background:#10182b;padding:15px;border-bottom:1px solid #29344b;z-index:5}
+nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:900}.logo span{color:#ffc857}
+nav button{background:#26334d;color:white}
 .container{max-width:1100px;margin:auto;padding:20px 14px}
 .hidden{display:none!important}
-.hero{background:linear-gradient(120deg,#651522,#a72a36,#171717);color:white;padding:35px 22px;border-radius:18px;margin-bottom:20px}
-.hero h1{font-size:clamp(27px,5vw,43px);margin:0 0 12px}
-.hero p{line-height:1.6}
-.goldbtn{background:#f3bd45;color:#111}
-.primary{background:#9f1d2d;color:white}
-.secondary{background:#eee;color:#111}
-.danger{background:#fee2e2;color:#991b1b}
-.notice{background:#fff4d8;padding:13px;border-radius:10px;margin:15px 0;font-size:14px}
-.toolbar,.section-title,.admin-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0}
-input,textarea,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:9px;background:white}
-.toolbar input{max-width:320px}
+.hero{padding:45px 25px;border-radius:20px;background:linear-gradient(120deg,#17264b,#542c42,#111827);border:1px solid #38435e;margin:20px 0}
+.hero h1{font-size:clamp(32px,6vw,55px);margin:0}
+.hero h1 span{color:#ffc857}
+.hero p{color:#c5cee0;line-height:1.7}
+.notice{background:#332a18;color:#ffe3a0;padding:14px;border-radius:12px;margin:18px 0}
+.toolbar,.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0}
+input,textarea{width:100%;padding:13px;background:#111b30;color:white;border:1px solid #34415c;border-radius:10px;margin:6px 0 12px}
+.toolbar input{max-width:300px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
-.card,.panel{background:white;border:1px solid #e5e7eb;border-radius:14px;padding:15px;box-shadow:0 4px 15px #00000008}
-.photo{height:130px;background:#f7e9e9;border-radius:10px;display:grid;place-items:center;font-size:48px;overflow:hidden}
+.card,.panel{background:#151f35;border:1px solid #293650;border-radius:16px;padding:16px}
+.photo{height:135px;background:#202c45;border-radius:12px;display:grid;place-items:center;font-size:48px;overflow:hidden}
 .photo img{width:100%;height:100%;object-fit:cover}
-.card h3{margin-bottom:5px}
-.price{font-size:21px;color:#9f1d2d;font-weight:900;margin:10px 0}
+.price{font-size:23px;color:#ffc857;font-weight:900;margin:12px 0}
+.muted{color:#aab6ce;font-size:13px}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 .actions button{flex:1}
-.muted{font-size:13px;color:#777}
+.secondary{background:#293650;color:white}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field{margin:12px 0}
-.field label{display:block;font-weight:bold;font-size:13px;margin-bottom:5px}
-.cartline,.orderline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eee}
-.qty{display:flex;align-items:center;gap:9px}
-.qty button{padding:5px 11px;background:#eee}
-.total{text-align:right;font-size:21px;font-weight:bold;margin:16px 0}
-.tabs{display:flex;gap:8px;margin:15px 0;flex-wrap:wrap}
-.tabs button.active{background:#9f1d2d;color:white}
-.status{background:#fff0c2;padding:5px 10px;border-radius:20px;font-size:12px}
-.empty{text-align:center;padding:25px;color:#777}
-footer{text-align:center;padding:25px;color:#777;font-size:13px}
-@media(max-width:600px){
- header{position:static}
- nav{width:100%}
- nav button{flex:1}
- .row{grid-template-columns:1fr}
- .hero{padding:25px 17px}
- .container{padding:14px 11px}
-}
+.cartline{display:flex;justify-content:space-between;gap:10px;padding:14px 0;border-bottom:1px solid #293650;align-items:center}
+.qty{display:flex;gap:8px;align-items:center}
+.total{text-align:right;font-size:22px;font-weight:bold;margin:18px 0;color:#ffc857}
+.status{color:#ffc857}
+footer{text-align:center;padding:30px;color:#9aa8c0}
+@media(max-width:600px){.row{grid-template-columns:1fr}.hero{padding:30px 18px}header{position:static}}
 </style>
 </head>
 <body>
 
 <header>
- <div class="logo">2027 <span>CRACKERS</span></div>
- <nav>
-  <button onclick="showView('shop')">🏪 Shop</button>
-  <button onclick="showView('cart')">🛒 Cart <span id="cartCount">0</span></button>
-  <button onclick="showView('track')">📦 Track</button>
-  <button class="gold" onclick="showView('login')">Admin Login</button>
- </nav>
+<nav>
+<div class="logo">🎆 2027 <span>CRACKERS</span></div>
+<div class="actions">
+<button onclick="showView('shop')">Shop</button>
+<button onclick="showView('cart')">🛒 Cart <span id="cartCount">0</span></button>
+<button onclick="showView('track')">Track Order</button>
+</div>
+</nav>
 </header>
 
 <main class="container">
 
 <section id="shopView">
- <div class="hero">
-  <h1>Celebrate Every Moment! 🎆</h1>
-  <p>2027 Crackers – Siliguri, West Bengal. Apne favourite products select karein aur WhatsApp par order bhejein.</p>
-  <button class="goldbtn" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Shop Now</button>
- </div>
+<div class="hero">
+<h1>2027 <span>Crackers</span></h1>
+<h2>Light Up Your Celebration! 🎆</h2>
+<p>Siliguri, West Bengal — Explore our collection and order on WhatsApp.</p>
+<button onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Shop Now →</button>
+</div>
 
- <div class="notice">⚠️ Fireworks ko adults ki supervision mein aur local safety rules follow karke hi use karein.</div>
+<div class="notice">⚠️ Fireworks का उपयोग केवल सुरक्षित और कानूनी स्थान पर, स्थानीय नियमों का पालन करते हुए करें।</div>
 
- <div class="toolbar">
-  <h2>Our Products</h2>
-  <input id="search" placeholder="Search products..." oninput="renderProducts()">
- </div>
- <div id="catalogue" class="grid"></div>
+<div class="toolbar">
+<h2>Our Products</h2>
+<input id="search" placeholder="Search products..." oninput="renderProducts()">
+</div>
+<div id="catalogue" class="grid">Loading products...</div>
 </section>
 
 <section id="cartView" class="hidden">
- <div class="section-title">
-  <h2>🛒 Your Cart</h2>
-  <button class="secondary" onclick="showView('shop')">← Back to Shop</button>
- </div>
- <div class="panel">
-  <div id="cartItems"></div>
-  <div class="total" id="cartTotal">Total: ₹0</div>
-  <h3>Delivery Details</h3>
-  <div class="row">
-   <div class="field"><label>Name</label><input id="cName" placeholder="Your name"></div>
-   <div class="field"><label>Phone</label><input id="cPhone" placeholder="Mobile number"></div>
-  </div>
-  <div class="field"><label>Address</label><textarea id="cAddress" rows="3" placeholder="Your delivery address"></textarea></div>
-  <div class="actions">
-   <button class="secondary" onclick="shareLocation()">📍 Share Location</button>
-   <button class="primary" onclick="placeOrder()">Place Order on WhatsApp</button>
-  </div>
-  <p class="muted">Cash on Delivery (COD), subject to shop confirmation.</p>
- </div>
+<div class="section-title"><h2>🛒 Your Cart</h2><button class="secondary" onclick="showView('shop')">Back to Shop</button></div>
+<div class="panel">
+<div id="cartItems"></div>
+<div class="total" id="cartTotal">Total: ₹0</div>
+<h3>Delivery Details</h3>
+<div class="row">
+<input id="cName" placeholder="Your Name">
+<input id="cPhone" placeholder="Mobile Number">
+</div>
+<textarea id="cAddress" placeholder="Full Address" rows="3"></textarea>
+<div class="actions">
+<button class="secondary" onclick="shareLocation()">📍 Share Location</button>
+<button onclick="placeOrder()">Order on WhatsApp</button>
+</div>
+</div>
 </section>
 
 <section id="trackView" class="hidden">
- <div class="section-title">
-  <h2>📦 Track Order</h2>
-  <button class="secondary" onclick="showView('shop')">← Back to Shop</button>
- </div>
- <div class="panel">
-  <input id="trackId" placeholder="Enter Order ID">
-  <br><br>
-  <button class="primary" onclick="trackOrder()">Track Order</button>
-  <div id="trackResult"></div>
- </div>
+<div class="panel">
+<h2>📦 Track Your Order</h2>
+<input id="trackId" placeholder="Enter Order ID">
+<button onclick="trackOrder()">Track Order</button>
+<div id="trackResult"></div>
+</div>
 </section>
 
-<section id="loginView" class="hidden">
- <div class="section-title">
-  <h2>🔐 Admin Login</h2>
-  <button class="secondary" onclick="showView('shop')">← Back to Shop</button>
- </div>
- <div class="panel" style="max-width:450px;margin:auto">
-  <div class="field"><label>Email</label><input id="adminEmail" type="email"></div>
-  <div class="field"><label>Password</label><input id="adminPassword" type="password"></div>
-  <button class="primary" style="width:100%" onclick="adminLogin()">Login</button>
-  <p id="loginMsg" class="muted"></p>
- </div>
-</section>
-
-<section id="adminView" class="hidden">
- <div class="admin-head">
-  <h2>⚙️ Admin Dashboard</h2>
-  <div class="actions">
-   <button class="secondary" onclick="showView('shop')">← Back to Shop</button>
-   <button class="danger" onclick="adminLogout()">Logout</button>
-  </div>
- </div>
-
- <div class="tabs">
-  <button id="tabProducts" class="active" onclick="adminTab('products')">Products Management</button>
-  <button id="tabOrders" onclick="adminTab('orders')">Customer Orders</button>
- </div>
-
- <div id="adminProducts">
-  <div class="panel">
-   <h3 id="formTitle">Add New Product</h3>
-   <input type="hidden" id="editId">
-   <div class="row">
-    <div class="field"><label>Product Name</label><input id="pName"></div>
-    <div class="field"><label>Price</label><input id="pPrice" type="number" min="0"></div>
-   </div>
-   <div class="field"><label>Image URL</label><input id="pImage"></div>
-   <div class="field"><label>Details</label><textarea id="pDetails"></textarea></div>
-   <div class="actions">
-    <button class="primary" onclick="saveProduct()">Save Product</button>
-    <button class="secondary" onclick="resetForm()">Clear</button>
-   </div>
-  </div>
-  <h3>All Products</h3>
-  <div id="adminProductList" class="grid"></div>
- </div>
-
- <div id="adminOrders" class="hidden">
-  <div class="section-title">
-   <h3>Customer Orders</h3>
-   <button class="secondary" onclick="loadOrders()">Refresh</button>
-  </div>
-  <div id="ordersList"></div>
- </div>
-</section>
-
-<footer>© 2027 Crackers | Siliguri, West Bengal | WhatsApp: 7363843238</footer>
 </main>
+
+<footer>© 2027 Crackers | Siliguri, West Bengal</footer>
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,collection,doc,addDoc,setDoc,deleteDoc,getDocs,getDoc,query,orderBy,serverTimestamp,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-/* Firebase Console se apni purani config yahan paste karein */
+import {getFirestore,collection,addDoc,getDocs,doc,getDoc,serverTimestamp,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig={
- apiKey:"AIzaSyBcwjaAR9Dc7cX0sqVZndEPJOMsmxZgktjg",
- authDomain:"crackers-6c561.firebaseapp.com",
- projectId:"crackers-6c561",
- storageBucket:"crackers-6c561.firebasestorage.app",
- messagingSenderId:"637348567869",
- appId:"1:637348567869:web:446714d313a059d8d2c354"
+apiKey:"AIzaSyBcwjaAR9Dc7cX0sqVZndEPJOMsmxZgktjg",
+authDomain:"crackers-6c561.firebaseapp.com",
+projectId:"crackers-6c561",
+storageBucket:"crackers-6c561.firebasestorage.app",
+messagingSenderId:"637348567869",
+appId:"1:637348567869:web:446714d313a059d8d2c354"
 };
- 
 
-const ADMIN_UID="q4BToAoJUoN9D6h7tFw1f2bxTf63";
-const WHATSAPP="917363843238";
-const SEED=[
- ["Penta",240],["Bullet",450],["Jully",225],["12 Shot",280],
- ["Supreme Chakri",525],["Matches",160],["Torch",390],
- ["Black-White",165],["Chutput",255],["Rajkumari",270]
-];
-
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
+const db=getFirestore(initializeApp(firebaseConfig));
 const productsRef=collection(db,"products");
 const ordersRef=collection(db,"orders");
+const WHATSAPP="917363843238";
 
-let products=[],cart={},isAdmin=false,locationLink="";
+let products=[],cart={},locationLink="";
 
 const $=id=>document.getElementById(id);
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-function esc(s=""){
- return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-
-window.showView=function(view){
- ["shopView","cartView","trackView","loginView","adminView"].forEach(id=>$(id).classList.add("hidden"));
- const ids={shop:"shopView",cart:"cartView",track:"trackView",login:"loginView",admin:"adminView"};
- $(ids[view]||"shopView").classList.remove("hidden");
- if(view==="cart")renderCart();
- if(view==="admin"&&isAdmin){adminTab("products");renderAdminProducts();loadOrders();}
- window.scrollTo({top:0,behavior:"smooth"});
+window.showView=view=>{
+["shopView","cartView","trackView"].forEach(id=>$(id).classList.add("hidden"));
+$(view+"View").classList.remove("hidden");
+if(view==="cart")renderCart();
+window.scrollTo(0,0);
 };
-
-window.adminTab=function(tab){
- $("adminProducts").classList.toggle("hidden",tab!=="products");
- $("adminOrders").classList.toggle("hidden",tab!=="orders");
- $("tabProducts").classList.toggle("active",tab==="products");
- $("tabOrders").classList.toggle("active",tab==="orders");
- if(tab==="orders")loadOrders();
-};
-
-async function seedProducts(){
- const snap=await getDocs(productsRef);
- if(snap.empty){
-  for(const [name,price] of SEED){
-   await addDoc(productsRef,{name,price,image:"",details:"",createdAt:serverTimestamp()});
-  }
- }
-}
 
 onSnapshot(productsRef,snap=>{
- products=snap.docs.map(d=>({id:d.id,...d.data()}));
- renderProducts();
- if(isAdmin)renderAdminProducts();
-},error=>console.error(error));
+products=snap.docs.map(d=>({id:d.id,...d.data()}));
+renderProducts();
+},console.error);
 
-window.renderProducts=function(){
- const term=($("search").value||"").toLowerCase();
- const list=products.filter(p=>(p.name||"").toLowerCase().includes(term));
- $("catalogue").innerHTML=list.length?list.map(p=>`
- <div class="card">
-  <div class="photo">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:"🎆"}</div>
-  <h3>${esc(p.name)}</h3>
-  <div class="muted">${esc(p.details||"")}</div>
-  <div class="price">${money(p.price)}</div>
-  <div class="actions">
-   <button class="primary" onclick="addCart('${p.id}')">Add to Cart</button>
-   <button class="secondary" onclick="quickOrder('${p.id}')">WhatsApp</button>
-  </div>
- </div>`).join(""):'<div class="empty">No products found.</div>';
+window.renderProducts=()=>{
+let term=($("search").value||"").toLowerCase();
+let list=products.filter(p=>(p.name||"").toLowerCase().includes(term));
+$("catalogue").innerHTML=list.length?list.map(p=>`
+<div class="card">
+<div class="photo">${p.image?`<img src="${esc(p.image)}">`:"🎇"}</div>
+<h3>${esc(p.name)}</h3>
+<p class="muted">${esc(p.details||"")}</p>
+<div class="price">${money(p.price)}</div>
+<button onclick="addCart('${p.id}')">Add to Cart +</button>
+</div>`).join(""):'<p>No products found.</p>';
 };
 
-window.addCart=function(id){
- cart[id]=(cart[id]||0)+1;
- updateCount();
- alert("Added to cart!");
+window.addCart=id=>{
+cart[id]=(cart[id]||0)+1;
+renderCart();
+alert("Product added to cart!");
 };
 
-window.quickOrder=function(id){
- const p=products.find(x=>x.id===id);
- if(!p)return;
- const msg=`Hello, I want to enquire about ${p.name} - ${money(p.price)}.`;
- window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank");
+window.changeQty=(id,n)=>{
+cart[id]=(cart[id]||0)+n;
+if(cart[id]<=0)delete cart[id];
+renderCart();
 };
 
-function updateCount(){
- $("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
+function cartTotal(){
+return Object.entries(cart).reduce((sum,[id,q])=>{
+let p=products.find(x=>x.id===id);
+return sum+(p?Number(p.price)*q:0);
+},0);
 }
 
-window.changeQty=function(id,delta){
- cart[id]=(cart[id]||0)+delta;
- if(cart[id]<=0)delete cart[id];
- renderCart();
-};
-
-function total(){
- return Object.entries(cart).reduce((sum,[id,q])=>{
-  const p=products.find(x=>x.id===id);
-  return sum+(p?Number(p.price)*q:0);
- },0);
+function renderCount(){
+$("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
 }
 
-window.renderCart=function(){
- const entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id===id));
- $("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{
-  const p=products.find(x=>x.id===id);
-  return `<div class="cartline">
-   <div><b>${esc(p.name)}</b><div class="muted">${money(p.price)} each</div></div>
-   <div class="qty">
-    <button onclick="changeQty('${id}',-1)">−</button>
-    <b>${q}</b>
-    <button onclick="changeQty('${id}',1)">+</button>
-   </div>
-   <b>${money(p.price*q)}</b>
-  </div>`;
- }).join(""):'<div class="empty">Cart is empty. <button class="primary" onclick="showView(\'shop\')">Shop Now</button></div>';
- $("cartTotal").textContent="Total: "+money(total());
- updateCount();
+window.renderCart=()=>{
+let entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
+$("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{
+let p=products.find(x=>x.id===id);
+return `<div class="cartline">
+<div><b>${esc(p.name)}</b><p>${money(p.price)}</p></div>
+<div class="qty">
+<button class="secondary" onclick="changeQty('${id}',-1)">−</button>
+<b>${q}</b>
+<button class="secondary" onclick="changeQty('${id}',1)">+</button>
+</div>
+<b>${money(p.price*q)}</b>
+</div>`;
+}).join(""):'<p>Your cart is empty.</p>';
+$("cartTotal").textContent="Total: "+money(cartTotal());
+renderCount();
 };
 
-window.shareLocation=function(){
- if(!navigator.geolocation)return alert("Location not supported.");
- navigator.geolocation.getCurrentPosition(pos=>{
-  locationLink=`https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
-  alert("Location added.");
- },()=>alert("Location permission denied."));
+window.shareLocation=()=>{
+if(!navigator.geolocation)return alert("Location not supported");
+navigator.geolocation.getCurrentPosition(pos=>{
+locationLink=`https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
+alert("Location added.");
+},()=>alert("Location permission denied."));
 };
 
-window.placeOrder=async function(){
- const entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id===id));
- const name=$("cName").value.trim();
- const phone=$("cPhone").value.trim();
- const address=$("cAddress").value.trim();
- if(!entries.length)return alert("Cart empty hai.");
- if(!name||!/^[0-9+\-\s]{10,15}$/.test(phone)||!address)return alert("Name, valid phone aur address bharein.");
+window.placeOrder=async()=>{
+let name=$("cName").value.trim();
+let phone=$("cPhone").value.trim();
+let address=$("cAddress").value.trim();
+let entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
 
- const items=entries.map(([id,q])=>{
-  const p=products.find(x=>x.id===id);
-  return {productId:id,name:p.name,price:Number(p.price),quantity:q};
- });
- const amount=items.reduce((s,x)=>s+x.price*x.quantity,0);
+if(!entries.length||!name||!/^[0-9+\-\s]{10,15}$/.test(phone)||!address)
+return alert("Name, valid phone, address aur cart check karein.");
 
- try{
-  const ref=await addDoc(ordersRef,{
-   customerName:name,phone,address,location:locationLink,
-   items,total:amount,status:"Pending",
-   payment:"Cash on Delivery",createdAt:serverTimestamp()
-  });
-
-  const lines=items.map(x=>`${x.name} x ${x.quantity} = ${money(x.price*x.quantity)}`).join("\n");
-  const msg=`*New Order - 2027 Crackers*\nOrder ID: ${ref.id}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n${locationLink?"Location: "+locationLink+"\n":""}${lines}\nTotal: ${money(amount)}\nPayment: COD\nPlease confirm my order.`;
-
-  window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank");
-  cart={};renderCart();
-  alert("Order saved. WhatsApp message send karke confirmation lein.");
- }catch(e){alert("Order save failed: "+e.message);}
-};
-
-window.trackOrder=async function(){
- const id=$("trackId").value.trim();
- if(!id)return alert("Order ID enter karein.");
- $("trackResult").textContent="Searching...";
- try{
-  const snap=await getDoc(doc(db,"orders",id));
-  if(!snap.exists()){$("trackResult").textContent="Order not found.";return;}
-  const o=snap.data();
-  $("trackResult").innerHTML=`<div class="panel">
-   <b>${esc(o.customerName||"Customer")}</b>
-   <p>Order ID: ${esc(id)}</p>
-   <p>Status: <span class="status">${esc(o.status||"Pending")}</span></p>
-   <p>Total: ${money(o.total)}</p>
-  </div>`;
- }catch(e){$("trackResult").textContent=e.message;}
-};
-
-window.adminLogin=async function(){
- $("loginMsg").textContent="Logging in...";
- try{
-  const cred=await signInWithEmailAndPassword(auth,$("adminEmail").value.trim(),$("adminPassword").value);
-  if(cred.user.uid!==ADMIN_UID){
-   await signOut(auth);
-   throw new Error("Unauthorized admin account.");
-  }
-  isAdmin=true;
-  showView("admin");
- }catch(e){$("loginMsg").textContent=e.message;}
-};
-
-window.adminLogout=async function(){
- await signOut(auth);
- isAdmin=false;
- showView("shop");
-};
-
-onAuthStateChanged(auth,user=>{
- isAdmin=!!user&&user.uid===ADMIN_UID;
+let items=entries.map(([id,q])=>{
+let p=products.find(x=>x.id===id);
+return {productId:id,name:p.name,price:Number(p.price),quantity:q};
 });
+let amount=items.reduce((s,x)=>s+x.price*x.quantity,0);
 
-window.saveProduct=async function(){
- const name=$("pName").value.trim();
- const price=Number($("pPrice").value);
- const image=$("pImage").value.trim();
- const details=$("pDetails").value.trim();
- const id=$("editId").value;
- if(!name||!Number.isFinite(price)||price<0)return alert("Name aur valid price bharein.");
- try{
-  const data={name,price,image,details,updatedAt:serverTimestamp()};
-  if(id)await setDoc(doc(db,"products",id),data,{merge:true});
-  else await addDoc(productsRef,{...data,createdAt:serverTimestamp()});
-  resetForm();
-  alert("Product saved.");
- }catch(e){alert(e.message);}
+try{
+let ref=await addDoc(ordersRef,{
+customerName:name,phone,address,location:locationLink,
+items,total:amount,status:"Pending",payment:"COD",
+createdAt:serverTimestamp()
+});
+let msg=`New Order\nOrder ID: ${ref.id}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n${items.map(x=>x.name+" x "+x.quantity).join("\n")}\nTotal: ${money(amount)}`;
+window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank");
+alert("Order saved. WhatsApp par confirmation bhejein.");
+cart={};renderCart();
+}catch(e){alert("Order failed: "+e.message);}
 };
 
-window.editProduct=function(id){
- const p=products.find(x=>x.id===id);
- if(!p)return;
- $("editId").value=id;
- $("pName").value=p.name||"";
- $("pPrice").value=p.price||"";
- $("pImage").value=p.image||"";
- $("pDetails").value=p.details||"";
- $("formTitle").textContent="Edit Product";
- window.scrollTo({top:0,behavior:"smooth"});
+window.trackOrder=async()=>{
+let id=$("trackId").value.trim();
+if(!id)return alert("Order ID enter karein.");
+$("trackResult").textContent="Searching...";
+try{
+let s=await getDoc(doc(db,"orders",id));
+if(!s.exists()){$("trackResult").textContent="Order not found.";return;}
+let o=s.data();
+$("trackResult").innerHTML=`<div class="panel">
+<p>Order ID: ${esc(id)}</p>
+<p>Status: <b class="status">${esc(o.status||"Pending")}</b></p>
+<p>Total: ${money(o.total)}</p>
+</div>`;
+}catch(e){$("trackResult").textContent="Tracking failed: "+e.message;}
 };
-
-window.deleteProduct=async function(id){
- if(!confirm("Delete this product?"))return;
- try{await deleteDoc(doc(db,"products",id));}
- catch(e){alert(e.message);}
-};
-
-window.resetForm=function(){
- ["editId","pName","pPrice","pImage","pDetails"].forEach(id=>$(id).value="");
- $("formTitle").textContent="Add New Product";
-};
-
-window.renderAdminProducts=function(){
- $("adminProductList").innerHTML=products.map(p=>`
- <div class="card">
-  <h3>${esc(p.name)}</h3>
-  <div class="price">${money(p.price)}</div>
-  <div class="actions">
-   <button class="secondary" onclick="editProduct('${p.id}')">Edit</button>
-   <button class="danger" onclick="deleteProduct('${p.id}')">Delete</button>
-  </div>
- </div>`).join("")||'<div class="empty">No products.</div>';
-};
-
-window.loadOrders=async function(){
- $("ordersList").innerHTML="Loading orders...";
- try{
-  const snap=await getDocs(query(ordersRef,orderBy("createdAt","desc")));
-  $("ordersList").innerHTML=snap.empty?'<div class="empty">No orders yet.</div>':snap.docs.map(d=>{
-   const o=d.data();
-   return `<div class="panel">
-    <div class="admin-head"><b>Order: ${esc(d.id)}</b><span class="status">${esc(o.status||"Pending")}</span></div>
-    <p><b>${esc(o.customerName||"")}</b> • ${esc(o.phone||"")}</p>
-    <p>${esc(o.address||"")}</p>
-    <ul>${(o.items||[]).map(x=>`<li>${esc(x.name)} × ${x.quantity} — ${money(x.price*x.quantity)}</li>`).join("")}</ul>
-    <b>Total: ${money(o.total)}</b>
-    <div class="row" style="margin-top:12px">
-     <select id="status-${d.id}">
-      ${["Pending","Confirmed","Packed","Out for Delivery","Delivered","Cancelled"].map(s=>`<option ${s===(o.status||"Pending")?"selected":""}>${s}</option>`).join("")}
-     </select>
-     <button class="primary" onclick="updateStatus('${d.id}')">Update Status</button>
-    </div>
-   </div>`;
-  }).join("");
- }catch(e){$("ordersList").textContent=e.message;}
-};
-
-window.updateStatus=async function(id){
- try{
-  await setDoc(doc(db,"orders",id),{
-   status:$("status-"+id).value,updatedAt:serverTimestamp()
-  },{merge:true});
-  alert("Status updated.");
-  loadOrders();
- }catch(e){alert(e.message);}
-};
-
-try{await seedProducts();}
-catch(e){$("catalogue").innerHTML='<div class="empty">Firebase configuration check karein: '+esc(e.message)+'</div>';}
 </script>
 </body>
 </html>
