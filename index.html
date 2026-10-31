@@ -1,316 +1,485 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>2027 Crackers | Diwali Fireworks</title>
+<title>2027 Crackers | Siliguri</title>
 <style>
-:root {
-  color-scheme: light dark;
-  --site-primary: #7B1E25;
-  --site-on-primary: #FFFFFF;
-  --site-secondary: #F3B63F;
-  --site-on-secondary: #24150A;
-  --site-background: #FFF8EC;
-  --site-on-background: #281B18;
-  --site-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --site-font-heading: Georgia, "Times New Roman", serif;
-  --site-heading-scale: 1;
-  --site-spacing-scale: 1;
-  --site-radius-scale: 1;
-  --site-decoration-opacity: 1;
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f5f6f8;color:#171717}
+button,input,textarea,select{font:inherit}
+button{border:0;border-radius:9px;padding:11px 15px;font-weight:bold;cursor:pointer}
+header{background:#151515;color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:5}
+.logo{font-size:23px;font-weight:900}.logo span{color:#f3bd45}
+nav{display:flex;gap:7px;flex-wrap:wrap}
+nav button{background:#333;color:white}
+nav .gold{background:#f3bd45;color:#111}
+.container{max-width:1100px;margin:auto;padding:20px 14px}
+.hidden{display:none!important}
+.hero{background:linear-gradient(120deg,#651522,#a72a36,#171717);color:white;padding:35px 22px;border-radius:18px;margin-bottom:20px}
+.hero h1{font-size:clamp(27px,5vw,43px);margin:0 0 12px}
+.hero p{line-height:1.6}
+.goldbtn{background:#f3bd45;color:#111}
+.primary{background:#9f1d2d;color:white}
+.secondary{background:#eee;color:#111}
+.danger{background:#fee2e2;color:#991b1b}
+.notice{background:#fff4d8;padding:13px;border-radius:10px;margin:15px 0;font-size:14px}
+.toolbar,.section-title,.admin-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0}
+input,textarea,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:9px;background:white}
+.toolbar input{max-width:320px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+.card,.panel{background:white;border:1px solid #e5e7eb;border-radius:14px;padding:15px;box-shadow:0 4px 15px #00000008}
+.photo{height:130px;background:#f7e9e9;border-radius:10px;display:grid;place-items:center;font-size:48px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.card h3{margin-bottom:5px}
+.price{font-size:21px;color:#9f1d2d;font-weight:900;margin:10px 0}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.actions button{flex:1}
+.muted{font-size:13px;color:#777}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin:12px 0}
+.field label{display:block;font-weight:bold;font-size:13px;margin-bottom:5px}
+.cartline,.orderline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eee}
+.qty{display:flex;align-items:center;gap:9px}
+.qty button{padding:5px 11px;background:#eee}
+.total{text-align:right;font-size:21px;font-weight:bold;margin:16px 0}
+.tabs{display:flex;gap:8px;margin:15px 0;flex-wrap:wrap}
+.tabs button.active{background:#9f1d2d;color:white}
+.status{background:#fff0c2;padding:5px 10px;border-radius:20px;font-size:12px}
+.empty{text-align:center;padding:25px;color:#777}
+footer{text-align:center;padding:25px;color:#777;font-size:13px}
+@media(max-width:600px){
+ header{position:static}
+ nav{width:100%}
+ nav button{flex:1}
+ .row{grid-template-columns:1fr}
+ .hero{padding:25px 17px}
+ .container{padding:14px 11px}
 }
-* { box-sizing: border-box; }
-body { margin: 0; font-family: var(--site-font-body); background: light-dark(#fff8ec,#171311); color: light-dark(#281b18,#f7eee5); }
-#app { min-height: 100vh; width: 100%; background-color: var(--site-background); color: var(--site-on-background); border-radius: 0; overflow: hidden; }
-.topbar { background: var(--site-primary); color: var(--site-on-primary); padding: calc(14px * var(--site-spacing-scale)) max(5vw,20px); display:flex; justify-content:space-between; align-items:center; gap:14px; }
-.brand { font-weight:900; letter-spacing:.08em; font-size:18px; }
-.topbar a { color:inherit; text-decoration:none; font-size:14px; }
-.hero { background: radial-gradient(circle at 82% 25%, #f8c85b 0 3px, transparent 4px), radial-gradient(circle at 90% 48%, #e77b35 0 4px, transparent 5px), linear-gradient(120deg,#451319,#7b1e25 58%,#a33b25); color:#fff8ec; padding: clamp(48px,8vw,92px) max(6vw,22px); position:relative; }
-.hero:after { content:"✦  ·  ✧  ·  ✦"; position:absolute; right:7%; bottom:18%; color:#ffd477; font-size:clamp(24px,4vw,42px); opacity:var(--site-decoration-opacity); letter-spacing:12px; }
-.eyebrow { color:#ffd477; text-transform:uppercase; letter-spacing:.2em; font-size:12px; font-weight:800; }
-h1,h2,h3 { font-family:var(--site-font-heading); }
-h1 { font-size:calc(clamp(42px,7vw,76px) * var(--site-heading-scale)); line-height:1.02; max-width:700px; margin:14px 0; }
-.hero p { max-width:560px; color:#f8e6d7; font-size:17px; line-height:1.65; }
-.cta { display:inline-block; margin-top:16px; background:var(--site-secondary); color:var(--site-on-secondary); padding:13px 22px; border-radius:calc(999px * var(--site-radius-scale)); font-weight:800; text-decoration:none; }
-main { max-width:1120px; margin:auto; padding:calc(44px * var(--site-spacing-scale)) 22px; }
-.section-head { display:flex; align-items:end; justify-content:space-between; gap:18px; flex-wrap:wrap; margin-bottom:22px; }
-h2 { font-size:calc(34px * var(--site-heading-scale)); margin:0 0 8px; }
-.muted { color:light-dark(#76665c,#c7b8ac); margin:0; }
-.filters { display:flex; gap:8px; flex-wrap:wrap; margin:20px 0 24px; }
-.filter { border:1px solid light-dark(#e4d6c6,#51423a); background:transparent; color:inherit; border-radius:999px; padding:9px 15px; cursor:pointer; }
-.filter.active { background:var(--site-primary); color:var(--site-on-primary); border-color:var(--site-primary); }
-.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
-.product { background:light-dark(#fffdf9,#241d19); border:1px solid light-dark(#eddfd0,#493b33); border-radius:18px; padding:20px; min-height:185px; box-shadow:0 8px 22px #4b26100d; }
-.product .emoji { font-size:32px; }
-.product-image-placeholder { min-height:110px; display:grid; place-items:center; border-radius:12px; background:light-dark(#f1eee9,#342b25); color:light-dark(#8a7b70,#c8b9ad); font-size:13px; }
-.product h3 { margin:12px 0 5px; font-size:23px; }
-.price { color:light-dark(#8b2d27,#ffce75); font-weight:800; }
-.product p { font-size:14px; color:light-dark(#76665c,#c7b8ac); line-height:1.5; }
-.product-actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
-.product-actions button, .cart-button { border:0; border-radius:10px; background:var(--site-primary); color:white; padding:10px 13px; font-weight:800; cursor:pointer; }
-.product-actions button.secondary { background:transparent; color:var(--site-primary); border:1px solid var(--site-primary); }
-.cart-panel { margin-top:28px; padding:22px; border:1px solid light-dark(#eddfd0,#493b33); border-radius:18px; background:light-dark(#fffdf9,#241d19); }
-.cart-panel h3 { margin:0 0 12px; font-size:24px; }
-.cart-row { display:flex; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid light-dark(#eddfd0,#493b33); font-size:14px; }
-.quantity-controls { display:flex; align-items:center; gap:10px; }
-.quantity-controls button { min-width:34px; min-height:34px; border:0; border-radius:9px; background:var(--site-primary); color:#fff; font-size:20px; font-weight:800; cursor:pointer; }
-.quantity-controls span { min-width:20px; text-align:center; font-weight:800; }
-.cart-empty { color:light-dark(#76665c,#c7b8ac); }
-.cart-total { font-weight:900; margin:14px 0; }
-.cart-panel form { max-width:560px; margin-top:16px; }
-.location-button { border:1px solid var(--site-primary); border-radius:10px; background:transparent; color:var(--site-primary); padding:12px; font:inherit; font-weight:800; cursor:pointer; }
-.location-status { font-size:13px; color:light-dark(#76665c,#c7b8ac); margin:0; }
-.enquiry { background:var(--site-secondary); color:var(--site-on-secondary); border-radius:22px; padding:28px; display:grid; grid-template-columns:1.2fr 1fr; gap:22px; align-items:center; margin-top:44px; }
-.enquiry h2 { font-size:32px; }
-.enquiry p { line-height:1.6; }
-form { display:grid; gap:10px; }
-input,textarea { width:100%; border:1px solid #a77a2b; background:#fffaf0; color:#24150a; border-radius:10px; padding:12px; font:inherit; }
-textarea { min-height:80px; resize:vertical; }
-form button { border:0; border-radius:10px; background:#451319; color:white; padding:13px; font-weight:800; cursor:pointer; }
-.notice { margin-top:28px; padding:16px 18px; border-left:4px solid #a33b25; background:light-dark(#f4e8d8,#30251f); font-size:13px; line-height:1.65; }
-footer { background:#281416; color:#f6e9db; text-align:center; padding:24px; font-size:13px; }
-.topbar { background:#2874c8; position:sticky; top:0; z-index:20; box-shadow:0 2px 10px #102b4b22; }
-.brand { color:#fff; font-size:21px; letter-spacing:.02em; }
-.market-search { flex:1; max-width:560px; display:flex; }
-.market-search input { border:0; border-radius:5px; padding:12px 14px; background:#fff; color:#222; }
-.market-search button { border:0; border-radius:0 5px 5px 0; background:#ffe11b; color:#222; padding:0 16px; font-weight:800; }
-.cart-menu-link { position:relative; display:inline-flex; align-items:center; gap:7px; padding:9px 12px; border:1px solid #ffffff66; border-radius:6px; font-weight:800; white-space:nowrap; }
-.cart-count { display:inline-grid; place-items:center; min-width:20px; height:20px; padding:0 5px; border-radius:20px; background:#ffe11b; color:#172b4d; font-size:12px; font-weight:900; }
-.hero { background:linear-gradient(115deg,#eaf4ff,#d9eaff 60%,#f8fbff); color:#172b4d; padding:36px max(6vw,22px); }
-.hero p { color:#425a78; }
-.hero .eyebrow { color:#2874c8; }
-.hero:after { color:#2874c8; }
-.cta { background:#2874c8; color:#fff; border-radius:5px; }
-main { max-width:1240px; }
-.section-head { align-items:center; }
-.section-head h2 { font-family:var(--site-font-body); font-size:27px; font-weight:750; }
-.filters { padding:12px; margin:14px 0 20px; background:light-dark(#fff,#242424); border:1px solid light-dark(#e5eaf0,#403f3d); border-radius:8px; }
-.filter { border-radius:5px; }
-.filter.active { background:#2874c8; border-color:#2874c8; }
-.grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
-.product { border-radius:7px; padding:13px; min-height:0; box-shadow:0 1px 5px #172b4d12; transition:box-shadow .18s,transform .18s; }
-.product:hover { box-shadow:0 5px 18px #172b4d20; transform:translateY(-2px); }
-.product-image-placeholder { min-height:155px; border-radius:5px; background:light-dark(#f4f7fb,#302e2b); }
-.product h3 { font-family:var(--site-font-body); font-size:17px; font-weight:650; }
-.price { color:#172b4d; font-size:19px; }
-.product-actions button,.cart-button { border-radius:5px; }
-.product-actions button:first-child { background:#2874c8; }
-.product-actions button.secondary { color:#2874c8; border-color:#2874c8; }
-.cart-panel { border-radius:8px; }
-.enquiry { border-radius:8px; }
-.admin-panel { margin:28px 0; padding:20px; border:1px solid #d8e0e9; border-radius:10px; background:light-dark(#fff,#242424); }
-.admin-panel h2 { font:700 22px var(--site-font-body); }
-.admin-panel form { max-width:620px; margin:14px 0; }
-.admin-panel button { border:0; border-radius:6px; padding:11px 14px; background:#2874c8; color:white; font-weight:750; cursor:pointer; }
-.admin-panel .admin-secondary { background:#5c6673; }
-.admin-status { font-size:14px; color:light-dark(#526174,#c7b8ac); }
-.admin-product-row { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #ddd; }
-.admin-product-row button { margin:3px; }
-.admin-hidden { display:none !important; }
-@media(max-width:900px){ .grid{grid-template-columns:repeat(3,minmax(0,1fr));} }
-@media(max-width:760px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr));} .enquiry{grid-template-columns:1fr;} }
-@media(max-width:480px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr));} .topbar{align-items:center;flex-direction:row;flex-wrap:wrap;} .market-search{order:3;flex-basis:100%;max-width:none;} .product{padding:10px;} .product-image-placeholder{min-height:115px;} .product-actions button{padding:9px 10px;font-size:12px;} }
 </style>
 </head>
 <body>
-<div id="app">
-  <header class="topbar"><div class="brand">✦ 2027 CRACKERS</div><form class="market-search" id="searchForm" role="search"><input id="productSearch" type="search" placeholder="Search products..." aria-label="Search products"><button type="submit">Search</button></form><a class="cart-menu-link" href="#cartPanel" aria-label="Open shopping cart">🛒 Cart <span class="cart-count" id="cartCount">0</span></a></header>
-  <section class="hero">
-    <div class="eyebrow">Festival of lights • Diwali collection</div>
-    <h1>Roshan ho har<br>khushi ka pal.</h1>
-    <p>Welcome to 2027 Crackers. Explore our Diwali celebration catalogue and contact us on WhatsApp for product details. Delivery service is for Siliguri, West Bengal.</p>
-    <a class="cta" href="#catalogue">Explore collection</a>
-  </section>
-  <main>
-    <section id="catalogue">
-      <div class="section-head"><div><div class="eyebrow" style="color:#2874c8">2027 Crackers collection</div><h2>Shop by collection</h2><p class="muted">Browse the catalogue and search for an item.</p></div></div>
-      <div class="filters" aria-label="Product categories"><button class="filter active" data-filter="all">All items</button></div>
-      <div class="grid" id="products">
-        <article class="product" data-category="all" data-name="Penta"><div class="product-image-placeholder">Product image coming soon</div><h3>Penta</h3><div class="price">₹240</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-        <article class="product" data-category="all" data-name="Bullet"><div class="product-image-placeholder">Product image coming soon</div><h3>Bullet</h3><div class="price">₹450</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-        <article class="product" data-category="all" data-name="Jully"><div class="product-image-placeholder">Product image coming soon</div><h3>Jully</h3><div class="price">₹225</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-        <article class="product" data-category="all" data-name="12 Shot"><div class="product-image-placeholder">Product image coming soon</div><h3>12 Shot</h3><div class="price">₹280</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-        <article class="product" data-category="all" data-name="Supreme Chakri"><div class="product-image-placeholder">Product image coming soon</div><h3>Supreme Chakri</h3><div class="price">₹525</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-        <article class="product" data-category="all" data-name="Matches"><div class="product-image-placeholder">Product image coming soon</div><h3>Matches</h3><div class="price">₹160</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-        <article class="product" data-category="all" data-name="Torch"><div class="product-image-placeholder">Product image coming soon</div><h3>Torch</h3><div class="price">₹390</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-        <article class="product" data-category="all" data-name="Black-White"><div class="product-image-placeholder">Product image coming soon</div><h3>Black-White</h3><div class="price">₹165</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-        <article class="product" data-category="all" data-name="Chutput"><div class="product-image-placeholder">Product image coming soon</div><h3>Chutput</h3><div class="price">₹255</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-        <article class="product" data-category="all" data-name="Rajkumari"><div class="product-image-placeholder">Product image coming soon</div><h3>Rajkumari</h3><div class="price">₹270</div><p>Diwali catalogue item.</p><div class="product-actions"><button type="button" class="add-cart">Add to cart</button><button type="button" class="secondary ask-product">WhatsApp</button></div></article>
-      </div>
-      <section class="admin-panel" id="adminPanel">
-        <h2>🔐 Shop Admin Login</h2>
-        <p class="admin-status">Login karke catalogue ke products, prices, details aur image links manage karein.</p>
-        <form id="adminLoginForm"><input id="adminEmail" type="email" placeholder="Admin email" required><input id="adminPassword" type="password" placeholder="Admin password" required><button type="submit">Admin Login</button></form>
-        <div id="adminTools" class="admin-hidden">
-          <p class="admin-status" id="adminWelcome">Admin logged in</p>
-          <form id="productForm"><input id="editProductId" type="hidden"><input id="adminProductName" placeholder="Product name" required><input id="adminProductPrice" type="number" min="0" step="0.01" placeholder="Price in ₹" required><textarea id="adminProductDetails" placeholder="Product details" required></textarea><input id="adminProductImage" type="url" placeholder="Product image URL (https://...)" ><button type="submit" id="saveProductButton">Save Product</button><button type="button" class="admin-secondary" id="cancelProductEdit">Clear</button></form>
-          <div id="adminProductList"></div><button type="button" class="admin-secondary" id="adminLogout">Logout</button>
-        </div>
-        <p class="admin-status" id="adminStatus" aria-live="polite"></p>
-      </section>
-      <section class="cart-panel" id="cartPanel" aria-live="polite"><h3>🛒 Your online cart</h3><div id="cartItems" class="cart-empty">Your cart is empty. Add products to start an order.</div><div id="cartTotal" class="cart-total"></div><form id="checkoutForm"><input id="orderName" placeholder="Your name" required><input id="orderPhone" placeholder="Your phone number" required><button class="location-button" id="shareLocation" type="button">📍 Share current location</button><p class="location-status" id="locationStatus" aria-live="polite">Location sharing is optional. Your browser will ask permission.</p><textarea id="orderAddress" placeholder="Delivery address in Siliguri" required></textarea><label><input type="radio" name="payment" value="Cash on Delivery" checked> Cash on Delivery (COD)</label><p class="muted">Delivery service: Siliguri, West Bengal. Payment and delivery will be confirmed by the shop before the order is accepted.</p><button class="cart-button" type="submit">Place COD order via WhatsApp</button></form></section>
-    </section>
-    <section class="enquiry" id="contact">
-      <div><div class="eyebrow" style="color:#6b2a1b">Get in touch</div><h2>Need product details?</h2><p>Send your enquiry directly to 2027 Crackers on WhatsApp: <strong>7363843238</strong>.</p></div>
-      <form id="enquiryForm"><input id="customerName" placeholder="Your name" required><input id="customerPhone" placeholder="Your phone number" required><textarea id="message" placeholder="Which catalogue items would you like to ask about?"></textarea><button type="submit">Prepare WhatsApp enquiry</button></form>
-    </section>
-    <div class="notice"><strong>Important safety & legal notice:</strong> This catalogue is only for products lawfully licensed for sale in your area. Sale, purchase, storage, transport and use of fireworks are subject to applicable local laws and age restrictions. Follow all package instructions, keep a safe distance, and never allow children to handle fireworks. Prefer low-noise / community-safe celebrations where possible.</div>
-  </main>
-  <footer>© 2027 2027 Crackers • Celebrate responsibly and follow local rules.</footer>
-</div>
-<script>
-document.querySelectorAll('.filter').forEach(button => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(item => item.classList.remove('active'));
-    button.classList.add('active');
-    const category = button.dataset.filter;
-    document.querySelectorAll('.product').forEach(card => {
-      card.hidden = category !== 'all' && card.dataset.category !== category;
-    });
-  });
-});
-const cart = new Map();
-const cartItems = document.getElementById('cartItems');
-let selectedLocation = '';
-document.getElementById('searchForm').addEventListener('submit', event => {
-  event.preventDefault();
-  const term = document.getElementById('productSearch').value.trim().toLowerCase();
-  document.querySelectorAll('.product').forEach(card => {
-    card.hidden = !card.dataset.name.toLowerCase().includes(term);
-  });
-  document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth' });
-});
-document.getElementById('shareLocation').addEventListener('click', () => {
-  const status = document.getElementById('locationStatus');
-  if (!navigator.geolocation) { status.textContent = 'Location is not supported by this browser. Please enter your address manually.'; return; }
-  status.textContent = 'Getting your location… Please allow location access.';
-  navigator.geolocation.getCurrentPosition(position => {
-    selectedLocation = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
-    status.textContent = 'Location added to your order. You can still enter your full address below.';
-  }, () => {
-    status.textContent = 'Location permission was not granted or location is unavailable. Please enter your address manually.';
-  }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
-});
-function renderCart() {
-  const itemCount = Array.from(cart.values()).reduce((sum, qty) => sum + qty, 0);
-  document.getElementById('cartCount').textContent = itemCount;
-  if (!cart.size) { cartItems.className = 'cart-empty'; cartItems.textContent = 'Your cart is empty. Add products to start an order.'; document.getElementById('cartTotal').textContent = ''; return; }
-  cartItems.className = '';
-  cartItems.innerHTML = '';
-  cart.forEach((qty, name) => {
-    const row = document.createElement('div'); row.className = 'cart-row';
-    const label = document.createElement('span'); label.textContent = name;
-    const controls = document.createElement('div'); controls.className = 'quantity-controls';
-    const minus = document.createElement('button'); minus.type = 'button'; minus.textContent = '−'; minus.setAttribute('aria-label', 'Decrease ' + name);
-    minus.addEventListener('click', () => { const next = (cart.get(name) || 0) - 1; if (next <= 0) cart.delete(name); else cart.set(name, next); renderCart(); });
-    const count = document.createElement('span'); count.textContent = qty;
-    const plus = document.createElement('button'); plus.type = 'button'; plus.textContent = '+'; plus.setAttribute('aria-label', 'Increase ' + name);
-    plus.addEventListener('click', () => { cart.set(name, (cart.get(name) || 0) + 1); renderCart(); });
-    controls.append(minus, count, plus); row.append(label, controls); cartItems.append(row);
-  });
-  document.getElementById('cartTotal').textContent = 'Total: Prices will be confirmed by the shop on WhatsApp.';
-}
-document.addEventListener('click', event => {
-  const button = event.target.closest('.add-cart');
-  if (!button) return;
-  const product = button.closest('.product');
-  if (!product) return;
-  const name = product.dataset.name || product.querySelector('h3')?.textContent?.trim();
-  if (!name) return;
-  cart.set(name, (cart.get(name) || 0) + 1);
-  renderCart();
-  button.textContent = 'Added ✓';
-  window.setTimeout(() => { button.textContent = 'Add to cart'; }, 1000);
-});
-document.querySelectorAll('.ask-product').forEach(button => button.addEventListener('click', () => {
-  const name = button.closest('.product').dataset.name;
-  window.open('https://wa.me/917363843238?text=' + encodeURIComponent('Hello 2027 Crackers, please share details and price for ' + name + '.'), '_blank', 'noopener');
-}));
-document.getElementById('checkoutForm').addEventListener('submit', event => {
-  event.preventDefault();
-  if (!cart.size) { alert('Please add at least one product to your cart.'); return; }
-  const items = Array.from(cart, ([name, qty]) => `${name} x ${qty}`).join(', ');
-  const payment = document.querySelector('input[name="payment"]:checked').value;
-  const order = `Online cart order for 2027 Crackers\nName: ${document.getElementById('orderName').value.trim()}\nPhone: ${document.getElementById('orderPhone').value.trim()}\nAddress: ${document.getElementById('orderAddress').value.trim()}\nShared location: ${selectedLocation || 'Not shared'}\nItems: ${items}\nPayment preference: ${payment}\nPlease confirm availability, final prices, delivery and COD serviceability before accepting.`;
-  window.open('https://wa.me/917363843238?text=' + encodeURIComponent(order), '_blank', 'noopener');
-});
-document.getElementById('enquiryForm').addEventListener('submit', event => {
-  event.preventDefault();
-  const name = document.getElementById('customerName').value.trim();
-  const phone = document.getElementById('customerPhone').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const text = `Hello, my name is ${name}. My contact number is ${phone}. Enquiry: ${message || 'Please share catalogue details.'}`;
-  window.open('https://wa.me/917363843238?text=' + encodeURIComponent(text), '_blank', 'noopener');
-});
-</script>
+
+<header>
+ <div class="logo">2027 <span>CRACKERS</span></div>
+ <nav>
+  <button onclick="showView('shop')">🏪 Shop</button>
+  <button onclick="showView('cart')">🛒 Cart <span id="cartCount">0</span></button>
+  <button onclick="showView('track')">📦 Track</button>
+  <button class="gold" onclick="showView('login')">Admin Login</button>
+ </nav>
+</header>
+
+<main class="container">
+
+<section id="shopView">
+ <div class="hero">
+  <h1>Celebrate Every Moment! 🎆</h1>
+  <p>2027 Crackers – Siliguri, West Bengal. Apne favourite products select karein aur WhatsApp par order bhejein.</p>
+  <button class="goldbtn" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+ </div>
+
+ <div class="notice">⚠️ Fireworks ko adults ki supervision mein aur local safety rules follow karke hi use karein.</div>
+
+ <div class="toolbar">
+  <h2>Our Products</h2>
+  <input id="search" placeholder="Search products..." oninput="renderProducts()">
+ </div>
+ <div id="catalogue" class="grid"></div>
+</section>
+
+<section id="cartView" class="hidden">
+ <div class="section-title">
+  <h2>🛒 Your Cart</h2>
+  <button class="secondary" onclick="showView('shop')">← Back to Shop</button>
+ </div>
+ <div class="panel">
+  <div id="cartItems"></div>
+  <div class="total" id="cartTotal">Total: ₹0</div>
+  <h3>Delivery Details</h3>
+  <div class="row">
+   <div class="field"><label>Name</label><input id="cName" placeholder="Your name"></div>
+   <div class="field"><label>Phone</label><input id="cPhone" placeholder="Mobile number"></div>
+  </div>
+  <div class="field"><label>Address</label><textarea id="cAddress" rows="3" placeholder="Your delivery address"></textarea></div>
+  <div class="actions">
+   <button class="secondary" onclick="shareLocation()">📍 Share Location</button>
+   <button class="primary" onclick="placeOrder()">Place Order on WhatsApp</button>
+  </div>
+  <p class="muted">Cash on Delivery (COD), subject to shop confirmation.</p>
+ </div>
+</section>
+
+<section id="trackView" class="hidden">
+ <div class="section-title">
+  <h2>📦 Track Order</h2>
+  <button class="secondary" onclick="showView('shop')">← Back to Shop</button>
+ </div>
+ <div class="panel">
+  <input id="trackId" placeholder="Enter Order ID">
+  <br><br>
+  <button class="primary" onclick="trackOrder()">Track Order</button>
+  <div id="trackResult"></div>
+ </div>
+</section>
+
+<section id="loginView" class="hidden">
+ <div class="section-title">
+  <h2>🔐 Admin Login</h2>
+  <button class="secondary" onclick="showView('shop')">← Back to Shop</button>
+ </div>
+ <div class="panel" style="max-width:450px;margin:auto">
+  <div class="field"><label>Email</label><input id="adminEmail" type="email"></div>
+  <div class="field"><label>Password</label><input id="adminPassword" type="password"></div>
+  <button class="primary" style="width:100%" onclick="adminLogin()">Login</button>
+  <p id="loginMsg" class="muted"></p>
+ </div>
+</section>
+
+<section id="adminView" class="hidden">
+ <div class="admin-head">
+  <h2>⚙️ Admin Dashboard</h2>
+  <div class="actions">
+   <button class="secondary" onclick="showView('shop')">← Back to Shop</button>
+   <button class="danger" onclick="adminLogout()">Logout</button>
+  </div>
+ </div>
+
+ <div class="tabs">
+  <button id="tabProducts" class="active" onclick="adminTab('products')">Products Management</button>
+  <button id="tabOrders" onclick="adminTab('orders')">Customer Orders</button>
+ </div>
+
+ <div id="adminProducts">
+  <div class="panel">
+   <h3 id="formTitle">Add New Product</h3>
+   <input type="hidden" id="editId">
+   <div class="row">
+    <div class="field"><label>Product Name</label><input id="pName"></div>
+    <div class="field"><label>Price</label><input id="pPrice" type="number" min="0"></div>
+   </div>
+   <div class="field"><label>Image URL</label><input id="pImage"></div>
+   <div class="field"><label>Details</label><textarea id="pDetails"></textarea></div>
+   <div class="actions">
+    <button class="primary" onclick="saveProduct()">Save Product</button>
+    <button class="secondary" onclick="resetForm()">Clear</button>
+   </div>
+  </div>
+  <h3>All Products</h3>
+  <div id="adminProductList" class="grid"></div>
+ </div>
+
+ <div id="adminOrders" class="hidden">
+  <div class="section-title">
+   <h3>Customer Orders</h3>
+   <button class="secondary" onclick="loadOrders()">Refresh</button>
+  </div>
+  <div id="ordersList"></div>
+ </div>
+</section>
+
+<footer>© 2027 Crackers | Siliguri, West Bengal | WhatsApp: 7363843238</footer>
+</main>
+
 <script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, query, orderBy, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-const firebaseConfig = { apiKey: 'AIzaSyBcwjaR9Dc7cX0sqVZndEPJOMsmxZgktjg', authDomain: 'crackers-6c561.firebaseapp.com', projectId: 'crackers-6c561', storageBucket: 'crackers-6c561.firebasestorage.app', messagingSenderId: '637348567869', appId: '1:637348567869:web:446714d313a059d8d2c354' };
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const adminUid = 'q4BToAoJUoN9D6h7tFw1f2bxTf63';
-const status = document.getElementById('adminStatus');
-const loginForm = document.getElementById('adminLoginForm');
-const tools = document.getElementById('adminTools');
-const productForm = document.getElementById('productForm');
-const productsGrid = document.getElementById('products');
-let productRecords = [];
-let stopProducts = null;
-stopProducts = onSnapshot(query(collection(db,'products'),orderBy('name')), snapshot => { productRecords = snapshot.docs.map(d => ({id:d.id,...d.data()})); drawAdminList(); drawCustomerProducts(productRecords); }, error => { status.textContent = 'Database error: ' + error.message; });
-function safeText(tag, value, className) { const el = document.createElement(tag); el.textContent = value || ''; if (className) el.className = className; return el; }
-function drawCustomerProducts(records) {
-  if (!records.length) return;
-  productsGrid.innerHTML = '';
-  records.forEach(item => {
-    const card = document.createElement('article'); card.className = 'product'; card.dataset.category = 'all'; card.dataset.name = item.name;
-    if (item.imageUrl) { const img = document.createElement('img'); img.src = item.imageUrl; img.alt = item.name; img.loading = 'lazy'; img.style.cssText = 'width:100%;height:155px;object-fit:contain;background:#f4f7fb;border-radius:5px'; img.onerror = () => { img.replaceWith(safeText('div','Image unavailable','product-image-placeholder')); }; card.append(img); }
-    else card.append(safeText('div','Product image coming soon','product-image-placeholder'));
-    card.append(safeText('h3',item.name), safeText('div','₹' + Number(item.price).toLocaleString('en-IN'),'price'), safeText('p',item.details));
-    const actions = document.createElement('div'); actions.className = 'product-actions';
-    const add = safeText('button','Add to cart'); add.type = 'button'; add.className = 'add-cart';
-    const ask = safeText('button','WhatsApp'); ask.type = 'button'; ask.className = 'secondary ask-product';
-    ask.addEventListener('click', () => window.open('https://wa.me/917363843238?text=' + encodeURIComponent('Hello 2027 Crackers, please share details and price for ' + item.name + '.'), '_blank','noopener'));
-    actions.append(add,ask); card.append(actions); productsGrid.append(card);
-  });
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,collection,doc,addDoc,setDoc,deleteDoc,getDocs,getDoc,query,orderBy,serverTimestamp,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* Firebase Console se apni purani config yahan paste karein */
+const firebaseConfig={
+ apiKey:"PASTE_YOUR_API_KEY",
+ authDomain:"crackers-6c561.firebaseapp.com",
+ projectId:"crackers-6c561",
+ storageBucket:"crackers-6c561.firebasestorage.app",
+ messagingSenderId:"PASTE_YOUR_SENDER_ID",
+ appId:"PASTE_YOUR_APP_ID"
+};
+
+const ADMIN_UID="q4BToAoJUoN9D6h7tFw1f2bxTf63";
+const WHATSAPP="917363843238";
+const SEED=[
+ ["Penta",240],["Bullet",450],["Jully",225],["12 Shot",280],
+ ["Supreme Chakri",525],["Matches",160],["Torch",390],
+ ["Black-White",165],["Chutput",255],["Rajkumari",270]
+];
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const productsRef=collection(db,"products");
+const ordersRef=collection(db,"orders");
+
+let products=[],cart={},isAdmin=false,locationLink="";
+
+const $=id=>document.getElementById(id);
+const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
+
+function esc(s=""){
+ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-function drawAdminList() {
-  const list = document.getElementById('adminProductList'); list.innerHTML = '';
-  productRecords.forEach(item => {
-    const row = document.createElement('div'); row.className = 'admin-product-row';
-    const info = safeText('span', item.name + ' — ₹' + item.price);
-    const edit = safeText('button','Edit'); edit.type = 'button'; edit.addEventListener('click', () => { document.getElementById('editProductId').value = item.id; document.getElementById('adminProductName').value = item.name; document.getElementById('adminProductPrice').value = item.price; document.getElementById('adminProductDetails').value = item.details; document.getElementById('adminProductImage').value = item.imageUrl || ''; document.getElementById('saveProductButton').textContent = 'Update Product'; productForm.scrollIntoView({behavior:'smooth',block:'center'}); });
-    const remove = safeText('button','Delete'); remove.type = 'button'; remove.className = 'admin-secondary'; remove.addEventListener('click', async () => { if (confirm('Delete ' + item.name + '?')) { try { await deleteDoc(doc(db,'products',item.id)); status.textContent = 'Product deleted.'; } catch (error) { status.textContent = 'Delete failed: ' + error.message; } } });
-    const buttons = document.createElement('span'); buttons.append(edit,remove); row.append(info,buttons); list.append(row);
-  });
-}
-onAuthStateChanged(auth, user => {
-  const allowed = !!user && user.uid === adminUid;
-  loginForm.classList.toggle('admin-hidden', allowed); tools.classList.toggle('admin-hidden', !allowed);
-  if (user && !allowed) { status.textContent = 'This account is not authorized as shop admin.'; signOut(auth); }
-  if (allowed) {
-    status.textContent = 'Admin login successful.';
-    getDocs(collection(db,'products')).then(async snapshot => {
-      if (!snapshot.empty) return;
-      const starter = [['Penta',240],['Bullet',450],['Jully',225],['12 Shot',280],['Supreme Chakri',525],['Matches',160],['Torch',390],['Black-White',165],['Chutput',255],['Rajkumari',270]];
-      for (const [name,price] of starter) await addDoc(collection(db,'products'),{name,price,details:'Diwali catalogue item.',imageUrl:''});
-      status.textContent = 'Existing catalogue imported. You can now edit products.';
-    }).catch(error => { status.textContent = 'Catalogue setup error: ' + error.message; });
+
+window.showView=function(view){
+ ["shopView","cartView","trackView","loginView","adminView"].forEach(id=>$(id).classList.add("hidden"));
+ const ids={shop:"shopView",cart:"cartView",track:"trackView",login:"loginView",admin:"adminView"};
+ $(ids[view]||"shopView").classList.remove("hidden");
+ if(view==="cart")renderCart();
+ if(view==="admin"&&isAdmin){adminTab("products");renderAdminProducts();loadOrders();}
+ window.scrollTo({top:0,behavior:"smooth"});
+};
+
+window.adminTab=function(tab){
+ $("adminProducts").classList.toggle("hidden",tab!=="products");
+ $("adminOrders").classList.toggle("hidden",tab!=="orders");
+ $("tabProducts").classList.toggle("active",tab==="products");
+ $("tabOrders").classList.toggle("active",tab==="orders");
+ if(tab==="orders")loadOrders();
+};
+
+async function seedProducts(){
+ const snap=await getDocs(productsRef);
+ if(snap.empty){
+  for(const [name,price] of SEED){
+   await addDoc(productsRef,{name,price,image:"",details:"",createdAt:serverTimestamp()});
   }
+ }
+}
+
+onSnapshot(productsRef,snap=>{
+ products=snap.docs.map(d=>({id:d.id,...d.data()}));
+ renderProducts();
+ if(isAdmin)renderAdminProducts();
+},error=>console.error(error));
+
+window.renderProducts=function(){
+ const term=($("search").value||"").toLowerCase();
+ const list=products.filter(p=>(p.name||"").toLowerCase().includes(term));
+ $("catalogue").innerHTML=list.length?list.map(p=>`
+ <div class="card">
+  <div class="photo">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:"🎆"}</div>
+  <h3>${esc(p.name)}</h3>
+  <div class="muted">${esc(p.details||"")}</div>
+  <div class="price">${money(p.price)}</div>
+  <div class="actions">
+   <button class="primary" onclick="addCart('${p.id}')">Add to Cart</button>
+   <button class="secondary" onclick="quickOrder('${p.id}')">WhatsApp</button>
+  </div>
+ </div>`).join(""):'<div class="empty">No products found.</div>';
+};
+
+window.addCart=function(id){
+ cart[id]=(cart[id]||0)+1;
+ updateCount();
+ alert("Added to cart!");
+};
+
+window.quickOrder=function(id){
+ const p=products.find(x=>x.id===id);
+ if(!p)return;
+ const msg=`Hello, I want to enquire about ${p.name} - ${money(p.price)}.`;
+ window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank");
+};
+
+function updateCount(){
+ $("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
+}
+
+window.changeQty=function(id,delta){
+ cart[id]=(cart[id]||0)+delta;
+ if(cart[id]<=0)delete cart[id];
+ renderCart();
+};
+
+function total(){
+ return Object.entries(cart).reduce((sum,[id,q])=>{
+  const p=products.find(x=>x.id===id);
+  return sum+(p?Number(p.price)*q:0);
+ },0);
+}
+
+window.renderCart=function(){
+ const entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id===id));
+ $("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{
+  const p=products.find(x=>x.id===id);
+  return `<div class="cartline">
+   <div><b>${esc(p.name)}</b><div class="muted">${money(p.price)} each</div></div>
+   <div class="qty">
+    <button onclick="changeQty('${id}',-1)">−</button>
+    <b>${q}</b>
+    <button onclick="changeQty('${id}',1)">+</button>
+   </div>
+   <b>${money(p.price*q)}</b>
+  </div>`;
+ }).join(""):'<div class="empty">Cart is empty. <button class="primary" onclick="showView(\'shop\')">Shop Now</button></div>';
+ $("cartTotal").textContent="Total: "+money(total());
+ updateCount();
+};
+
+window.shareLocation=function(){
+ if(!navigator.geolocation)return alert("Location not supported.");
+ navigator.geolocation.getCurrentPosition(pos=>{
+  locationLink=`https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
+  alert("Location added.");
+ },()=>alert("Location permission denied."));
+};
+
+window.placeOrder=async function(){
+ const entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id===id));
+ const name=$("cName").value.trim();
+ const phone=$("cPhone").value.trim();
+ const address=$("cAddress").value.trim();
+ if(!entries.length)return alert("Cart empty hai.");
+ if(!name||!/^[0-9+\-\s]{10,15}$/.test(phone)||!address)return alert("Name, valid phone aur address bharein.");
+
+ const items=entries.map(([id,q])=>{
+  const p=products.find(x=>x.id===id);
+  return {productId:id,name:p.name,price:Number(p.price),quantity:q};
+ });
+ const amount=items.reduce((s,x)=>s+x.price*x.quantity,0);
+
+ try{
+  const ref=await addDoc(ordersRef,{
+   customerName:name,phone,address,location:locationLink,
+   items,total:amount,status:"Pending",
+   payment:"Cash on Delivery",createdAt:serverTimestamp()
+  });
+
+  const lines=items.map(x=>`${x.name} x ${x.quantity} = ${money(x.price*x.quantity)}`).join("\n");
+  const msg=`*New Order - 2027 Crackers*\nOrder ID: ${ref.id}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n${locationLink?"Location: "+locationLink+"\n":""}${lines}\nTotal: ${money(amount)}\nPayment: COD\nPlease confirm my order.`;
+
+  window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank");
+  cart={};renderCart();
+  alert("Order saved. WhatsApp message send karke confirmation lein.");
+ }catch(e){alert("Order save failed: "+e.message);}
+};
+
+window.trackOrder=async function(){
+ const id=$("trackId").value.trim();
+ if(!id)return alert("Order ID enter karein.");
+ $("trackResult").textContent="Searching...";
+ try{
+  const snap=await getDoc(doc(db,"orders",id));
+  if(!snap.exists()){$("trackResult").textContent="Order not found.";return;}
+  const o=snap.data();
+  $("trackResult").innerHTML=`<div class="panel">
+   <b>${esc(o.customerName||"Customer")}</b>
+   <p>Order ID: ${esc(id)}</p>
+   <p>Status: <span class="status">${esc(o.status||"Pending")}</span></p>
+   <p>Total: ${money(o.total)}</p>
+  </div>`;
+ }catch(e){$("trackResult").textContent=e.message;}
+};
+
+window.adminLogin=async function(){
+ $("loginMsg").textContent="Logging in...";
+ try{
+  const cred=await signInWithEmailAndPassword(auth,$("adminEmail").value.trim(),$("adminPassword").value);
+  if(cred.user.uid!==ADMIN_UID){
+   await signOut(auth);
+   throw new Error("Unauthorized admin account.");
+  }
+  isAdmin=true;
+  showView("admin");
+ }catch(e){$("loginMsg").textContent=e.message;}
+};
+
+window.adminLogout=async function(){
+ await signOut(auth);
+ isAdmin=false;
+ showView("shop");
+};
+
+onAuthStateChanged(auth,user=>{
+ isAdmin=!!user&&user.uid===ADMIN_UID;
 });
-loginForm.addEventListener('submit', async event => { event.preventDefault(); status.textContent = 'Logging in…'; try { await signInWithEmailAndPassword(auth, document.getElementById('adminEmail').value.trim(), document.getElementById('adminPassword').value); document.getElementById('adminPassword').value = ''; } catch (error) { status.textContent = 'Login failed. Check email and password.'; } });
-productForm.addEventListener('submit', async event => {
-  event.preventDefault(); const id = document.getElementById('editProductId').value;
-  const data = { name: document.getElementById('adminProductName').value.trim(), price: Number(document.getElementById('adminProductPrice').value), details: document.getElementById('adminProductDetails').value.trim(), imageUrl: document.getElementById('adminProductImage').value.trim() };
-  if (!data.name || !Number.isFinite(data.price) || data.price < 0 || !data.details) { status.textContent = 'Enter valid product details and price.'; return; }
-  try { if (id) await updateDoc(doc(db,'products',id),data); else await addDoc(collection(db,'products'),data); productForm.reset(); document.getElementById('editProductId').value = ''; document.getElementById('saveProductButton').textContent = 'Save Product'; status.textContent = 'Product saved. Customer catalogue updated.'; }
-  catch (error) { status.textContent = 'Save failed: ' + error.message; }
-});
-document.getElementById('cancelProductEdit').addEventListener('click', () => { productForm.reset(); document.getElementById('editProductId').value = ''; document.getElementById('saveProductButton').textContent = 'Save Product'; });
-document.getElementById('adminLogout').addEventListener('click', () => signOut(auth));
+
+window.saveProduct=async function(){
+ const name=$("pName").value.trim();
+ const price=Number($("pPrice").value);
+ const image=$("pImage").value.trim();
+ const details=$("pDetails").value.trim();
+ const id=$("editId").value;
+ if(!name||!Number.isFinite(price)||price<0)return alert("Name aur valid price bharein.");
+ try{
+  const data={name,price,image,details,updatedAt:serverTimestamp()};
+  if(id)await setDoc(doc(db,"products",id),data,{merge:true});
+  else await addDoc(productsRef,{...data,createdAt:serverTimestamp()});
+  resetForm();
+  alert("Product saved.");
+ }catch(e){alert(e.message);}
+};
+
+window.editProduct=function(id){
+ const p=products.find(x=>x.id===id);
+ if(!p)return;
+ $("editId").value=id;
+ $("pName").value=p.name||"";
+ $("pPrice").value=p.price||"";
+ $("pImage").value=p.image||"";
+ $("pDetails").value=p.details||"";
+ $("formTitle").textContent="Edit Product";
+ window.scrollTo({top:0,behavior:"smooth"});
+};
+
+window.deleteProduct=async function(id){
+ if(!confirm("Delete this product?"))return;
+ try{await deleteDoc(doc(db,"products",id));}
+ catch(e){alert(e.message);}
+};
+
+window.resetForm=function(){
+ ["editId","pName","pPrice","pImage","pDetails"].forEach(id=>$(id).value="");
+ $("formTitle").textContent="Add New Product";
+};
+
+window.renderAdminProducts=function(){
+ $("adminProductList").innerHTML=products.map(p=>`
+ <div class="card">
+  <h3>${esc(p.name)}</h3>
+  <div class="price">${money(p.price)}</div>
+  <div class="actions">
+   <button class="secondary" onclick="editProduct('${p.id}')">Edit</button>
+   <button class="danger" onclick="deleteProduct('${p.id}')">Delete</button>
+  </div>
+ </div>`).join("")||'<div class="empty">No products.</div>';
+};
+
+window.loadOrders=async function(){
+ $("ordersList").innerHTML="Loading orders...";
+ try{
+  const snap=await getDocs(query(ordersRef,orderBy("createdAt","desc")));
+  $("ordersList").innerHTML=snap.empty?'<div class="empty">No orders yet.</div>':snap.docs.map(d=>{
+   const o=d.data();
+   return `<div class="panel">
+    <div class="admin-head"><b>Order: ${esc(d.id)}</b><span class="status">${esc(o.status||"Pending")}</span></div>
+    <p><b>${esc(o.customerName||"")}</b> • ${esc(o.phone||"")}</p>
+    <p>${esc(o.address||"")}</p>
+    <ul>${(o.items||[]).map(x=>`<li>${esc(x.name)} × ${x.quantity} — ${money(x.price*x.quantity)}</li>`).join("")}</ul>
+    <b>Total: ${money(o.total)}</b>
+    <div class="row" style="margin-top:12px">
+     <select id="status-${d.id}">
+      ${["Pending","Confirmed","Packed","Out for Delivery","Delivered","Cancelled"].map(s=>`<option ${s===(o.status||"Pending")?"selected":""}>${s}</option>`).join("")}
+     </select>
+     <button class="primary" onclick="updateStatus('${d.id}')">Update Status</button>
+    </div>
+   </div>`;
+  }).join("");
+ }catch(e){$("ordersList").textContent=e.message;}
+};
+
+window.updateStatus=async function(id){
+ try{
+  await setDoc(doc(db,"orders",id),{
+   status:$("status-"+id).value,updatedAt:serverTimestamp()
+  },{merge:true});
+  alert("Status updated.");
+  loadOrders();
+ }catch(e){alert(e.message);}
+};
+
+try{await seedProducts();}
+catch(e){$("catalogue").innerHTML='<div class="empty">Firebase configuration check karein: '+esc(e.message)+'</div>';}
 </script>
 </body>
 </html>
