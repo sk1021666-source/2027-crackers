@@ -4,61 +4,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>2027 Crackers | Siliguri</title>
+<title>2026 Crackers | Siliguri</title>
+
 <style>
 :root{
-  --blue:#2874f0;
-  --yellow:#ffe500;
-  --bg:#f1f3f6;
-  --white:#fff;
-  --text:#212121;
-  --muted:#707070;
+ --blue:#2874f0;
+ --yellow:#ffe500;
+ --bg:#f1f3f6;
+ --white:#fff;
+ --text:#212121;
+ --muted:#707070;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-button,input,textarea{font:inherit}
+button,input,textarea,select{font:inherit}
 button{cursor:pointer;border:0}
-.topbar{background:var(--blue);color:white;position:sticky;top:0;z-index:20;box-shadow:0 2px 6px #0002}
-.header{max-width:1250px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:18px}
+.topbar{background:var(--blue);color:white;position:sticky;top:0;z-index:20}
+.header{max-width:1250px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
 .logo{font-size:23px;font-weight:900;white-space:nowrap}
 .logo span{color:var(--yellow)}
 .searchbox{flex:1;display:flex;background:white;border-radius:5px;overflow:hidden}
-.searchbox input{border:0;outline:0;padding:12px;width:100%;color:#222;margin:0}
-.searchbox button{background:var(--yellow);padding:0 18px;font-weight:bold}
+.searchbox input{border:0;outline:0;padding:12px;width:100%;margin:0}
+.searchbox button{background:var(--yellow);padding:0 18px}
 .header-btn{background:transparent;color:white;font-weight:bold;padding:10px;white-space:nowrap}
-.header-btn:hover{background:#ffffff20}
 .container{max-width:1250px;margin:auto;padding:14px}
-.categorybar{background:white;display:flex;justify-content:center;gap:30px;padding:17px;overflow-x:auto;white-space:nowrap}
+.categorybar{background:white;display:flex;justify-content:center;gap:25px;padding:17px;overflow-x:auto;white-space:nowrap}
 .categorybar button{background:transparent;color:#333;font-weight:bold}
-.categorybar button:hover{color:var(--blue)}
-.banner{margin:14px 0;background:linear-gradient(110deg,#092b72,#2874f0,#65a3ff);color:white;padding:38px 30px;border-radius:5px;min-height:190px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.banner{margin:14px 0;background:linear-gradient(110deg,#092b72,#2874f0,#65a3ff);color:white;padding:35px;border-radius:5px;display:flex;align-items:center;justify-content:space-between}
 .banner h1{font-size:clamp(30px,5vw,48px);margin:0 0 10px}
 .banner h1 span{color:var(--yellow)}
-.banner p{line-height:1.6;margin:0 0 15px}
-.banner button{background:var(--yellow);padding:12px 20px;border-radius:3px;font-weight:bold}
-.banner-art{font-size:75px}
+.banner button{background:var(--yellow);padding:12px 20px;font-weight:bold}
+.banner-art{font-size:65px}
 .safety{background:#fff4d6;padding:13px;margin:14px 0;border-radius:4px;color:#654c00;font-size:13px;line-height:1.5}
 .section{background:white;margin:14px 0;padding:18px;border-radius:4px}
 .section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #eee;padding-bottom:13px;margin-bottom:16px}
 .section-title h2{font-size:20px;margin:0}
-.section-title button{background:var(--blue);color:white;padding:9px 15px;border-radius:3px}
 .grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
-.product{border:1px solid #eee;padding:12px;text-align:center;border-radius:4px;transition:.2s;background:white;min-width:0}
-.product:hover{box-shadow:0 3px 12px #0002;transform:translateY(-2px)}
+.product{border:1px solid #eee;padding:12px;text-align:center;border-radius:4px;background:white;min-width:0}
 .product-img{height:145px;background:#f6f8fb;display:grid;place-items:center;overflow:hidden;font-size:55px}
 .product-img img{width:100%;height:100%;object-fit:contain}
-.product h3{font-size:15px;margin:12px 0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product h3{font-size:15px;margin:12px 0 6px}
 .details{color:var(--muted);font-size:12px;height:30px;overflow:hidden}
-.price{font-size:19px;font-weight:bold;color:#212121;margin:10px 0}
-.product button{width:100%;padding:10px 5px;margin-top:5px;border-radius:3px;background:var(--yellow);font-weight:bold}
+.price{font-size:19px;font-weight:bold;margin:10px 0}
+.product button{width:100%;padding:10px 5px;margin-top:5px;background:var(--yellow);font-weight:bold}
 .product button.buy{background:var(--blue);color:white}
-input,textarea{padding:13px;border:1px solid #ddd;border-radius:4px;width:100%;margin:6px 0 12px;outline-color:var(--blue)}
+input,textarea,select{padding:12px;border:1px solid #ddd;border-radius:4px;width:100%;margin:6px 0 12px;outline-color:var(--blue)}
 textarea{resize:vertical}
+label{font-size:14px;font-weight:bold}
 .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .primary{background:var(--blue);color:white;padding:12px 18px;border-radius:3px;font-weight:bold}
 .yellow{background:var(--yellow);color:#111;padding:12px 18px;border-radius:3px;font-weight:bold}
 .whitebtn{background:#eee;color:#222;padding:10px 15px;border-radius:3px}
-.cartline{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #eee}
+.danger{background:#dc3545;color:white;padding:10px 15px;border-radius:3px}
+.cartline{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #eee;flex-wrap:wrap}
 .qty{display:flex;align-items:center;gap:10px}
 .qty button{background:#eee;padding:7px 12px;border-radius:3px}
 .total{text-align:right;font-size:22px;font-weight:bold;margin:18px 0}
@@ -66,16 +64,18 @@ textarea{resize:vertical}
 .hidden{display:none!important}
 footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-height:1.8;margin-top:20px}
 .bottomnav{display:none}
-.message{padding:12px;background:#e8f4ff;border-radius:4px;margin:10px 0;font-size:13px}
+.message{padding:12px;background:#e8f4ff;border-radius:4px;margin:10px 0;font-size:13px;line-height:1.7}
+.order-card{border:1px solid #ddd;border-radius:5px;padding:14px;margin:12px 0;overflow-wrap:anywhere}
+.order-card button{margin-top:5px}
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){
- .header{gap:8px;flex-wrap:wrap}
- .logo{font-size:19px}
+ .header{gap:5px;flex-wrap:wrap}
+ .logo{font-size:18px}
  .searchbox{order:3;flex-basis:100%}
- .header-btn{padding:8px 5px;font-size:12px}
- .categorybar{justify-content:flex-start;gap:20px}
- .banner{padding:25px 18px;min-height:160px}
- .banner-art{font-size:48px}
+ .header-btn{padding:7px 4px;font-size:11px}
+ .categorybar{justify-content:flex-start;gap:18px}
+ .banner{padding:23px 15px}
+ .banner-art{font-size:40px}
  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
  .product{padding:8px}
  .product-img{height:115px}
@@ -91,17 +91,21 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 }
 </style>
 </head>
+
 <body>
 
 <header class="topbar">
  <div class="header">
-  <div class="logo">🎆 2027 <span>CRACKERS</span></div>
+  <div class="logo">🎆 2026 <span>CRACKERS</span></div>
+
   <div class="searchbox">
-   <input id="search" placeholder="Search for crackers..." oninput="renderProducts()">
+   <input id="search" placeholder="Search crackers..." oninput="renderProducts()">
    <button onclick="renderProducts()">🔍</button>
   </div>
+
   <button class="header-btn" onclick="showView('shop')">Home</button>
   <button class="header-btn" onclick="showView('cart')">🛒 Cart (<span id="cartCount">0</span>)</button>
+  <button class="header-btn" onclick="showView('admin')">⚙️ Admin</button>
  </div>
 </header>
 
@@ -116,6 +120,7 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 
 <main class="container">
 
+<!-- SHOP -->
 <section id="shopView">
  <div class="banner">
   <div>
@@ -126,24 +131,25 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
   <div class="banner-art">🎆🎇</div>
  </div>
 
- <div class="safety">⚠️ Fireworks केवल कानूनी रूप से अनुमत उत्पादों और स्थानीय नियमों के अनुसार ही खरीदें और उपयोग करें। सभी सुरक्षा निर्देशों का पालन करें।</div>
+ <div class="safety">
+  ⚠️ Fireworks केवल कानूनी रूप से अनुमत उत्पादों और स्थानीय नियमों के अनुसार ही खरीदें और उपयोग करें। सुरक्षा निर्देशों का पालन करें।
+ </div>
 
  <section class="section" id="productsSection">
   <div class="section-title">
    <h2>🔥 Popular Products</h2>
    <span id="productCount">Loading...</span>
   </div>
-  <div id="catalogue" class="grid">
-   <p>Loading products...</p>
-  </div>
+  <div id="catalogue" class="grid">Loading products...</div>
  </section>
 </section>
 
+<!-- CART -->
 <section id="cartView" class="hidden">
  <div class="section">
   <div class="section-title">
    <h2>🛒 My Shopping Cart</h2>
-   <button onclick="showView('shop')">Continue Shopping</button>
+   <button class="primary" onclick="showView('shop')">Continue Shopping</button>
   </div>
   <div id="cartItems"></div>
   <div class="total" id="cartTotal">Total: ₹0</div>
@@ -151,6 +157,7 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 
  <div class="section">
   <h2>📍 Delivery Details</h2>
+
   <div class="formgrid">
    <div>
     <label>Your Name</label>
@@ -161,14 +168,18 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
     <input id="cPhone" type="tel" placeholder="10 digit mobile number">
    </div>
   </div>
+
   <label>Full Delivery Address</label>
   <textarea id="cAddress" rows="3" placeholder="House no, street, area, city, pincode"></textarea>
+
   <button class="whitebtn" onclick="shareLocation()">📍 Share My Location</button>
-  <div class="message">Order WhatsApp पर भेजने के बाद WhatsApp में Send बटन दबाना होगा।</div>
+  <div class="message">WhatsApp खुलने के बाद Send बटन दबाना होगा।</div>
+
   <button class="primary" id="orderBtn" onclick="placeOrder()">🟢 PLACE ORDER ON WHATSAPP</button>
  </div>
 </section>
 
+<!-- TRACK ORDER -->
 <section id="trackView" class="hidden">
  <div class="section">
   <h2>📦 Track Your Order</h2>
@@ -176,6 +187,78 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
   <input id="trackId" placeholder="Enter Order ID">
   <button class="primary" onclick="trackOrder()">Track Order</button>
   <div id="trackResult"></div>
+ </div>
+</section>
+
+<!-- ADMIN PANEL -->
+<section id="adminView" class="hidden">
+
+ <div class="section" id="adminLoginBox">
+  <h2>🔐 Admin Login</h2>
+  <p>Only authorized admin can access this panel.</p>
+
+  <label>Admin Email</label>
+  <input id="adminEmail" type="email" placeholder="Enter admin email">
+
+  <label>Admin Password</label>
+  <input id="adminPassword" type="password" placeholder="Enter admin password">
+
+  <button class="primary" id="loginBtn" onclick="adminLogin()">Login</button>
+  <p id="loginMessage"></p>
+ </div>
+
+ <div class="hidden" id="adminDashboard">
+
+  <div class="section">
+   <div class="section-title">
+    <h2>⚙️ Admin Dashboard</h2>
+    <button class="danger" onclick="adminLogout()">Logout</button>
+   </div>
+
+   <div class="message">
+    Total Products: <b id="adminProductCount">0</b><br>
+    Total Orders: <b id="adminOrderCount">0</b>
+   </div>
+  </div>
+
+  <div class="section">
+   <h2>➕ Add / Edit Product</h2>
+
+   <input id="editProductId" type="hidden">
+
+   <label>Product Name</label>
+   <input id="pName" placeholder="Product name">
+
+   <label>Price (₹)</label>
+   <input id="pPrice" type="number" min="1" placeholder="Product price">
+
+   <label>Product Details</label>
+   <input id="pDetails" placeholder="Product details">
+
+   <label>Image URL (Optional)</label>
+   <input id="pImage" type="url" placeholder="https://example.com/image.jpg">
+
+   <button class="primary" onclick="saveProduct()">Save Product</button>
+   <button class="whitebtn" onclick="clearProductForm()">Clear</button>
+   <p id="productMessage"></p>
+  </div>
+
+  <div class="section">
+   <div class="section-title">
+    <h2>📦 Manage Products</h2>
+    <button class="whitebtn" onclick="renderAdminProducts()">Refresh</button>
+   </div>
+   <div id="adminProducts">Loading...</div>
+  </div>
+
+  <div class="section">
+   <div class="section-title">
+    <h2>🛒 All Orders</h2>
+    <button class="whitebtn" onclick="loadOrders()">Refresh Orders</button>
+   </div>
+   <div id="adminOrders">No orders loaded.</div>
+  </div>
+
  </div>
 </section>
 
@@ -195,41 +278,81 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 </div>
 
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
- getFirestore,collection,doc,getDoc,setDoc,serverTimestamp,onSnapshot
+ getFirestore,collection,doc,getDoc,setDoc,
+ serverTimestamp,onSnapshot,addDoc,updateDoc,
+ deleteDoc,getDocs,query,orderBy
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+import {
+ getAuth,signInWithEmailAndPassword,
+ signOut,onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// FIREBASE CONFIG
 const firebaseConfig={
  apiKey:"AIzaSyBcwjaAR9Dc7cX0sqVZndEPJOMsmxZgktjg",
  authDomain:"crackers-6c561.firebaseapp.com",
  projectId:"crackers-6c561",
  storageBucket:"crackers-6c561.firebasestorage.app",
  messagingSenderId:"637348567869",
- appId:"1:637348567869:web:446714d313a059d8d2c354"
+ appId:"1:637348567869:web:446714d313a059d8c2d354"
 };
 
-const db=getFirestore(initializeApp(firebaseConfig));
+// FIREBASE INITIALIZATION
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const auth=getAuth(app);
+
+const ADMIN_UID="q4BToAoJUoN9D6h7tFw1f2bxTf63";
 const productsRef=collection(db,"products");
 const ordersRef=collection(db,"orders");
+
 const WHATSAPP="917363843238";
 
 let products=[];
 let cart={};
 let locationLink="";
 let category="all";
+let isAdmin=false;
 
 const $=id=>document.getElementById(id);
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
- "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ "&":"&amp;",
+ "<":"&lt;",
+ ">":"&gt;",
+ '"':"&quot;",
+ "'":"&#39;"
 }[c]));
 
+// VIEW CONTROL
 window.showView=view=>{
- ["shopView","cartView","trackView"].forEach(id=>$(id).classList.add("hidden"));
+ ["shopView","cartView","trackView","adminView"].forEach(id=>{
+  $(id).classList.add("hidden");
+ });
+
  $(view+"View").classList.remove("hidden");
+
  if(view==="cart")renderCart();
+
+ if(view==="admin"){
+  if(isAdmin){
+   $("adminLoginBox").classList.add("hidden");
+   $("adminDashboard").classList.remove("hidden");
+   renderAdminProducts();
+   loadOrders();
+  }else{
+   $("adminLoginBox").classList.remove("hidden");
+   $("adminDashboard").classList.add("hidden");
+  }
+ }
+
  window.scrollTo(0,0);
 };
 
@@ -240,25 +363,32 @@ window.filterCategory=cat=>{
  $("productsSection").scrollIntoView({behavior:"smooth"});
 };
 
+// LOAD PRODUCTS
 onSnapshot(productsRef,snap=>{
  products=snap.docs.map(d=>({id:d.id,...d.data()}));
  renderProducts();
  renderCart();
+
+ if(isAdmin)renderAdminProducts();
+
 },error=>{
  console.error(error);
  $("catalogue").textContent="Products load nahi hue. Please refresh karein.";
 });
 
+// RENDER PRODUCTS
 window.renderProducts=()=>{
  let term=($("search").value||"").toLowerCase();
 
  let list=products.filter(p=>{
   let matchName=(p.name||"").toLowerCase().includes(term);
+
   let matchCategory=category==="all"||
    (category==="shots"&&/shot/i.test(p.name||""))||
    (category==="chakri"&&/chakri/i.test(p.name||""))||
    (category==="others"&&!/shot|chakri/i.test(p.name||""))||
    (category==="crackers"&&/cracker/i.test(p.name||""));
+
   return matchName&&matchCategory;
  });
 
@@ -278,6 +408,7 @@ window.renderProducts=()=>{
  `).join(""):'<p>No products found.</p>';
 };
 
+// CART
 window.addCart=id=>{
  cart[id]=(cart[id]||0)+1;
  renderCart();
@@ -304,52 +435,72 @@ function totalAmount(){
 }
 
 window.renderCart=()=>{
- let entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
+ let entries=Object.entries(cart).filter(([id])=>
+  products.some(p=>p.id===id)
+ );
 
  $("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{
   let p=products.find(x=>x.id===id);
+
   return `
    <div class="cartline">
     <div>
      <b>${esc(p.name)}</b>
-     <div class="muted">${money(p.price)} each</div>
+     <div>${money(p.price)} each</div>
     </div>
+
     <div class="qty">
      <button onclick="changeQty('${id}',-1)">−</button>
      <b>${q}</b>
      <button onclick="changeQty('${id}',1)">+</button>
     </div>
+
     <b>${money(Number(p.price)*q)}</b>
-   </div>`;
- }).join(""):'<div class="empty">🛒<h3>Your cart is empty</h3><p>Add products to start shopping.</p><button class="primary" onclick="showView(\'shop\')">Shop Now</button></div>';
+   </div>
+  `;
+ }).join(""):`
+  <div class="empty">
+   🛒<h3>Your cart is empty</h3>
+   <p>Add products to start shopping.</p>
+   <button class="primary" onclick="showView('shop')">Shop Now</button>
+  </div>
+ `;
 
  $("cartTotal").textContent="Total: "+money(totalAmount());
  $("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
 };
 
+// LOCATION
 window.shareLocation=()=>{
  if(!navigator.geolocation)return alert("Location not supported");
+
  navigator.geolocation.getCurrentPosition(pos=>{
-  locationLink="https://maps.google.com/?q="+pos.coords.latitude+","+pos.coords.longitude;
+  locationLink="https://maps.google.com/?q="+
+   pos.coords.latitude+","+pos.coords.longitude;
+
   alert("Location added!");
  },()=>alert("Location permission denied."));
 };
 
-// WHATSAPP ORDER: OPEN LINK IMMEDIATELY ON BUTTON CLICK
+// WHATSAPP ORDER
 window.placeOrder=async()=>{
  let name=$("cName").value.trim();
  let phone=$("cPhone").value.trim();
  let address=$("cAddress").value.trim();
 
- let entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
+ let entries=Object.entries(cart).filter(([id])=>
+  products.some(p=>p.id===id)
+ );
 
  if(!entries.length)return alert("Your cart is empty!");
  if(!name)return alert("Please enter your name.");
- if(!/^[0-9+\-\s]{10,15}$/.test(phone))return alert("Please enter a valid mobile number.");
+ if(!/^[0-9+\-\s]{10,15}$/.test(phone))
+  return alert("Please enter a valid mobile number.");
  if(!address)return alert("Please enter your delivery address.");
 
  let items=entries.map(([id,q])=>{
   let p=products.find(x=>x.id===id);
+
   return {
    productId:id,
    name:p.name,
@@ -374,18 +525,14 @@ ${items.map(x=>x.name+" x "+x.quantity+" = "+money(x.price*x.quantity)).join("\n
 TOTAL: ${money(amount)}
 Payment: Cash on Delivery`;
 
- let url="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+ let whatsappUrl="https://wa.me/"+WHATSAPP+
+  "?text="+encodeURIComponent(msg);
 
- // Open WhatsApp synchronously, before Firebase operation
- let opened=window.open(url,"_blank");
-
- if(!opened){
-  // Fallback: same-tab navigation
-  window.location.href=url;
- }
+ // Open blank tab immediately to avoid popup blocking
+ let whatsappTab=window.open("about:blank","_blank");
 
  $("orderBtn").disabled=true;
- $("orderBtn").textContent="ORDER OPENED...";
+ $("orderBtn").textContent="SAVING ORDER...";
 
  try{
   await setDoc(orderRef,{
@@ -399,44 +546,321 @@ Payment: Cash on Delivery`;
    payment:"COD",
    createdAt:serverTimestamp()
   });
-  console.log("Order saved:",orderId);
+
+  if(whatsappTab){
+   whatsappTab.location.href=whatsappUrl;
+  }else{
+   window.location.href=whatsappUrl;
+  }
+
+  alert("Order saved! WhatsApp par Send button dabayein.");
+
+  cart={};
+  renderCart();
+
  }catch(e){
-  console.error("Firebase order save failed:",e);
-  alert("WhatsApp khul gaya hai, lekin order database mein save nahi hua. Admin se contact karein.");
+  console.error(e);
+
+  if(whatsappTab)whatsappTab.close();
+
+  alert("Order save nahi hua: "+e.message);
+
  }finally{
   $("orderBtn").disabled=false;
   $("orderBtn").textContent="🟢 PLACE ORDER ON WHATSAPP";
  }
-
- cart={};
- renderCart();
 };
 
+// CUSTOMER ORDER TRACKING
 window.trackOrder=async()=>{
  let id=$("trackId").value.trim();
+
  if(!id)return alert("Please enter Order ID.");
 
  $("trackResult").textContent="Searching...";
 
  try{
   let snap=await getDoc(doc(db,"orders",id));
+
   if(!snap.exists()){
    $("trackResult").textContent="Order not found.";
    return;
   }
 
   let o=snap.data();
+
   $("trackResult").innerHTML=`
    <div class="message">
     <b>Order ID:</b> ${esc(id)}<br>
     <b>Status:</b> ${esc(o.status||"Pending")}<br>
     <b>Total:</b> ${money(o.total)}
-   </div>`;
+   </div>
+  `;
+
  }catch(e){
   console.error(e);
   $("trackResult").textContent="Tracking failed: "+e.message;
  }
 };
+
+// ADMIN AUTHENTICATION
+window.adminLogin=async()=>{
+ let email=$("adminEmail").value.trim();
+ let password=$("adminPassword").value;
+
+ if(!email||!password){
+  alert("Email aur password enter karein.");
+  return;
+ }
+
+ $("loginBtn").disabled=true;
+ $("loginMessage").textContent="Logging in...";
+
+ try{
+  let result=await signInWithEmailAndPassword(auth,email,password);
+
+  if(result.user.uid!==ADMIN_UID){
+   await signOut(auth);
+   isAdmin=false;
+   $("loginMessage").textContent="Access denied.";
+   alert("This account is not authorized as admin.");
+   return;
+  }
+
+  isAdmin=true;
+
+  $("adminLoginBox").classList.add("hidden");
+  $("adminDashboard").classList.remove("hidden");
+
+  renderAdminProducts();
+  await loadOrders();
+
+ }catch(e){
+  console.error(e);
+  $("loginMessage").textContent="Login failed: "+e.message;
+ }finally{
+  $("loginBtn").disabled=false;
+ }
+};
+
+// WATCH AUTH STATE
+onAuthStateChanged(auth,user=>{
+ isAdmin=!!user&&user.uid===ADMIN_UID;
+
+ if(user&&!isAdmin){
+  signOut(auth);
+ }
+
+ if($("adminView")&&!$("adminView").classList.contains("hidden")){
+  $("adminLoginBox").classList.toggle("hidden",isAdmin);
+  $("adminDashboard").classList.toggle("hidden",!isAdmin);
+
+  if(isAdmin){
+   renderAdminProducts();
+   loadOrders();
+  }
+ }
+});
+
+// ADMIN LOGOUT
+window.adminLogout=async()=>{
+ try{
+  await signOut(auth);
+  isAdmin=false;
+
+  $("adminDashboard").classList.add("hidden");
+  $("adminLoginBox").classList.remove("hidden");
+  $("adminPassword").value="";
+
+  alert("Admin logged out.");
+  showView("shop");
+
+ }catch(e){
+  alert(e.message);
+ }
+};
+
+// CLEAR PRODUCT FORM
+window.clearProductForm=()=>{
+ $("editProductId").value="";
+ $("pName").value="";
+ $("pPrice").value="";
+ $("pDetails").value="";
+ $("pImage").value="";
+ $("productMessage").textContent="";
+};
+
+// SAVE PRODUCT
+window.saveProduct=async()=>{
+ if(!isAdmin)return alert("Admin login required.");
+
+ let id=$("editProductId").value;
+ let name=$("pName").value.trim();
+ let price=Number($("pPrice").value);
+ let details=$("pDetails").value.trim();
+ let image=$("pImage").value.trim();
+
+ if(!name||!Number.isFinite(price)||price<=0){
+  return alert("Product name aur valid price enter karein.");
+ }
+
+ let data={name,price,details,image};
+
+ try{
+  if(id){
+   await updateDoc(doc(db,"products",id),data);
+   $("productMessage").textContent="Product updated successfully!";
+  }else{
+   await addDoc(productsRef,data);
+   $("productMessage").textContent="Product added successfully!";
+  }
+
+  clearProductForm();
+  renderAdminProducts();
+
+ }catch(e){
+  console.error(e);
+  alert("Product save failed: "+e.message);
+ }
+};
+
+// ADMIN PRODUCT LIST
+window.renderAdminProducts=()=>{
+ if(!isAdmin)return;
+
+ $("adminProductCount").textContent=products.length;
+
+ $("adminProducts").innerHTML=products.length?
+ products.map(p=>`
+  <div class="cartline">
+   <div>
+    <b>${esc(p.name)}</b><br>
+    ${money(p.price)}
+   </div>
+
+   <div>
+    <button class="whitebtn" onclick="editProduct('${p.id}')">Edit</button>
+    <button class="danger" onclick="removeProduct('${p.id}')">Delete</button>
+   </div>
+  </div>
+ `).join(""):"No products found.";
+};
+
+// EDIT PRODUCT
+window.editProduct=id=>{
+ if(!isAdmin)return;
+
+ let p=products.find(x=>x.id===id);
+ if(!p)return;
+
+ $("editProductId").value=p.id;
+ $("pName").value=p.name||"";
+ $("pPrice").value=p.price||"";
+ $("pDetails").value=p.details||"";
+ $("pImage").value=p.image||"";
+
+ $("pName").scrollIntoView({behavior:"smooth"});
+};
+
+// DELETE PRODUCT
+window.removeProduct=async id=>{
+ if(!isAdmin)return;
+
+ if(!confirm("Are you sure you want to delete this product?"))return;
+
+ try{
+  await deleteDoc(doc(db,"products",id));
+  alert("Product deleted!");
+  renderAdminProducts();
+
+ }catch(e){
+  console.error(e);
+  alert("Delete failed: "+e.message);
+ }
+};
+
+// LOAD ORDERS
+window.loadOrders=async()=>{
+ if(!isAdmin)return;
+
+ $("adminOrders").textContent="Loading orders...";
+
+ try{
+  let snap=await getDocs(
+   query(ordersRef,orderBy("createdAt","desc"))
+  );
+
+  $("adminOrderCount").textContent=snap.size;
+
+  if(snap.empty){
+   $("adminOrders").textContent="No orders yet.";
+   return;
+  }
+
+  $("adminOrders").innerHTML=snap.docs.map(d=>{
+   let o=d.data();
+
+   let items=(o.items||[]).map(x=>
+    `${esc(x.name)} x ${Number(x.quantity)||0}`
+   ).join(", ");
+
+   let statuses=[
+    "Pending","Confirmed","Processing",
+    "Shipped","Delivered","Cancelled"
+   ];
+
+   return `
+    <div class="order-card">
+     <b>Order ID:</b><br>${esc(d.id)}<br><br>
+
+     <b>Customer:</b> ${esc(o.customerName)}<br>
+     <b>Phone:</b> ${esc(o.phone)}<br>
+     <b>Address:</b> ${esc(o.address)}<br>
+     <b>Items:</b> ${items}<br>
+     <b>Total:</b> ${money(o.total)}<br>
+     <b>Current Status:</b> ${esc(o.status||"Pending")}<br><br>
+
+     <label>Update Order Status</label>
+     <select id="status-${d.id}">
+      ${statuses.map(s=>`
+       <option value="${s}" ${o.status===s?"selected":""}>${s}</option>
+      `).join("")}
+     </select>
+
+     <button class="primary" onclick="updateOrderStatus('${d.id}')">
+      Update Status
+     </button>
+    </div>
+   `;
+  }).join("");
+
+ }catch(e){
+  console.error(e);
+  $("adminOrders").textContent="Orders load failed: "+e.message;
+ }
+};
+
+// UPDATE ORDER STATUS
+window.updateOrderStatus=async id=>{
+ if(!isAdmin)return;
+
+ let status=$("status-"+id).value;
+
+ try{
+  await updateDoc(doc(db,"orders",id),{
+   status,
+   updatedAt:serverTimestamp()
+  });
+
+  alert("Order status updated!");
+  loadOrders();
+
+ }catch(e){
+  console.error(e);
+  alert("Status update failed: "+e.message);
+ }
+};
+
 </script>
 </body>
 </html>
