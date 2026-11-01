@@ -506,6 +506,9 @@ window.loadMyOrders=async()=>{
     ${items}
     <div class="order-total">Total: ${money(o.total)}</div>
     <p style="font-size:13px;color:#777">Payment: ${esc(o.payment||"COD")}</p>
+    <div class="delivery-box">
+ 🚚 Expected Delivery: Within 24 Hours
+</div>
    </div>`;
   }).join("");
  }catch(e){
