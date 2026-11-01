@@ -5,8 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google-site-verification" content="Wfo6suIrd5v8NyfA-dGjU7B5HGguElkpizAxUJVbWwY">
-<meta name="description" content="2027 Crackers Siliguri - Shop celebration products online.">
-<title>2027 Crackers | Siliguri</title>
+<meta name="description" content="2027 Crackers Siliguri - Explore crackers, fireworks, chakri and celebration products.">
+<title>2027 Crackers Siliguri | Crackers & Fireworks</title>
+<link rel="canonical" href="https://2027-crackers.vercel.app/">
 
 <style>
 :root{--blue:#2874f0;--yellow:#ffe500;--bg:#f1f3f6;--white:#fff;--text:#212121;--muted:#707070}
@@ -59,13 +60,22 @@ label{font-size:14px;font-weight:bold}
 .total{text-align:right;font-size:22px;font-weight:bold;margin:18px 0}
 .empty{text-align:center;padding:35px;color:#777}
 .message{padding:12px;background:#e8f4ff;border-radius:4px;margin:10px 0;font-size:13px;line-height:1.7}
+.delivery-box{background:#e8f8ee;color:#16733b;border:1px solid #b8e5c8;padding:13px;margin:12px 0;border-radius:6px;font-weight:bold;line-height:1.6}
 .order-card{border:1px solid #ddd;border-radius:7px;padding:15px;margin:12px 0;overflow-wrap:anywhere;background:white}
 .order-card button{margin-top:5px}
 .order-status{display:inline-block;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:bold}
 .order-item{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #eee}
 .order-total{font-size:19px;font-weight:bold;text-align:right;margin-top:14px}
 
-/* PRODUCT DETAIL PAGE */
+/* DIWALI OFFER SLIDER */
+.offer-slider{position:relative;width:100%;height:320px;overflow:hidden;border-radius:8px;margin:14px 0;background:#111}
+.offer-slide{display:none;width:100%;height:100%;position:relative}
+.offer-slide.active{display:block}
+.offer-slide img{width:100%;height:100%;object-fit:cover}
+.offer-buy{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);background:var(--yellow);color:#111;padding:13px 30px;font-weight:bold;border-radius:5px}
+.offer-dots{position:absolute;bottom:7px;right:15px;color:white;font-size:18px}
+
+/* PRODUCT DETAIL */
 .detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:20px}
 .detail-image{background:#f6f8fb;min-height:330px;display:grid;place-items:center;font-size:75px;border:1px solid #eee;border-radius:5px}
 .detail-image img{width:100%;height:330px;object-fit:contain}
@@ -105,6 +115,8 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
  .detail-image{min-height:230px}
  .detail-image img{height:230px}
  .detail-info h1{font-size:23px}
+ .offer-slider{height:180px}
+ .offer-buy{bottom:20px;padding:10px 22px}
 }
 </style>
 </head>
@@ -134,13 +146,26 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 
 <main class="container">
 
+<!-- DIWALI OFFER SLIDER -->
+<div class="offer-slider">
+ <div class="offer-slide active">
+  <img src="https://cdn.phototourl.com/member/2026-11-01-d21d53d9-d159-446f-a627-5314bddeb0fa.jpg" alt="Diwali Offer 1">
+  <button class="offer-buy" onclick="goToProducts()">BUY NOW</button>
+ </div>
+ <div class="offer-slide">
+  <img src="https://cdn.phototourl.com/member/2026-11-01-2d96ca33-7cb3-400c-9509-2f5560fdf346.jpg" alt="Diwali Offer 2">
+  <button class="offer-buy" onclick="goToProducts()">BUY NOW</button>
+ </div>
+ <div class="offer-dots" id="offerDots">● ○</div>
+</div>
+
 <!-- SHOP -->
 <section id="shopView">
  <div class="banner">
   <div>
    <h1>2027 <span>CRACKERS</span></h1>
    <p>Your Celebration Shopping Destination<br>Siliguri, West Bengal</p>
-   <button onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">SHOP NOW →</button>
+   <button onclick="goToProducts()">SHOP NOW →</button>
   </div>
   <div class="banner-art">🎆🎇</div>
  </div>
@@ -171,6 +196,7 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
      <button class="yellow" onclick="detailAddCart()">ADD TO CART</button>
      <button class="primary" onclick="detailBuyNow()">BUY NOW</button>
     </div>
+    <div class="delivery-box">🚚 24 HOURS DELIVERY<br>आपका ऑर्डर 24 घंटे के अंदर डिलीवर किया जाएगा।</div>
     <div class="message">📍 Siliguri, West Bengal<br>WhatsApp Ordering Available</div>
    </div>
   </div>
@@ -186,6 +212,7 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
  </div>
  <div class="section">
   <h2>📍 Delivery Details</h2>
+  <div class="delivery-box">🚚 24 HOURS DELIVERY<br>आपका ऑर्डर 24 घंटे के अंदर डिलीवर किया जाएगा।</div>
   <div class="formgrid">
    <div><label>Your Name</label><input id="cName" placeholder="Enter your name"></div>
    <div><label>Mobile Number</label><input id="cPhone" type="tel" placeholder="10 digit mobile number"></div>
@@ -250,7 +277,7 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 
 <div class="bottomnav">
  <button onclick="showView('shop')"><span>🏠</span>Home</button>
- <button onclick="showView('shop');document.getElementById('productsSection').scrollIntoView()"><span>🛍️</span>Shop</button>
+ <button onclick="goToProducts()"><span>🛍️</span>Shop</button>
  <button onclick="showView('cart')"><span>🛒</span>Cart</button>
  <button onclick="showView('orders')"><span>📦</span>Orders</button>
 </div>
@@ -284,6 +311,23 @@ const $=id=>document.getElementById(id);
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
+// DIWALI SLIDER
+let currentOffer=0;
+const offerSlides=document.querySelectorAll(".offer-slide");
+function showOffer(index){
+ offerSlides.forEach((slide,i)=>slide.classList.toggle("active",i===index));
+ $("offerDots").textContent=index===0?"● ○":"○ ●";
+}
+setInterval(()=>{
+ currentOffer=(currentOffer+1)%offerSlides.length;
+ showOffer(currentOffer);
+},4000);
+
+window.goToProducts=()=>{
+ window.showView("shop");
+ $("productsSection").scrollIntoView({behavior:"smooth"});
+};
+
 // VIEW CONTROL
 window.showView=view=>{
  ["shopView","productView","cartView","ordersView","adminView"].forEach(id=>$(id).classList.add("hidden"));
@@ -299,14 +343,17 @@ window.showView=view=>{
 };
 
 window.filterCategory=cat=>{
- category=cat;showView("shop");renderProducts();
+ category=cat;
+ showView("shop");
+ renderProducts();
  $("productsSection").scrollIntoView({behavior:"smooth"});
 };
 
 // LOAD PRODUCTS
 onSnapshot(productsRef,snap=>{
  products=snap.docs.map(d=>({id:d.id,...d.data()}));
- renderProducts();renderCart();
+ renderProducts();
+ renderCart();
  if(isAdmin)renderAdminProducts();
 },error=>{
  console.error(error);
@@ -338,7 +385,7 @@ window.renderProducts=()=>{
   </div>`).join(""):"<p>No products found.</p>";
 };
 
-// FLIPKART STYLE PRODUCT DETAIL
+// PRODUCT DETAILS
 window.openProduct=id=>{
  const p=products.find(x=>x.id===id);
  if(!p)return;
@@ -359,20 +406,26 @@ window.detailQty=n=>{
 window.detailAddCart=()=>{
  if(!selectedProduct)return;
  cart[selectedProduct.id]=(cart[selectedProduct.id]||0)+selectedQuantity;
- renderCart();alert("Product added to cart!");
+ renderCart();
+ alert("Product added to cart!");
 };
 window.detailBuyNow=()=>{
  if(!selectedProduct)return;
  cart[selectedProduct.id]=(cart[selectedProduct.id]||0)+selectedQuantity;
- renderCart();showView("cart");
+ renderCart();
+ showView("cart");
 };
 
 // CART
 window.addCart=id=>{
- cart[id]=(cart[id]||0)+1;renderCart();alert("Added to cart!");
+ cart[id]=(cart[id]||0)+1;
+ renderCart();
+ alert("Added to cart!");
 };
 window.buyNow=id=>{
- cart[id]=(cart[id]||0)+1;renderCart();showView("cart");
+ cart[id]=(cart[id]||0)+1;
+ renderCart();
+ showView("cart");
 };
 window.changeQty=(id,n)=>{
  cart[id]=(cart[id]||0)+n;
@@ -437,6 +490,7 @@ ${locationLink?"Location: "+locationLink:""}
 ${items.map(x=>x.name+" x "+x.quantity+" = "+money(x.price*x.quantity)).join("\n")}
 --------------------
 TOTAL: ${money(amount)}
+Delivery: Within 24 Hours
 Payment: Cash on Delivery`;
 
  const whatsappUrl="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
@@ -448,6 +502,7 @@ Payment: Cash on Delivery`;
   await setDoc(orderRef,{
    customerName:name,phone,address,location:locationLink,
    items,total:amount,status:"Pending",payment:"COD",
+   delivery:"Within 24 Hours",
    createdAt:serverTimestamp()
   });
   let saved=JSON.parse(localStorage.getItem("myOrderIds")||"[]");
@@ -458,7 +513,8 @@ Payment: Cash on Delivery`;
   if(whatsappTab)whatsappTab.location.href=whatsappUrl;
   else window.location.href=whatsappUrl;
   alert("Order saved! WhatsApp par Send button dabayein.");
-  cart={};renderCart();
+  cart={};
+  renderCart();
  }catch(e){
   console.error(e);
   if(whatsappTab)whatsappTab.close();
@@ -506,9 +562,7 @@ window.loadMyOrders=async()=>{
     ${items}
     <div class="order-total">Total: ${money(o.total)}</div>
     <p style="font-size:13px;color:#777">Payment: ${esc(o.payment||"COD")}</p>
-    <div class="delivery-box">
- 🚚 Expected Delivery: Within 24 Hours
-</div>
+    <div class="delivery-box">🚚 Expected Delivery: ${esc(o.delivery||"Within 24 Hours")}</div>
    </div>`;
   }).join("");
  }catch(e){
@@ -527,7 +581,8 @@ window.adminLogin=async()=>{
  try{
   const result=await signInWithEmailAndPassword(auth,email,password);
   if(result.user.uid!==ADMIN_UID){
-   await signOut(auth);isAdmin=false;
+   await signOut(auth);
+   isAdmin=false;
    $("loginMessage").textContent="Access denied.";
    alert("This account is not authorized as admin.");
    return;
@@ -535,7 +590,8 @@ window.adminLogin=async()=>{
   isAdmin=true;
   $("adminLoginBox").classList.add("hidden");
   $("adminDashboard").classList.remove("hidden");
-  renderAdminProducts();await loadOrders();
+  renderAdminProducts();
+  await loadOrders();
  }catch(e){
   console.error(e);
   $("loginMessage").textContent="Login failed: "+e.message;
@@ -554,11 +610,13 @@ onAuthStateChanged(auth,user=>{
 
 window.adminLogout=async()=>{
  try{
-  await signOut(auth);isAdmin=false;
+  await signOut(auth);
+  isAdmin=false;
   $("adminDashboard").classList.add("hidden");
   $("adminLoginBox").classList.remove("hidden");
   $("adminPassword").value="";
-  alert("Admin logged out.");showView("shop");
+  alert("Admin logged out.");
+  showView("shop");
  }catch(e){alert(e.message);}
 };
 
@@ -582,10 +640,19 @@ window.saveProduct=async()=>{
  if(!name||!Number.isFinite(price)||price<=0)return alert("Product name aur valid price enter karein.");
  const data={name,price,details,image};
  try{
-  if(id){await updateDoc(doc(db,"products",id),data);$("productMessage").textContent="Product updated successfully!";}
-  else{await addDoc(productsRef,data);$("productMessage").textContent="Product added successfully!";}
-  clearProductForm();renderAdminProducts();
- }catch(e){console.error(e);alert("Product save failed: "+e.message);}
+  if(id){
+   await updateDoc(doc(db,"products",id),data);
+   $("productMessage").textContent="Product updated successfully!";
+  }else{
+   await addDoc(productsRef,data);
+   $("productMessage").textContent="Product added successfully!";
+  }
+  clearProductForm();
+  renderAdminProducts();
+ }catch(e){
+  console.error(e);
+  alert("Product save failed: "+e.message);
+ }
 };
 
 window.renderAdminProducts=()=>{
@@ -594,8 +661,10 @@ window.renderAdminProducts=()=>{
  $("adminProducts").innerHTML=products.length?products.map(p=>`
   <div class="cartline">
    <div><b>${esc(p.name)}</b><br>${money(p.price)}</div>
-   <div><button class="whitebtn" onclick="editProduct('${p.id}')">Edit</button>
-   <button class="danger" onclick="removeProduct('${p.id}')">Delete</button></div>
+   <div>
+    <button class="whitebtn" onclick="editProduct('${p.id}')">Edit</button>
+    <button class="danger" onclick="removeProduct('${p.id}')">Delete</button>
+   </div>
   </div>`).join(""):"No products found.";
 };
 
@@ -614,8 +683,14 @@ window.editProduct=id=>{
 window.removeProduct=async id=>{
  if(!isAdmin)return;
  if(!confirm("Are you sure you want to delete this product?"))return;
- try{await deleteDoc(doc(db,"products",id));alert("Product deleted!");renderAdminProducts();}
- catch(e){console.error(e);alert("Delete failed: "+e.message);}
+ try{
+  await deleteDoc(doc(db,"products",id));
+  alert("Product deleted!");
+  renderAdminProducts();
+ }catch(e){
+  console.error(e);
+  alert("Delete failed: "+e.message);
+ }
 };
 
 // ADMIN ORDERS
@@ -637,13 +712,17 @@ window.loadOrders=async()=>{
     <b>Address:</b> ${esc(o.address)}<br>
     <b>Items:</b> ${items}<br>
     <b>Total:</b> ${money(o.total)}<br>
+    <b>Delivery:</b> ${esc(o.delivery||"Within 24 Hours")}<br>
     <b>Current Status:</b> ${esc(o.status||"Pending")}<br><br>
     <label>Update Order Status</label>
     <select id="status-${d.id}">${statuses.map(s=>`<option value="${s}" ${o.status===s?"selected":""}>${s}</option>`).join("")}</select>
     <button class="primary" onclick="updateOrderStatus('${d.id}')">Update Status</button>
    </div>`;
   }).join("");
- }catch(e){console.error(e);$("adminOrders").textContent="Orders load failed: "+e.message;}
+ }catch(e){
+  console.error(e);
+  $("adminOrders").textContent="Orders load failed: "+e.message;
+ }
 };
 
 window.updateOrderStatus=async id=>{
@@ -654,7 +733,10 @@ window.updateOrderStatus=async id=>{
   alert("Order status updated!");
   loadOrders();
   if(!$("ordersView").classList.contains("hidden"))loadMyOrders();
- }catch(e){console.error(e);alert("Status update failed: "+e.message);}
+ }catch(e){
+  console.error(e);
+  alert("Status update failed: "+e.message);
+ }
 };
 </script>
 </body>
