@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>2026 Crackers | Siliguri</title>
+<title>2027 Crackers | Siliguri</title>
 
 <style>
 :root{
@@ -65,8 +65,11 @@ label{font-size:14px;font-weight:bold}
 footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-height:1.8;margin-top:20px}
 .bottomnav{display:none}
 .message{padding:12px;background:#e8f4ff;border-radius:4px;margin:10px 0;font-size:13px;line-height:1.7}
-.order-card{border:1px solid #ddd;border-radius:5px;padding:14px;margin:12px 0;overflow-wrap:anywhere}
+.order-card{border:1px solid #ddd;border-radius:7px;padding:15px;margin:12px 0;overflow-wrap:anywhere;background:white}
 .order-card button{margin-top:5px}
+.order-status{display:inline-block;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:bold;background:#e8f4ff;color:#2874f0}
+.order-item{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #eee}
+.order-total{font-size:19px;font-weight:bold;text-align:right;margin-top:14px}
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){
  .header{gap:5px;flex-wrap:wrap}
@@ -96,7 +99,7 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 
 <header class="topbar">
  <div class="header">
-  <div class="logo">🎆 2026 <span>CRACKERS</span></div>
+  <div class="logo">🎆 2027 <span>CRACKERS</span></div>
 
   <div class="searchbox">
    <input id="search" placeholder="Search crackers..." oninput="renderProducts()">
@@ -115,7 +118,7 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
  <button onclick="filterCategory('shots')">Shot Items</button>
  <button onclick="filterCategory('chakri')">Chakri</button>
  <button onclick="filterCategory('others')">Others</button>
- <button onclick="showView('track')">Track Order</button>
+ <button onclick="showView('orders')">📦 Orders</button>
 </div>
 
 <main class="container">
@@ -179,14 +182,17 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
  </div>
 </section>
 
-<!-- TRACK ORDER -->
-<section id="trackView" class="hidden">
+<!-- MY ORDERS -->
+<section id="ordersView" class="hidden">
  <div class="section">
-  <h2>📦 Track Your Order</h2>
-  <p>Enter your Order ID to check the order status.</p>
-  <input id="trackId" placeholder="Enter Order ID">
-  <button class="primary" onclick="trackOrder()">Track Order</button>
-  <div id="trackResult"></div>
+  <div class="section-title">
+   <h2>📦 My Orders</h2>
+   <button class="primary" onclick="loadMyOrders()">Refresh</button>
+  </div>
+  <p style="color:#777;font-size:13px">आपके इस मोबाइल और Browser से किए गए ऑर्डर यहाँ दिखाई देंगे।</p>
+  <div id="myOrdersList">
+   <div class="empty">📦<h3>No Orders Yet</h3><p>आपके ऑर्डर यहाँ दिखाई देंगे।</p></div>
+  </div>
  </div>
 </section>
 
@@ -274,7 +280,7 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
  <button onclick="showView('shop')"><span>🏠</span>Home</button>
  <button onclick="showView('shop');document.getElementById('productsSection').scrollIntoView()"><span>🛍️</span>Shop</button>
  <button onclick="showView('cart')"><span>🛒</span>Cart</button>
- <button onclick="showView('track')"><span>📦</span>Orders</button>
+ <button onclick="showView('orders')"><span>📦</span>Orders</button>
 </div>
 
 <script type="module">
@@ -333,13 +339,14 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
 
 // VIEW CONTROL
 window.showView=view=>{
- ["shopView","cartView","trackView","adminView"].forEach(id=>{
+ ["shopView","cartView","ordersView","adminView"].forEach(id=>{
   $(id).classList.add("hidden");
  });
 
  $(view+"View").classList.remove("hidden");
 
  if(view==="cart")renderCart();
+ if(view==="orders")loadMyOrders();
 
  if(view==="admin"){
   if(isAdmin){
@@ -528,7 +535,6 @@ Payment: Cash on Delivery`;
  let whatsappUrl="https://wa.me/"+WHATSAPP+
   "?text="+encodeURIComponent(msg);
 
- // Open blank tab immediately to avoid popup blocking
  let whatsappTab=window.open("about:blank","_blank");
 
  $("orderBtn").disabled=true;
@@ -547,6 +553,14 @@ Payment: Cash on Delivery`;
    createdAt:serverTimestamp()
   });
 
+  // SAVE ORDER ID IN THIS BROWSER
+  let savedOrders=JSON.parse(localStorage.getItem("myOrderIds")||"[]");
+
+  if(!savedOrders.includes(orderId)){
+   savedOrders.unshift(orderId);
+   localStorage.setItem("myOrderIds",JSON.stringify(savedOrders));
+  }
+
   if(whatsappTab){
    whatsappTab.location.href=whatsappUrl;
   }else{
@@ -560,9 +574,7 @@ Payment: Cash on Delivery`;
 
  }catch(e){
   console.error(e);
-
   if(whatsappTab)whatsappTab.close();
-
   alert("Order save nahi hua: "+e.message);
 
  }finally{
@@ -571,35 +583,102 @@ Payment: Cash on Delivery`;
  }
 };
 
-// CUSTOMER ORDER TRACKING
-window.trackOrder=async()=>{
- let id=$("trackId").value.trim();
+// CUSTOMER MY ORDERS
+window.loadMyOrders=async()=>{
+ const box=$("myOrdersList");
 
- if(!id)return alert("Please enter Order ID.");
-
- $("trackResult").textContent="Searching...";
+ let ids=[];
 
  try{
-  let snap=await getDoc(doc(db,"orders",id));
+  ids=JSON.parse(localStorage.getItem("myOrderIds")||"[]");
+ }catch(e){
+  ids=[];
+ }
 
-  if(!snap.exists()){
-   $("trackResult").textContent="Order not found.";
+ if(!Array.isArray(ids)||!ids.length){
+  box.innerHTML=`
+   <div class="empty">
+    📦
+    <h3>No Orders Yet</h3>
+    <p>Your orders will appear here after shopping.</p>
+    <button class="primary" onclick="showView('shop')">Shop Now</button>
+   </div>`;
+  return;
+ }
+
+ box.textContent="Loading your orders...";
+
+ try{
+  let orders=[];
+
+  for(const id of ids){
+   const snap=await getDoc(doc(db,"orders",id));
+
+   if(snap.exists()){
+    orders.push({id,...snap.data()});
+   }
+  }
+
+  if(!orders.length){
+   box.innerHTML="<div class='empty'>No orders found.</div>";
    return;
   }
 
-  let o=snap.data();
+  box.innerHTML=orders.map(o=>{
+   let status=o.status||"Pending";
 
-  $("trackResult").innerHTML=`
-   <div class="message">
-    <b>Order ID:</b> ${esc(id)}<br>
-    <b>Status:</b> ${esc(o.status||"Pending")}<br>
-    <b>Total:</b> ${money(o.total)}
-   </div>
-  `;
+   let colors={
+    Pending:"#ff9800",
+    Confirmed:"#2874f0",
+    Processing:"#2874f0",
+    Shipped:"#2874f0",
+    Delivered:"#168b45",
+    Cancelled:"#dc3545"
+   };
+
+   let items=(o.items||[]).map(x=>`
+    <div class="order-item">
+     <div>
+      <b>${esc(x.name)}</b><br>
+      <small>${money(x.price)} × ${Number(x.quantity)||0}</small>
+     </div>
+     <b>${money(Number(x.price)*(Number(x.quantity)||0))}</b>
+    </div>
+   `).join("");
+
+   let date=o.createdAt?.toDate
+    ?o.createdAt.toDate().toLocaleString("en-IN")
+    :"Recently Ordered";
+
+   return `
+    <div class="order-card">
+     <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+      <b>📦 Order Details</b>
+      <span class="order-status" style="background:${colors[status]||"#eee"}18;color:${colors[status]||"#333"}">
+       ${esc(status)}
+      </span>
+     </div>
+
+     <p style="font-size:12px;color:#777">Order ID: ${esc(o.id)}</p>
+     <p style="font-size:13px;color:#777">Order Date: ${esc(date)}</p>
+
+     <hr style="border:0;border-top:1px solid #eee">
+
+     ${items}
+
+     <div class="order-total">Total: ${money(o.total)}</div>
+     <p style="font-size:13px;color:#777">Payment: ${esc(o.payment||"COD")}</p>
+    </div>
+   `;
+  }).join("");
 
  }catch(e){
   console.error(e);
-  $("trackResult").textContent="Tracking failed: "+e.message;
+  box.innerHTML=`
+   <div class="message">
+    Orders load failed: ${esc(e.message)}
+    <br>Firestore Rules में customer order read permission जाँचें।
+   </div>`;
  }
 };
 
@@ -628,7 +707,6 @@ window.adminLogin=async()=>{
   }
 
   isAdmin=true;
-
   $("adminLoginBox").classList.add("hidden");
   $("adminDashboard").classList.remove("hidden");
 
@@ -779,7 +857,7 @@ window.removeProduct=async id=>{
  }
 };
 
-// LOAD ORDERS
+// LOAD ADMIN ORDERS
 window.loadOrders=async()=>{
  if(!isAdmin)return;
 
@@ -853,7 +931,13 @@ window.updateOrderStatus=async id=>{
   });
 
   alert("Order status updated!");
+
   loadOrders();
+
+  // Refresh customer's visible order list if open
+  if(!$("ordersView").classList.contains("hidden")){
+   loadMyOrders();
+  }
 
  }catch(e){
   console.error(e);
