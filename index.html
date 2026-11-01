@@ -4,21 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="Wfo6suIrd5v8NyfA-dGjU7B5HGguElkpizAxUJVbWwY">
+<meta name="description" content="2027 Crackers Siliguri - Shop celebration products online.">
 <title>2027 Crackers | Siliguri</title>
 
 <style>
-:root{
- --blue:#2874f0;
- --yellow:#ffe500;
- --bg:#f1f3f6;
- --white:#fff;
- --text:#212121;
- --muted:#707070;
-}
+:root{--blue:#2874f0;--yellow:#ffe500;--bg:#f1f3f6;--white:#fff;--text:#212121;--muted:#707070}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
 button,input,textarea,select{font:inherit}
 button{cursor:pointer;border:0}
+.hidden{display:none!important}
 .topbar{background:var(--blue);color:white;position:sticky;top:0;z-index:20}
 .header{max-width:1250px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
 .logo{font-size:23px;font-weight:900;white-space:nowrap}
@@ -40,7 +36,8 @@ button{cursor:pointer;border:0}
 .section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #eee;padding-bottom:13px;margin-bottom:16px}
 .section-title h2{font-size:20px;margin:0}
 .grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
-.product{border:1px solid #eee;padding:12px;text-align:center;border-radius:4px;background:white;min-width:0}
+.product{border:1px solid #eee;padding:12px;text-align:center;border-radius:4px;background:white;min-width:0;cursor:pointer;transition:.2s}
+.product:hover{box-shadow:0 3px 12px #0002;transform:translateY(-2px)}
 .product-img{height:145px;background:#f6f8fb;display:grid;place-items:center;overflow:hidden;font-size:55px}
 .product-img img{width:100%;height:100%;object-fit:contain}
 .product h3{font-size:15px;margin:12px 0 6px}
@@ -61,15 +58,28 @@ label{font-size:14px;font-weight:bold}
 .qty button{background:#eee;padding:7px 12px;border-radius:3px}
 .total{text-align:right;font-size:22px;font-weight:bold;margin:18px 0}
 .empty{text-align:center;padding:35px;color:#777}
-.hidden{display:none!important}
-footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-height:1.8;margin-top:20px}
-.bottomnav{display:none}
 .message{padding:12px;background:#e8f4ff;border-radius:4px;margin:10px 0;font-size:13px;line-height:1.7}
 .order-card{border:1px solid #ddd;border-radius:7px;padding:15px;margin:12px 0;overflow-wrap:anywhere;background:white}
 .order-card button{margin-top:5px}
-.order-status{display:inline-block;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:bold;background:#e8f4ff;color:#2874f0}
+.order-status{display:inline-block;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:bold}
 .order-item{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #eee}
 .order-total{font-size:19px;font-weight:bold;text-align:right;margin-top:14px}
+
+/* PRODUCT DETAIL PAGE */
+.detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:20px}
+.detail-image{background:#f6f8fb;min-height:330px;display:grid;place-items:center;font-size:75px;border:1px solid #eee;border-radius:5px}
+.detail-image img{width:100%;height:330px;object-fit:contain}
+.detail-info h1{font-size:28px;margin:10px 0}
+.detail-info .price{font-size:29px;color:var(--blue)}
+.detail-info p{line-height:1.7;color:#666}
+.detail-qty{display:flex;align-items:center;gap:15px;margin:20px 0}
+.detail-qty button{padding:10px 18px;background:#eee;border-radius:3px}
+.detail-actions{display:flex;gap:10px;flex-wrap:wrap}
+.detail-actions button{flex:1;min-width:130px;padding:14px}
+.backbtn{background:#eee;padding:10px 15px;border-radius:3px}
+footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-height:1.8;margin-top:20px}
+.bottomnav{display:none}
+
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){
  .header{gap:5px;flex-wrap:wrap}
@@ -91,22 +101,22 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
  .bottomnav button{background:white;color:#333;font-size:11px;padding:5px}
  .bottomnav button span{display:block;font-size:19px;margin-bottom:3px}
  body{padding-bottom:60px}
+ .detail-layout{grid-template-columns:1fr}
+ .detail-image{min-height:230px}
+ .detail-image img{height:230px}
+ .detail-info h1{font-size:23px}
 }
 </style>
- <meta name="google-site-verification" content="Wfo6suIrd5v8NyfA-dGjU7B5HGguElkpizAxUJVbWwY" />
 </head>
 
 <body>
-
 <header class="topbar">
  <div class="header">
   <div class="logo">🎆 2027 <span>CRACKERS</span></div>
-
   <div class="searchbox">
    <input id="search" placeholder="Search crackers..." oninput="renderProducts()">
    <button onclick="renderProducts()">🔍</button>
   </div>
-
   <button class="header-btn" onclick="showView('shop')">Home</button>
   <button class="header-btn" onclick="showView('cart')">🛒 Cart (<span id="cartCount">0</span>)</button>
   <button class="header-btn" onclick="showView('admin')">⚙️ Admin</button>
@@ -134,51 +144,56 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
   </div>
   <div class="banner-art">🎆🎇</div>
  </div>
-
- <div class="safety">
-  ⚠️ Fireworks केवल कानूनी रूप से अनुमत उत्पादों और स्थानीय नियमों के अनुसार ही खरीदें और उपयोग करें। सुरक्षा निर्देशों का पालन करें।
- </div>
-
+ <div class="safety">⚠️ Fireworks केवल कानूनी रूप से अनुमत उत्पादों और स्थानीय नियमों के अनुसार ही खरीदें और उपयोग करें। सुरक्षा निर्देशों का पालन करें।</div>
  <section class="section" id="productsSection">
-  <div class="section-title">
-   <h2>🔥 Popular Products</h2>
-   <span id="productCount">Loading...</span>
-  </div>
+  <div class="section-title"><h2>🔥 Popular Products</h2><span id="productCount">Loading...</span></div>
   <div id="catalogue" class="grid">Loading products...</div>
  </section>
+</section>
+
+<!-- PRODUCT DETAILS -->
+<section id="productView" class="hidden">
+ <div class="section">
+  <button class="backbtn" onclick="showView('shop')">← Back to Products</button>
+  <div class="detail-layout">
+   <div class="detail-image" id="detailImage">🎆</div>
+   <div class="detail-info">
+    <h1 id="detailName"></h1>
+    <div class="price" id="detailPrice"></div>
+    <p id="detailDescription"></p>
+    <div class="detail-qty">
+     <b>Quantity:</b>
+     <button onclick="detailQty(-1)">−</button>
+     <b id="detailQuantity">1</b>
+     <button onclick="detailQty(1)">+</button>
+    </div>
+    <div class="detail-actions">
+     <button class="yellow" onclick="detailAddCart()">ADD TO CART</button>
+     <button class="primary" onclick="detailBuyNow()">BUY NOW</button>
+    </div>
+    <div class="message">📍 Siliguri, West Bengal<br>WhatsApp Ordering Available</div>
+   </div>
+  </div>
+ </div>
 </section>
 
 <!-- CART -->
 <section id="cartView" class="hidden">
  <div class="section">
-  <div class="section-title">
-   <h2>🛒 My Shopping Cart</h2>
-   <button class="primary" onclick="showView('shop')">Continue Shopping</button>
-  </div>
+  <div class="section-title"><h2>🛒 My Shopping Cart</h2><button class="primary" onclick="showView('shop')">Continue Shopping</button></div>
   <div id="cartItems"></div>
   <div class="total" id="cartTotal">Total: ₹0</div>
  </div>
-
  <div class="section">
   <h2>📍 Delivery Details</h2>
-
   <div class="formgrid">
-   <div>
-    <label>Your Name</label>
-    <input id="cName" placeholder="Enter your name">
-   </div>
-   <div>
-    <label>Mobile Number</label>
-    <input id="cPhone" type="tel" placeholder="10 digit mobile number">
-   </div>
+   <div><label>Your Name</label><input id="cName" placeholder="Enter your name"></div>
+   <div><label>Mobile Number</label><input id="cPhone" type="tel" placeholder="10 digit mobile number"></div>
   </div>
-
   <label>Full Delivery Address</label>
   <textarea id="cAddress" rows="3" placeholder="House no, street, area, city, pincode"></textarea>
-
   <button class="whitebtn" onclick="shareLocation()">📍 Share My Location</button>
   <div class="message">WhatsApp खुलने के बाद Send बटन दबाना होगा।</div>
-
   <button class="primary" id="orderBtn" onclick="placeOrder()">🟢 PLACE ORDER ON WHATSAPP</button>
  </div>
 </section>
@@ -186,96 +201,52 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 <!-- MY ORDERS -->
 <section id="ordersView" class="hidden">
  <div class="section">
-  <div class="section-title">
-   <h2>📦 My Orders</h2>
-   <button class="primary" onclick="loadMyOrders()">Refresh</button>
-  </div>
+  <div class="section-title"><h2>📦 My Orders</h2><button class="primary" onclick="loadMyOrders()">Refresh</button></div>
   <p style="color:#777;font-size:13px">आपके इस मोबाइल और Browser से किए गए ऑर्डर यहाँ दिखाई देंगे।</p>
-  <div id="myOrdersList">
-   <div class="empty">📦<h3>No Orders Yet</h3><p>आपके ऑर्डर यहाँ दिखाई देंगे।</p></div>
-  </div>
+  <div id="myOrdersList"><div class="empty">📦<h3>No Orders Yet</h3></div></div>
  </div>
 </section>
 
-<!-- ADMIN PANEL -->
+<!-- ADMIN -->
 <section id="adminView" class="hidden">
-
  <div class="section" id="adminLoginBox">
   <h2>🔐 Admin Login</h2>
   <p>Only authorized admin can access this panel.</p>
-
-  <label>Admin Email</label>
-  <input id="adminEmail" type="email" placeholder="Enter admin email">
-
-  <label>Admin Password</label>
-  <input id="adminPassword" type="password" placeholder="Enter admin password">
-
+  <label>Admin Email</label><input id="adminEmail" type="email" placeholder="Enter admin email">
+  <label>Admin Password</label><input id="adminPassword" type="password" placeholder="Enter admin password">
   <button class="primary" id="loginBtn" onclick="adminLogin()">Login</button>
   <p id="loginMessage"></p>
  </div>
 
  <div class="hidden" id="adminDashboard">
-
   <div class="section">
-   <div class="section-title">
-    <h2>⚙️ Admin Dashboard</h2>
-    <button class="danger" onclick="adminLogout()">Logout</button>
-   </div>
-
-   <div class="message">
-    Total Products: <b id="adminProductCount">0</b><br>
-    Total Orders: <b id="adminOrderCount">0</b>
-   </div>
+   <div class="section-title"><h2>⚙️ Admin Dashboard</h2><button class="danger" onclick="adminLogout()">Logout</button></div>
+   <div class="message">Total Products: <b id="adminProductCount">0</b><br>Total Orders: <b id="adminOrderCount">0</b></div>
   </div>
-
   <div class="section">
    <h2>➕ Add / Edit Product</h2>
-
    <input id="editProductId" type="hidden">
-
-   <label>Product Name</label>
-   <input id="pName" placeholder="Product name">
-
-   <label>Price (₹)</label>
-   <input id="pPrice" type="number" min="1" placeholder="Product price">
-
-   <label>Product Details</label>
-   <input id="pDetails" placeholder="Product details">
-
-   <label>Image URL (Optional)</label>
-   <input id="pImage" type="url" placeholder="https://example.com/image.jpg">
-
+   <label>Product Name</label><input id="pName" placeholder="Product name">
+   <label>Price (₹)</label><input id="pPrice" type="number" min="1" placeholder="Product price">
+   <label>Product Details</label><input id="pDetails" placeholder="Product details">
+   <label>Image URL (Optional)</label><input id="pImage" type="url" placeholder="https://example.com/image.jpg">
    <button class="primary" onclick="saveProduct()">Save Product</button>
    <button class="whitebtn" onclick="clearProductForm()">Clear</button>
    <p id="productMessage"></p>
   </div>
-
   <div class="section">
-   <div class="section-title">
-    <h2>📦 Manage Products</h2>
-    <button class="whitebtn" onclick="renderAdminProducts()">Refresh</button>
-   </div>
+   <div class="section-title"><h2>📦 Manage Products</h2><button class="whitebtn" onclick="renderAdminProducts()">Refresh</button></div>
    <div id="adminProducts">Loading...</div>
   </div>
-
   <div class="section">
-   <div class="section-title">
-    <h2>🛒 All Orders</h2>
-    <button class="whitebtn" onclick="loadOrders()">Refresh Orders</button>
-   </div>
+   <div class="section-title"><h2>🛒 All Orders</h2><button class="whitebtn" onclick="loadOrders()">Refresh Orders</button></div>
    <div id="adminOrders">No orders loaded.</div>
   </div>
-
  </div>
 </section>
-
 </main>
 
-<footer>
- <b>🎆 2027 CRACKERS</b><br>
- Siliguri, West Bengal<br>
- © 2027 2027 Crackers. All Rights Reserved.
-</footer>
+<footer><b>🎆 2027 CRACKERS</b><br>Siliguri, West Bengal<br>© 2027 2027 Crackers. All Rights Reserved.</footer>
 
 <div class="bottomnav">
  <button onclick="showView('shop')"><span>🏠</span>Home</button>
@@ -285,195 +256,145 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 </div>
 
 <script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getFirestore,collection,doc,getDoc,setDoc,serverTimestamp,onSnapshot,addDoc,updateDoc,deleteDoc,getDocs,query,orderBy} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-import {initializeApp}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
- getFirestore,collection,doc,getDoc,setDoc,
- serverTimestamp,onSnapshot,addDoc,updateDoc,
- deleteDoc,getDocs,query,orderBy
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-import {
- getAuth,signInWithEmailAndPassword,
- signOut,onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-// FIREBASE CONFIG
-const firebaseConfig = {
-  apiKey: "AIzaSyAekVldQAw42KxrqbnvarsMUubfyV5Y0SQ",
-  authDomain: "crackers-6c561.firebaseapp.com",
-  projectId: "crackers-6c561",
-  storageBucket: "crackers-6c561.firebasestorage.app",
-  messagingSenderId: "637348567869",
-  appId: "1:637348567869:web:446714d313a059d8c2d354"
+const firebaseConfig={
+ apiKey:"AIzaSyAekVldQAw42KxrqbnvarsMUubfyV5Y0SQ",
+ authDomain:"crackers-6c561.firebaseapp.com",
+ projectId:"crackers-6c561",
+ storageBucket:"crackers-6c561.firebasestorage.app",
+ messagingSenderId:"637348567869",
+ appId:"1:637348567869:web:446714d313a059d8c2d354"
 };
 
-// FIREBASE INITIALIZATION
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
-
 const ADMIN_UID="q4BToAoJUoN9D6h7tFw1f2bxTf63";
 const productsRef=collection(db,"products");
 const ordersRef=collection(db,"orders");
-
 const WHATSAPP="917363843238";
 
-let products=[];
-let cart={};
-let locationLink="";
-let category="all";
-let isAdmin=false;
+let products=[],cart={},locationLink="",category="all",isAdmin=false;
+let selectedProduct=null,selectedQuantity=1;
 
 const $=id=>document.getElementById(id);
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
-
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
- "&":"&amp;",
- "<":"&lt;",
- ">":"&gt;",
- '"':"&quot;",
- "'":"&#39;"
-}[c]));
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 // VIEW CONTROL
 window.showView=view=>{
- ["shopView","cartView","ordersView","adminView"].forEach(id=>{
-  $(id).classList.add("hidden");
- });
-
+ ["shopView","productView","cartView","ordersView","adminView"].forEach(id=>$(id).classList.add("hidden"));
  $(view+"View").classList.remove("hidden");
-
  if(view==="cart")renderCart();
  if(view==="orders")loadMyOrders();
-
  if(view==="admin"){
-  if(isAdmin){
-   $("adminLoginBox").classList.add("hidden");
-   $("adminDashboard").classList.remove("hidden");
-   renderAdminProducts();
-   loadOrders();
-  }else{
-   $("adminLoginBox").classList.remove("hidden");
-   $("adminDashboard").classList.add("hidden");
-  }
+  $("adminLoginBox").classList.toggle("hidden",isAdmin);
+  $("adminDashboard").classList.toggle("hidden",!isAdmin);
+  if(isAdmin){renderAdminProducts();loadOrders();}
  }
-
  window.scrollTo(0,0);
 };
 
 window.filterCategory=cat=>{
- category=cat;
- showView("shop");
- renderProducts();
+ category=cat;showView("shop");renderProducts();
  $("productsSection").scrollIntoView({behavior:"smooth"});
 };
 
 // LOAD PRODUCTS
 onSnapshot(productsRef,snap=>{
  products=snap.docs.map(d=>({id:d.id,...d.data()}));
- renderProducts();
- renderCart();
-
+ renderProducts();renderCart();
  if(isAdmin)renderAdminProducts();
-
 },error=>{
  console.error(error);
  $("catalogue").textContent="Products load nahi hue. Please refresh karein.";
 });
 
-// RENDER PRODUCTS
+// PRODUCT LIST
 window.renderProducts=()=>{
- let term=($("search").value||"").toLowerCase();
-
- let list=products.filter(p=>{
-  let matchName=(p.name||"").toLowerCase().includes(term);
-
-  let matchCategory=category==="all"||
-   (category==="shots"&&/shot/i.test(p.name||""))||
-   (category==="chakri"&&/chakri/i.test(p.name||""))||
-   (category==="others"&&!/shot|chakri/i.test(p.name||""))||
-   (category==="crackers"&&/cracker/i.test(p.name||""));
-
+ const term=($("search").value||"").toLowerCase();
+ const list=products.filter(p=>{
+  const name=(p.name||"").toLowerCase();
+  const matchName=name.includes(term);
+  const matchCategory=category==="all"||
+   (category==="shots"&&/shot/i.test(name))||
+   (category==="chakri"&&/chakri/i.test(name))||
+   (category==="others"&&!/shot|chakri/i.test(name))||
+   (category==="crackers"&&/cracker/i.test(name));
   return matchName&&matchCategory;
  });
-
  $("productCount").textContent=list.length+" Products";
-
  $("catalogue").innerHTML=list.length?list.map(p=>`
-  <div class="product">
-   <div class="product-img">
-    ${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:"🎆"}
-   </div>
+  <div class="product" onclick="openProduct('${p.id}')">
+   <div class="product-img">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:"🎆"}</div>
    <h3>${esc(p.name)}</h3>
    <div class="details">${esc(p.details||"Quality celebration product")}</div>
    <div class="price">${money(p.price)}</div>
-   <button onclick="addCart('${p.id}')">ADD TO CART</button>
-   <button class="buy" onclick="buyNow('${p.id}')">BUY NOW</button>
-  </div>
- `).join(""):'<p>No products found.</p>';
+   <button onclick="event.stopPropagation();addCart('${p.id}')">ADD TO CART</button>
+   <button class="buy" onclick="event.stopPropagation();buyNow('${p.id}')">BUY NOW</button>
+  </div>`).join(""):"<p>No products found.</p>";
+};
+
+// FLIPKART STYLE PRODUCT DETAIL
+window.openProduct=id=>{
+ const p=products.find(x=>x.id===id);
+ if(!p)return;
+ selectedProduct=p;
+ selectedQuantity=1;
+ $("detailName").textContent=p.name||"";
+ $("detailPrice").textContent=money(p.price);
+ $("detailDescription").textContent=p.details||"Quality celebration product";
+ $("detailQuantity").textContent=selectedQuantity;
+ $("detailImage").innerHTML=p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:"🎆";
+ showView("product");
+};
+
+window.detailQty=n=>{
+ selectedQuantity=Math.max(1,Math.min(99,selectedQuantity+n));
+ $("detailQuantity").textContent=selectedQuantity;
+};
+window.detailAddCart=()=>{
+ if(!selectedProduct)return;
+ cart[selectedProduct.id]=(cart[selectedProduct.id]||0)+selectedQuantity;
+ renderCart();alert("Product added to cart!");
+};
+window.detailBuyNow=()=>{
+ if(!selectedProduct)return;
+ cart[selectedProduct.id]=(cart[selectedProduct.id]||0)+selectedQuantity;
+ renderCart();showView("cart");
 };
 
 // CART
 window.addCart=id=>{
- cart[id]=(cart[id]||0)+1;
- renderCart();
- alert("Added to cart!");
+ cart[id]=(cart[id]||0)+1;renderCart();alert("Added to cart!");
 };
-
 window.buyNow=id=>{
- cart[id]=(cart[id]||0)+1;
- renderCart();
- showView("cart");
+ cart[id]=(cart[id]||0)+1;renderCart();showView("cart");
 };
-
 window.changeQty=(id,n)=>{
  cart[id]=(cart[id]||0)+n;
  if(cart[id]<=0)delete cart[id];
  renderCart();
 };
-
 function totalAmount(){
  return Object.entries(cart).reduce((sum,[id,q])=>{
-  let p=products.find(x=>x.id===id);
+  const p=products.find(x=>x.id===id);
   return sum+(p?Number(p.price)*q:0);
  },0);
 }
-
 window.renderCart=()=>{
- let entries=Object.entries(cart).filter(([id])=>
-  products.some(p=>p.id===id)
- );
-
+ const entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
  $("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{
-  let p=products.find(x=>x.id===id);
-
-  return `
-   <div class="cartline">
-    <div>
-     <b>${esc(p.name)}</b>
-     <div>${money(p.price)} each</div>
-    </div>
-
-    <div class="qty">
-     <button onclick="changeQty('${id}',-1)">−</button>
-     <b>${q}</b>
-     <button onclick="changeQty('${id}',1)">+</button>
-    </div>
-
-    <b>${money(Number(p.price)*q)}</b>
-   </div>
-  `;
- }).join(""):`
-  <div class="empty">
-   🛒<h3>Your cart is empty</h3>
-   <p>Add products to start shopping.</p>
-   <button class="primary" onclick="showView('shop')">Shop Now</button>
-  </div>
- `;
-
+  const p=products.find(x=>x.id===id);
+  return `<div class="cartline">
+   <div><b>${esc(p.name)}</b><div>${money(p.price)} each</div></div>
+   <div class="qty"><button onclick="changeQty('${id}',-1)">−</button><b>${q}</b><button onclick="changeQty('${id}',1)">+</button></div>
+   <b>${money(Number(p.price)*q)}</b>
+  </div>`;
+ }).join(""):`<div class="empty">🛒<h3>Your cart is empty</h3><p>Add products to start shopping.</p><button class="primary" onclick="showView('shop')">Shop Now</button></div>`;
  $("cartTotal").textContent="Total: "+money(totalAmount());
  $("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
 };
@@ -481,47 +402,32 @@ window.renderCart=()=>{
 // LOCATION
 window.shareLocation=()=>{
  if(!navigator.geolocation)return alert("Location not supported");
-
  navigator.geolocation.getCurrentPosition(pos=>{
-  locationLink="https://maps.google.com/?q="+
-   pos.coords.latitude+","+pos.coords.longitude;
-
+  locationLink="https://maps.google.com/?q="+pos.coords.latitude+","+pos.coords.longitude;
   alert("Location added!");
  },()=>alert("Location permission denied."));
 };
 
 // WHATSAPP ORDER
 window.placeOrder=async()=>{
- let name=$("cName").value.trim();
- let phone=$("cPhone").value.trim();
- let address=$("cAddress").value.trim();
-
- let entries=Object.entries(cart).filter(([id])=>
-  products.some(p=>p.id===id)
- );
-
+ const name=$("cName").value.trim();
+ const phone=$("cPhone").value.trim();
+ const address=$("cAddress").value.trim();
+ const entries=Object.entries(cart).filter(([id])=>products.some(p=>p.id===id));
  if(!entries.length)return alert("Your cart is empty!");
  if(!name)return alert("Please enter your name.");
- if(!/^[0-9+\-\s]{10,15}$/.test(phone))
-  return alert("Please enter a valid mobile number.");
+ if(!/^[0-9+\-\s]{10,15}$/.test(phone))return alert("Please enter a valid mobile number.");
  if(!address)return alert("Please enter your delivery address.");
 
- let items=entries.map(([id,q])=>{
-  let p=products.find(x=>x.id===id);
-
-  return {
-   productId:id,
-   name:p.name,
-   price:Number(p.price),
-   quantity:q
-  };
+ const items=entries.map(([id,q])=>{
+  const p=products.find(x=>x.id===id);
+  return {productId:id,name:p.name,price:Number(p.price),quantity:q};
  });
+ const amount=items.reduce((s,x)=>s+x.price*x.quantity,0);
+ const orderRef=doc(ordersRef);
+ const orderId=orderRef.id;
 
- let amount=items.reduce((s,x)=>s+x.price*x.quantity,0);
- let orderRef=doc(ordersRef);
- let orderId=orderRef.id;
-
- let msg=`NEW ORDER - 2027 CRACKERS
+ const msg=`NEW ORDER - 2027 CRACKERS
 Order ID: ${orderId}
 Name: ${name}
 Phone: ${phone}
@@ -533,51 +439,30 @@ ${items.map(x=>x.name+" x "+x.quantity+" = "+money(x.price*x.quantity)).join("\n
 TOTAL: ${money(amount)}
 Payment: Cash on Delivery`;
 
- let whatsappUrl="https://wa.me/"+WHATSAPP+
-  "?text="+encodeURIComponent(msg);
-
- let whatsappTab=window.open("about:blank","_blank");
-
+ const whatsappUrl="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+ const whatsappTab=window.open("about:blank","_blank");
  $("orderBtn").disabled=true;
  $("orderBtn").textContent="SAVING ORDER...";
 
  try{
   await setDoc(orderRef,{
-   customerName:name,
-   phone,
-   address,
-   location:locationLink,
-   items,
-   total:amount,
-   status:"Pending",
-   payment:"COD",
+   customerName:name,phone,address,location:locationLink,
+   items,total:amount,status:"Pending",payment:"COD",
    createdAt:serverTimestamp()
   });
-
-  // SAVE ORDER ID IN THIS BROWSER
-  let savedOrders=JSON.parse(localStorage.getItem("myOrderIds")||"[]");
-
-  if(!savedOrders.includes(orderId)){
-   savedOrders.unshift(orderId);
-   localStorage.setItem("myOrderIds",JSON.stringify(savedOrders));
+  let saved=JSON.parse(localStorage.getItem("myOrderIds")||"[]");
+  if(!saved.includes(orderId)){
+   saved.unshift(orderId);
+   localStorage.setItem("myOrderIds",JSON.stringify(saved));
   }
-
-  if(whatsappTab){
-   whatsappTab.location.href=whatsappUrl;
-  }else{
-   window.location.href=whatsappUrl;
-  }
-
+  if(whatsappTab)whatsappTab.location.href=whatsappUrl;
+  else window.location.href=whatsappUrl;
   alert("Order saved! WhatsApp par Send button dabayein.");
-
-  cart={};
-  renderCart();
-
+  cart={};renderCart();
  }catch(e){
   console.error(e);
   if(whatsappTab)whatsappTab.close();
   alert("Order save nahi hua: "+e.message);
-
  }finally{
   $("orderBtn").disabled=false;
   $("orderBtn").textContent="🟢 PLACE ORDER ON WHATSAPP";
@@ -587,179 +472,94 @@ Payment: Cash on Delivery`;
 // CUSTOMER MY ORDERS
 window.loadMyOrders=async()=>{
  const box=$("myOrdersList");
-
  let ids=[];
-
- try{
-  ids=JSON.parse(localStorage.getItem("myOrderIds")||"[]");
- }catch(e){
-  ids=[];
- }
-
+ try{ids=JSON.parse(localStorage.getItem("myOrderIds")||"[]");}catch(e){ids=[];}
  if(!Array.isArray(ids)||!ids.length){
-  box.innerHTML=`
-   <div class="empty">
-    📦
-    <h3>No Orders Yet</h3>
-    <p>Your orders will appear here after shopping.</p>
-    <button class="primary" onclick="showView('shop')">Shop Now</button>
-   </div>`;
+  box.innerHTML=`<div class="empty">📦<h3>No Orders Yet</h3><p>Your orders will appear here after shopping.</p><button class="primary" onclick="showView('shop')">Shop Now</button></div>`;
   return;
  }
-
  box.textContent="Loading your orders...";
-
  try{
-  let orders=[];
-
+  const orders=[];
   for(const id of ids){
    const snap=await getDoc(doc(db,"orders",id));
-
-   if(snap.exists()){
-    orders.push({id,...snap.data()});
-   }
+   if(snap.exists())orders.push({id,...snap.data()});
   }
-
-  if(!orders.length){
-   box.innerHTML="<div class='empty'>No orders found.</div>";
-   return;
-  }
-
+  if(!orders.length){box.innerHTML="<div class='empty'>No orders found.</div>";return;}
   box.innerHTML=orders.map(o=>{
-   let status=o.status||"Pending";
-
-   let colors={
-    Pending:"#ff9800",
-    Confirmed:"#2874f0",
-    Processing:"#2874f0",
-    Shipped:"#2874f0",
-    Delivered:"#168b45",
-    Cancelled:"#dc3545"
-   };
-
-   let items=(o.items||[]).map(x=>`
+   const status=o.status||"Pending";
+   const colors={Pending:"#ff9800",Confirmed:"#2874f0",Processing:"#2874f0",Shipped:"#2874f0",Delivered:"#168b45",Cancelled:"#dc3545"};
+   const items=(o.items||[]).map(x=>`
     <div class="order-item">
-     <div>
-      <b>${esc(x.name)}</b><br>
-      <small>${money(x.price)} × ${Number(x.quantity)||0}</small>
-     </div>
+     <div><b>${esc(x.name)}</b><br><small>${money(x.price)} × ${Number(x.quantity)||0}</small></div>
      <b>${money(Number(x.price)*(Number(x.quantity)||0))}</b>
+    </div>`).join("");
+   const date=o.createdAt?.toDate?o.createdAt.toDate().toLocaleString("en-IN"):"Recently Ordered";
+   return `<div class="order-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+     <b>📦 Order Details</b>
+     <span class="order-status" style="background:${colors[status]||"#eee"}18;color:${colors[status]||"#333"}">${esc(status)}</span>
     </div>
-   `).join("");
-
-   let date=o.createdAt?.toDate
-    ?o.createdAt.toDate().toLocaleString("en-IN")
-    :"Recently Ordered";
-
-   return `
-    <div class="order-card">
-     <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
-      <b>📦 Order Details</b>
-      <span class="order-status" style="background:${colors[status]||"#eee"}18;color:${colors[status]||"#333"}">
-       ${esc(status)}
-      </span>
-     </div>
-
-     <p style="font-size:12px;color:#777">Order ID: ${esc(o.id)}</p>
-     <p style="font-size:13px;color:#777">Order Date: ${esc(date)}</p>
-
-     <hr style="border:0;border-top:1px solid #eee">
-
-     ${items}
-
-     <div class="order-total">Total: ${money(o.total)}</div>
-     <p style="font-size:13px;color:#777">Payment: ${esc(o.payment||"COD")}</p>
-    </div>
-   `;
+    <p style="font-size:12px;color:#777">Order ID: ${esc(o.id)}</p>
+    <p style="font-size:13px;color:#777">Order Date: ${esc(date)}</p>
+    <hr style="border:0;border-top:1px solid #eee">
+    ${items}
+    <div class="order-total">Total: ${money(o.total)}</div>
+    <p style="font-size:13px;color:#777">Payment: ${esc(o.payment||"COD")}</p>
+   </div>`;
   }).join("");
-
  }catch(e){
   console.error(e);
-  box.innerHTML=`
-   <div class="message">
-    Orders load failed: ${esc(e.message)}
-    <br>Firestore Rules में customer order read permission जाँचें।
-   </div>`;
+  box.innerHTML=`<div class="message">Orders load failed: ${esc(e.message)}<br>Firestore Rules में customer order read permission जाँचें।</div>`;
  }
 };
 
-// ADMIN AUTHENTICATION
+// ADMIN LOGIN
 window.adminLogin=async()=>{
- let email=$("adminEmail").value.trim();
- let password=$("adminPassword").value;
-
- if(!email||!password){
-  alert("Email aur password enter karein.");
-  return;
- }
-
+ const email=$("adminEmail").value.trim();
+ const password=$("adminPassword").value;
+ if(!email||!password)return alert("Email aur password enter karein.");
  $("loginBtn").disabled=true;
  $("loginMessage").textContent="Logging in...";
-
  try{
-  let result=await signInWithEmailAndPassword(auth,email,password);
-
+  const result=await signInWithEmailAndPassword(auth,email,password);
   if(result.user.uid!==ADMIN_UID){
-   await signOut(auth);
-   isAdmin=false;
+   await signOut(auth);isAdmin=false;
    $("loginMessage").textContent="Access denied.";
    alert("This account is not authorized as admin.");
    return;
   }
-
   isAdmin=true;
   $("adminLoginBox").classList.add("hidden");
   $("adminDashboard").classList.remove("hidden");
-
-  renderAdminProducts();
-  await loadOrders();
-
+  renderAdminProducts();await loadOrders();
  }catch(e){
   console.error(e);
   $("loginMessage").textContent="Login failed: "+e.message;
- }finally{
-  $("loginBtn").disabled=false;
- }
+ }finally{$("loginBtn").disabled=false;}
 };
 
-// WATCH AUTH STATE
 onAuthStateChanged(auth,user=>{
  isAdmin=!!user&&user.uid===ADMIN_UID;
-
- if(user&&!isAdmin){
-  signOut(auth);
- }
-
+ if(user&&!isAdmin)signOut(auth);
  if($("adminView")&&!$("adminView").classList.contains("hidden")){
   $("adminLoginBox").classList.toggle("hidden",isAdmin);
   $("adminDashboard").classList.toggle("hidden",!isAdmin);
-
-  if(isAdmin){
-   renderAdminProducts();
-   loadOrders();
-  }
+  if(isAdmin){renderAdminProducts();loadOrders();}
  }
 });
 
-// ADMIN LOGOUT
 window.adminLogout=async()=>{
  try{
-  await signOut(auth);
-  isAdmin=false;
-
+  await signOut(auth);isAdmin=false;
   $("adminDashboard").classList.add("hidden");
   $("adminLoginBox").classList.remove("hidden");
   $("adminPassword").value="";
-
-  alert("Admin logged out.");
-  showView("shop");
-
- }catch(e){
-  alert(e.message);
- }
+  alert("Admin logged out.");showView("shop");
+ }catch(e){alert(e.message);}
 };
 
-// CLEAR PRODUCT FORM
+// PRODUCT FORM
 window.clearProductForm=()=>{
  $("editProductId").value="";
  $("pName").value="";
@@ -769,183 +569,90 @@ window.clearProductForm=()=>{
  $("productMessage").textContent="";
 };
 
-// SAVE PRODUCT
 window.saveProduct=async()=>{
  if(!isAdmin)return alert("Admin login required.");
-
- let id=$("editProductId").value;
- let name=$("pName").value.trim();
- let price=Number($("pPrice").value);
- let details=$("pDetails").value.trim();
- let image=$("pImage").value.trim();
-
- if(!name||!Number.isFinite(price)||price<=0){
-  return alert("Product name aur valid price enter karein.");
- }
-
- let data={name,price,details,image};
-
+ const id=$("editProductId").value;
+ const name=$("pName").value.trim();
+ const price=Number($("pPrice").value);
+ const details=$("pDetails").value.trim();
+ const image=$("pImage").value.trim();
+ if(!name||!Number.isFinite(price)||price<=0)return alert("Product name aur valid price enter karein.");
+ const data={name,price,details,image};
  try{
-  if(id){
-   await updateDoc(doc(db,"products",id),data);
-   $("productMessage").textContent="Product updated successfully!";
-  }else{
-   await addDoc(productsRef,data);
-   $("productMessage").textContent="Product added successfully!";
-  }
-
-  clearProductForm();
-  renderAdminProducts();
-
- }catch(e){
-  console.error(e);
-  alert("Product save failed: "+e.message);
- }
+  if(id){await updateDoc(doc(db,"products",id),data);$("productMessage").textContent="Product updated successfully!";}
+  else{await addDoc(productsRef,data);$("productMessage").textContent="Product added successfully!";}
+  clearProductForm();renderAdminProducts();
+ }catch(e){console.error(e);alert("Product save failed: "+e.message);}
 };
 
-// ADMIN PRODUCT LIST
 window.renderAdminProducts=()=>{
  if(!isAdmin)return;
-
  $("adminProductCount").textContent=products.length;
-
- $("adminProducts").innerHTML=products.length?
- products.map(p=>`
+ $("adminProducts").innerHTML=products.length?products.map(p=>`
   <div class="cartline">
-   <div>
-    <b>${esc(p.name)}</b><br>
-    ${money(p.price)}
-   </div>
-
-   <div>
-    <button class="whitebtn" onclick="editProduct('${p.id}')">Edit</button>
-    <button class="danger" onclick="removeProduct('${p.id}')">Delete</button>
-   </div>
-  </div>
- `).join(""):"No products found.";
+   <div><b>${esc(p.name)}</b><br>${money(p.price)}</div>
+   <div><button class="whitebtn" onclick="editProduct('${p.id}')">Edit</button>
+   <button class="danger" onclick="removeProduct('${p.id}')">Delete</button></div>
+  </div>`).join(""):"No products found.";
 };
 
-// EDIT PRODUCT
 window.editProduct=id=>{
  if(!isAdmin)return;
-
- let p=products.find(x=>x.id===id);
+ const p=products.find(x=>x.id===id);
  if(!p)return;
-
  $("editProductId").value=p.id;
  $("pName").value=p.name||"";
  $("pPrice").value=p.price||"";
  $("pDetails").value=p.details||"";
  $("pImage").value=p.image||"";
-
  $("pName").scrollIntoView({behavior:"smooth"});
 };
 
-// DELETE PRODUCT
 window.removeProduct=async id=>{
  if(!isAdmin)return;
-
  if(!confirm("Are you sure you want to delete this product?"))return;
-
- try{
-  await deleteDoc(doc(db,"products",id));
-  alert("Product deleted!");
-  renderAdminProducts();
-
- }catch(e){
-  console.error(e);
-  alert("Delete failed: "+e.message);
- }
+ try{await deleteDoc(doc(db,"products",id));alert("Product deleted!");renderAdminProducts();}
+ catch(e){console.error(e);alert("Delete failed: "+e.message);}
 };
 
-// LOAD ADMIN ORDERS
+// ADMIN ORDERS
 window.loadOrders=async()=>{
  if(!isAdmin)return;
-
  $("adminOrders").textContent="Loading orders...";
-
  try{
-  let snap=await getDocs(
-   query(ordersRef,orderBy("createdAt","desc"))
-  );
-
+  const snap=await getDocs(query(ordersRef,orderBy("createdAt","desc")));
   $("adminOrderCount").textContent=snap.size;
-
-  if(snap.empty){
-   $("adminOrders").textContent="No orders yet.";
-   return;
-  }
-
+  if(snap.empty){$("adminOrders").textContent="No orders yet.";return;}
+  const statuses=["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"];
   $("adminOrders").innerHTML=snap.docs.map(d=>{
-   let o=d.data();
-
-   let items=(o.items||[]).map(x=>
-    `${esc(x.name)} x ${Number(x.quantity)||0}`
-   ).join(", ");
-
-   let statuses=[
-    "Pending","Confirmed","Processing",
-    "Shipped","Delivered","Cancelled"
-   ];
-
-   return `
-    <div class="order-card">
-     <b>Order ID:</b><br>${esc(d.id)}<br><br>
-
-     <b>Customer:</b> ${esc(o.customerName)}<br>
-     <b>Phone:</b> ${esc(o.phone)}<br>
-     <b>Address:</b> ${esc(o.address)}<br>
-     <b>Items:</b> ${items}<br>
-     <b>Total:</b> ${money(o.total)}<br>
-     <b>Current Status:</b> ${esc(o.status||"Pending")}<br><br>
-
-     <label>Update Order Status</label>
-     <select id="status-${d.id}">
-      ${statuses.map(s=>`
-       <option value="${s}" ${o.status===s?"selected":""}>${s}</option>
-      `).join("")}
-     </select>
-
-     <button class="primary" onclick="updateOrderStatus('${d.id}')">
-      Update Status
-     </button>
-    </div>
-   `;
+   const o=d.data();
+   const items=(o.items||[]).map(x=>`${esc(x.name)} x ${Number(x.quantity)||0}`).join(", ");
+   return `<div class="order-card">
+    <b>Order ID:</b><br>${esc(d.id)}<br><br>
+    <b>Customer:</b> ${esc(o.customerName)}<br>
+    <b>Phone:</b> ${esc(o.phone)}<br>
+    <b>Address:</b> ${esc(o.address)}<br>
+    <b>Items:</b> ${items}<br>
+    <b>Total:</b> ${money(o.total)}<br>
+    <b>Current Status:</b> ${esc(o.status||"Pending")}<br><br>
+    <label>Update Order Status</label>
+    <select id="status-${d.id}">${statuses.map(s=>`<option value="${s}" ${o.status===s?"selected":""}>${s}</option>`).join("")}</select>
+    <button class="primary" onclick="updateOrderStatus('${d.id}')">Update Status</button>
+   </div>`;
   }).join("");
-
- }catch(e){
-  console.error(e);
-  $("adminOrders").textContent="Orders load failed: "+e.message;
- }
+ }catch(e){console.error(e);$("adminOrders").textContent="Orders load failed: "+e.message;}
 };
 
-// UPDATE ORDER STATUS
 window.updateOrderStatus=async id=>{
  if(!isAdmin)return;
-
- let status=$("status-"+id).value;
-
+ const status=$("status-"+id).value;
  try{
-  await updateDoc(doc(db,"orders",id),{
-   status,
-   updatedAt:serverTimestamp()
-  });
-
+  await updateDoc(doc(db,"orders",id),{status,updatedAt:serverTimestamp()});
   alert("Order status updated!");
-
   loadOrders();
-
-  // Refresh customer's visible order list if open
-  if(!$("ordersView").classList.contains("hidden")){
-   loadMyOrders();
-  }
-
- }catch(e){
-  console.error(e);
-  alert("Status update failed: "+e.message);
- }
+  if(!$("ordersView").classList.contains("hidden"))loadMyOrders();
+ }catch(e){console.error(e);alert("Status update failed: "+e.message);}
 };
-
 </script>
 </body>
 </html>
