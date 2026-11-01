@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,11 +26,7 @@ button{cursor:pointer;border:0}
 .container{max-width:1250px;margin:auto;padding:14px}
 .categorybar{background:white;display:flex;justify-content:center;gap:25px;padding:17px;overflow-x:auto;white-space:nowrap}
 .categorybar button{background:transparent;color:#333;font-weight:bold}
-.banner{margin:14px 0;background:linear-gradient(110deg,#092b72,#2874f0,#65a3ff);color:white;padding:35px;border-radius:5px;display:flex;align-items:center;justify-content:space-between}
-.banner h1{font-size:clamp(30px,5vw,48px);margin:0 0 10px}
-.banner h1 span{color:var(--yellow)}
-.banner button{background:var(--yellow);padding:12px 20px;font-weight:bold}
-.banner-art{font-size:65px}
+
 .safety{background:#fff4d6;padding:13px;margin:14px 0;border-radius:4px;color:#654c00;font-size:13px;line-height:1.5}
 .section{background:white;margin:14px 0;padding:18px;border-radius:4px}
 .section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #eee;padding-bottom:13px;margin-bottom:16px}
@@ -67,13 +62,46 @@ label{font-size:14px;font-weight:bold}
 .order-item{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #eee}
 .order-total{font-size:19px;font-weight:bold;text-align:right;margin-top:14px}
 
-/* DIWALI OFFER SLIDER */
-.offer-slider{position:relative;width:100%;height:320px;overflow:hidden;border-radius:8px;margin:14px 0;background:#111}
-.offer-slide{display:none;width:100%;height:100%;position:relative}
+/* LARGE DIWALI OFFER SLIDER */
+.offer-slider{
+ position:relative;
+ width:100%;
+ height:520px;
+ overflow:hidden;
+ border-radius:8px;
+ margin:14px 0;
+ background:#111;
+}
+.offer-slide{
+ display:none;
+ width:100%;
+ height:100%;
+ position:relative;
+}
 .offer-slide.active{display:block}
-.offer-slide img{width:100%;height:100%;object-fit:cover}
-.offer-buy{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);background:var(--yellow);color:#111;padding:13px 30px;font-weight:bold;border-radius:5px}
-.offer-dots{position:absolute;bottom:7px;right:15px;color:white;font-size:18px}
+.offer-slide img{
+ width:100%;
+ height:100%;
+ object-fit:contain;
+}
+.offer-buy{
+ position:absolute;
+ bottom:25px;
+ left:50%;
+ transform:translateX(-50%);
+ background:var(--yellow);
+ color:#111;
+ padding:13px 30px;
+ font-weight:bold;
+ border-radius:5px;
+}
+.offer-dots{
+ position:absolute;
+ bottom:7px;
+ right:15px;
+ color:white;
+ font-size:18px;
+}
 
 /* PRODUCT DETAIL */
 .detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:20px}
@@ -90,15 +118,15 @@ label{font-size:14px;font-weight:bold}
 footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-height:1.8;margin-top:20px}
 .bottomnav{display:none}
 
-@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){
+ .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
 @media(max-width:600px){
  .header{gap:5px;flex-wrap:wrap}
  .logo{font-size:18px}
  .searchbox{order:3;flex-basis:100%}
  .header-btn{padding:7px 4px;font-size:11px}
  .categorybar{justify-content:flex-start;gap:18px}
- .banner{padding:23px 15px}
- .banner-art{font-size:40px}
  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
  .product{padding:8px}
  .product-img{height:115px}
@@ -115,7 +143,7 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
  .detail-image{min-height:230px}
  .detail-image img{height:230px}
  .detail-info h1{font-size:23px}
- .offer-slider{height:180px}
+ .offer-slider{height:300px}
  .offer-buy{bottom:20px;padding:10px 22px}
 }
 </style>
@@ -161,14 +189,6 @@ footer{background:#172337;color:#ddd;padding:28px 15px;text-align:center;line-he
 
 <!-- SHOP -->
 <section id="shopView">
- <div class="banner">
-  <div>
-   <h1>2027 <span>CRACKERS</span></h1>
-   <p>Your Celebration Shopping Destination<br>Siliguri, West Bengal</p>
-   <button onclick="goToProducts()">SHOP NOW →</button>
-  </div>
-  <div class="banner-art">🎆🎇</div>
- </div>
  <div class="safety">⚠️ Fireworks केवल कानूनी रूप से अनुमत उत्पादों और स्थानीय नियमों के अनुसार ही खरीदें और उपयोग करें। सुरक्षा निर्देशों का पालन करें।</div>
  <section class="section" id="productsSection">
   <div class="section-title"><h2>🔥 Popular Products</h2><span id="productCount">Loading...</span></div>
